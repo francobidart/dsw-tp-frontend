@@ -1,1 +1,90 @@
-<p>home works!</p>
+<script src="../../../../becommerce/frontend/src/app/start/start.component.ts"></script>
+<div style='background-image: url("assets/img/Banner_Slider_Desktop_12CSI_SMART_TV.webp"); background-size: cover; background-repeat: no-repeat;
+background-position: center center;'>
+  <div style="backdrop-filter: blur(5px)">
+    <div class="" style="max-width: inherit">
+      <img src="assets/img/Banner_Slider_Desktop_12CSI_SMART_TV.webp" style="max-width: 100%">
+    </div>
+  </div>
+</div>
+
+<div style="background-color: #f0f0f0">
+  <div class="container">
+    <div class="box">
+      <div style="flex-grow: 3">Hasta 12 cuotas sin interés</div>
+      <div style="flex-grow: 3">Envíos a todo el país</div>
+      <div style="flex-grow: 3">Pagá con Mercado Pago</div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="flex-row" style="padding: 20px">
+    <div class="item flex-3" routerLink="article/{{item.id}}" *ngFor="let item of Products">
+      <div>
+        <img
+          src="{{item.imagen}}"
+          alt="">
+      </div>
+      <div class="product-title">
+        <span>{{item.nombre}}</span>
+      </div>
+      <div class="product-price">
+        <strong>${{item.precio}}</strong>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+
+<style>
+  .item {
+    text-align: center;
+    cursor: pointer;
+    margin-right: 10px;
+    padding: 10px;
+    max-width: 22%;
+    -webkit-transition: all 200ms ease-in-out;
+    -moz-transition: all 200ms ease-in-out;
+    -ms-transition: all 200ms ease-in-out;
+    -o-transition: all 200ms ease-in-out;
+    transition: all 200ms ease-in-out;
+  }
+
+  .item:hover {
+    box-shadow: 1px 1px 5px 0px rgba(128, 128, 128, 0.75);
+    -webkit-box-shadow: 1px 1px 5px 0px rgba(128, 128, 128, 0.75);
+    -moz-box-shadow: 1px 1px 5px 0px rgba(128, 128, 128, 0.75);
+  }
+
+  .item img {
+    width: 80%;
+  }
+
+  .item .product-price {
+    font-size: 1.5rem;
+  }
+
+  .flex-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .box {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .box div {
+    text-align: center;
+    padding: 20px;
+  }
+</style>
