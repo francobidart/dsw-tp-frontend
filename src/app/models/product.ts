@@ -41,7 +41,7 @@ export const Products: Product[] = [
         '        Microdimming y HDR10. Además, obtendrás la mejor experiencia de audio con el sistema Dolby Digital que te hará\n' +
         '        sentir como en el cine, desde la comodidad de tu hogar.\n' +
         '      </p>', imagen: 'https://www.venex.com.ar/products_images/1686052397_4.jpg'},
-  {id: 333, nombre: 'SLavarropas Carga Frontal Inverter Samsung 7 Kg 1400 RPM WW70J4463GS Plateado', precio: 294829, descripcion: '<p>\n' +
+  {id: 333, nombre: 'TECLADO REDRAGON K630 DRAGONBORN BLACK 60 MECANICO', precio: 294829, descripcion: '<p>\n' +
         '        El Smart TV Hitachi CDH-LE504KSMART22 de 50 pulgadas tiene una resolución 4K Ultra HD (3840 x 2160 píxeles) que\n' +
         '        es cuatro veces superior a la de una TV Full HD. El nuevo Android TV te ofrece mucho más entretenimiento.\n' +
         '        Pantalla sin bordes para una experiencia más inmersiva y control por voz manos libres, integrado. Olvidate del\n' +
@@ -50,7 +50,7 @@ export const Products: Product[] = [
         '        Colores más nítidos y mayor contraste para que disfrutes de las imágenes en la más alta calidad gracias al\n' +
         '        Microdimming y HDR10. Además, obtendrás la mejor experiencia de audio con el sistema Dolby Digital que te hará\n' +
         '        sentir como en el cine, desde la comodidad de tu hogar.\n' +
-        '      </p>', imagen: 'https://images.fravega.com/f300/d6eee2e2bbc616e18a0f5f4df77c0d3b.jpg.webp'},
+        '      </p>', imagen: 'https://www.venex.com.ar/products_images/1622142628_k630rgb-pngweb-10-1.png'},
   {id: 444, nombre: 'MICROPROCESADOR INTEL CELERON G5905 TRAY OEM BULK 3.50GHZ 4MB 1200', precio: 38212, descripcion: '<p>\n' +
         '        El Smart TV Hitachi CDH-LE504KSMART22 de 50 pulgadas tiene una resolución 4K Ultra HD (3840 x 2160 píxeles) que\n' +
         '        es cuatro veces superior a la de una TV Full HD. El nuevo Android TV te ofrece mucho más entretenimiento.\n' +

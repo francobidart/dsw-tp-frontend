@@ -20,8 +20,8 @@ background-position: center center;'>
 
 <div class="container">
 
-  <div class="flex-row" style="padding: 20px">
-    <div class="item flex-3" routerLink="producto/{{item.id}}" *ngFor="let item of Products">
+  <div class="row" style="padding: 20px">
+    <div class="item col-12 col-md-3" routerLink="producto/{{item.id}}" *ngFor="let item of Products">
       <div>
         <img
           src="{{item.imagen}}"
@@ -46,9 +46,7 @@ background-position: center center;'>
   .item {
     text-align: center;
     cursor: pointer;
-    margin-right: 10px;
     padding: 10px;
-    max-width: 22%;
     -webkit-transition: all 200ms ease-in-out;
     -moz-transition: all 200ms ease-in-out;
     -ms-transition: all 200ms ease-in-out;

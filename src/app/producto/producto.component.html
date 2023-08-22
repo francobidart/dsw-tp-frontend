@@ -1,10 +1,10 @@
 <div class="container">
   <br><br><br>
   <div class="row">
-    <div class="product-image col-5" style="text-align: center">
+    <div class="product-image col-12 col-md-4" style="text-align: center">
       <img src="{{this.Producto.imagen}}" alt="">
     </div>
-    <div class="product-detail col">
+    <div class="product-detail col-12 col-md">
       <h1>{{this.Producto.nombre}}</h1>
       <h2>${{this.Producto.precio | number: '1.0-2'}}</h2>
       <br>
@@ -33,8 +33,4 @@
     justify-content: left;
   }
 
-
-  .product-detail {
-    width: 60%;
-  }
 </style>
