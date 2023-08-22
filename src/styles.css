@@ -10,3 +10,7 @@ body {
 .montserrat {
     font-family: 'Montserrat', sans-serif;
 }
+img {
+  max-width: 100%;
+  height: auto;
+}

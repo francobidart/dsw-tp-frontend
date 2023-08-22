@@ -1,45 +1,69 @@
 <div class="header" style="background-color:#333 ;">
-    <div class="container-1300">
-        <nav class="navbar navbar-expand-lg" data-bs-theme="dark">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#"><i class="fa-solid fa-pepper-hot"></i> EL PATRÓN DEL HARD</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarColor01">
-                <ul class="navbar-nav me-auto">
-                  <li class="nav-item">
-                    <a class="nav-link active" routerLink="/" href="#">Inicio
-                    </a>
-                  </li>
-                  <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Productos</a>
-                    <div class="dropdown-menu">
-                      <a class="dropdown-item" href="#">Action</a>
-                      <a class="dropdown-item" href="#">Another action</a>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item" href="#">Separated link</a>
-                    </div>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" routerLink="nosotros" href="#">Sobre nosotros</a>
-                  </li>
-                </ul>
-                <div class="d-flex">
-                    <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#"><i class="fa-solid fa-user"></i> Mi cuenta
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link active" href="#"><i class="fa-solid fa-cart-shopping"></i> Carrito (0)
-                        </a>
-                      </li>
-                    </ul>
-                </div>
+  <div class="container-1300">
+    <nav class="navbar navbar-expand-lg" data-bs-theme="dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#"><i class="fa-solid fa-pepper-hot"></i> EL PATRÓN DEL HARD</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
+                aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarColor01">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link active" routerLink="/" href="#">Inicio
+              </a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true"
+                 aria-expanded="false">Productos</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" *ngFor="let item of Example" href="#">{{item.nombre}}</a>
               </div>
-            </div>
-          </nav>
-    </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="nosotros" href="#">Sobre nosotros</a>
+            </li>
+          </ul>
+          <div class="d-flex">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <a class="nav-link active" href="#"><i class="fa-solid fa-user"></i> Mi cuenta
+                </a>
+              </li>
+              <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-right">
+                <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown3" role="button">
+                  Carrito ({{CartItems.length}})
+                </a>
+                <div ngbDropdownMenu aria-labelledby="navbarDropdown3"
+                     style="margin-top: 15px; padding: 20px; width: 400px"
+                     class="dropdown-menu">
+                  <p>
+                    Mi carrito
+                  </p>
+                  <div *ngIf="CartItems.length > 0">
+                    <div style="max-height: 200px" class="overflow-auto">
+                      <div *ngFor="let item of CartItems" class="row" style="width: 100%">
+                        <div class="col"><img src="{{item.imagen}}" alt=""></div>
+                        <div class="col">{{item.nombre}} <br><br> ${{item.precio}}</div>
+                        <br><br>
+                        <hr>
+                      </div>
+                    </div>
+                    <br>
+                    <div style="text-align: right">Total: ${{this.cartService.total}}</div>
+                    <br>
+                    <span class="btn btn-success  d-block">Finalizar compra</span>
+                    <span (click)="FlushCart()" class="btn btn-link btn-sm d-block">Vaciar carrito</span>
+                  </div>
+                  <div class="alert alert-secondary" role="alert" *ngIf="CartItems.length == 0">
+                    Todavía no agregaste ningún artículo
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
 </div>

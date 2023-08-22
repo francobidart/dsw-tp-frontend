@@ -12,6 +12,9 @@ import { FooterComponent } from './footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {APP_BASE_HREF, registerLocaleData} from '@angular/common';
 import localeEsAr from '@angular/common/locales/es-AR';
+import { ProductoDetalleComponent } from './producto-detalle/producto-detalle.component';
+import {Product} from "./models/product";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 registerLocaleData(localeEsAr, 'es-AR');
 
 @NgModule({
@@ -21,15 +24,18 @@ registerLocaleData(localeEsAr, 'es-AR');
     HomeComponent,
     HeaderComponent,
     AboutUsComponent,
-    FooterComponent
+    FooterComponent,
+    ProductoDetalleComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot([
       {path: '', component: HomeComponent},
-      {path: 'nosotros', component: AboutUsComponent}
+      {path: 'nosotros', component: AboutUsComponent},
+      {path: 'producto/:id', component: ProductoComponent}
     ]),
+    NgbModule,
   ],
   providers: [{provide: APP_BASE_HREF, useValue: '/'}, { provide: LOCALE_ID, useValue: 'es-AR' }],
   bootstrap: [AppComponent]

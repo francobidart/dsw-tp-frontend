@@ -1,1 +1,43 @@
+<div class="container">
+  <div class="flex-row">
+    <div class="product-image flex-8">
+      <img src="{{this.Producto.imagen}}" alt="">
+    </div>
+    <div class="product-detail flex-1">
+      <br><br><br>
+      <h1>{{this.Producto.nombre}}</h1>
+      <h2>${{this.Producto.precio | number: '1.0-2'}}</h2>
+      <br>
+      <div class="card" style="width: 60%">
+        <div class="card-body">
+          Pagalo en hasta <span class="text-primary">12 cuotas sin interés</span>
+          con VISA y MasterCard
+          <br>
+          <small>12 cuotas de ${{(this.Producto.precio / 12) | number: '1.0-2'}}</small>
+          <br>
+          <a style="cursor: pointer" (click)="openInstallmentsModal()" class="small text-secondary">Calcular cuotas</a>
+        </div>
+      </div>
+      <br>
+      <a (click)="addToCartAndGoToSummary()" class="btn btn-primary">Comprar ahora</a> &nbsp;
+      <a (click)="addToCart()" class="btn btn-outline-secondary">Añadir al carrito</a>
+      <br><br>
+      <div [innerHTML]="this.Producto.descripcion"></div>
+    </div>
+  </div>
+</div>
 
+<style>
+  .flex-row {
+    display: flex;
+    justify-content: left;
+  }
+
+  .product-image {
+    width: auto;
+  }
+
+  .product-detail {
+    width: 60%;
+  }
+</style>
