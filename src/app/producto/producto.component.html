@@ -1,1 +1,33 @@
+<div class="product-form">
+    <h2>Agregar Producto</h2>
+    <form (submit)="agregarProducto()">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" [(ngModel)]="nuevoProducto.nombre" required>
+      
+      <label for="descripcion">Descripción:</label>
+      <textarea id="descripcion" [(ngModel)]="nuevoProducto.descripcion" required></textarea>
+      
+      <label for="precio">Precio:</label>
+      <input type="number" id="precio" [(ngModel)]="nuevoProducto.precio" required>
+      
+      <label for="imagen">Imagen (URL):</label>
+      <input type="url" id="imagen" [(ngModel)]="nuevoProducto.imagen" required>
 
+      <label for="stock">Stock :</label>
+      <input type="url" id="stock" [(ngModel)]="nuevoProducto.stock" required>
+      
+      
+      <button type="submit" >Agregar Producto</button>
+    </form>
+  </div>
+  
+  <div class="product-list">
+    <h2>Lista de Productos</h2>
+    <div *ngFor="let producto of productos" class="product-item">
+      <h3>{{ producto.nombre }}</h3>
+      <img [src]="producto.imagen" alt="{{ producto.nombre }}" />
+      <p>{{ producto.descripcion }}</p>
+      <p>Precio: {{ producto.precio }}</p>
+      <p>Stock: {{ producto.stock }}</p>
+    </div>
+  </div>
