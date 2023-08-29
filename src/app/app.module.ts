@@ -15,6 +15,7 @@ import localeEsAr from '@angular/common/locales/es-AR';
 import { ProductoDetalleComponent } from './producto-detalle/producto-detalle.component';
 import {Product} from "./models/product";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UsuariosComponent } from './usuarios/usuarios.component';
 registerLocaleData(localeEsAr, 'es-AR');
 
 @NgModule({
@@ -25,7 +26,8 @@ registerLocaleData(localeEsAr, 'es-AR');
     HeaderComponent,
     AboutUsComponent,
     FooterComponent,
-    ProductoDetalleComponent
+    ProductoDetalleComponent,
+    UsuariosComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +35,8 @@ registerLocaleData(localeEsAr, 'es-AR');
     RouterModule.forRoot([
       {path: '', component: HomeComponent},
       {path: 'nosotros', component: AboutUsComponent},
-      {path: 'producto/:id', component: ProductoComponent}
+      {path: 'producto/:id', component: ProductoComponent},
+      {path: 'usuarios', component: UsuariosComponent}
     ]),
     NgbModule,
   ],
