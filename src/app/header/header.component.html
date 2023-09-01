@@ -27,7 +27,7 @@
           <div class="d-flex">
             <ul class="navbar-nav me-auto">
               <li class="nav-item">
-                <a class="nav-link active" routerLink="usuarios"><i class="fa-solid fa-user"></i> Mi cuenta
+                <a class="nav-link active" (click)="showLoginPopup()"><i class="fa-solid fa-user"></i> Mi cuenta
                 </a>
               </li>
               <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-right">
@@ -67,3 +67,4 @@
     </nav>
   </div>
 </div>
+<app-usuarios *ngIf="isLoginPopupVisible" (closePopup)="hideLoginPopup()"></app-usuarios>
