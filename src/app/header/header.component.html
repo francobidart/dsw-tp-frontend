@@ -2,7 +2,7 @@
   <div class="container-1300">
     <nav class="navbar navbar-expand-lg" data-bs-theme="dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#"><i class="fa-solid fa-pepper-hot"></i> EL PATRÓN DEL HARD</a>
+        <a class="navbar-brand" routerLink="/" href="#"><i class="fa-solid fa-pepper-hot"></i> EL PATRÓN DEL HARD</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
                 aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -10,12 +10,11 @@
         <div class="collapse navbar-collapse" id="navbarColor01">
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
-              <a class="nav-link active" routerLink="/" href="#">Inicio
-              </a>
+              <input type="text" placeholder="Buscar productos..." class="form-control">
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true"
-                 aria-expanded="false">Productos</a>
+                 aria-expanded="false">Categorías</a>
               <div class="dropdown-menu">
                 <a class="dropdown-item" *ngFor="let item of Example" href="#">{{item.nombre}}</a>
               </div>
@@ -52,7 +51,7 @@
                     <br>
                     <div style="text-align: right">Total: ${{this.cartService.total}}</div>
                     <br>
-                    <span class="btn btn-success  d-block">Finalizar compra</span>
+                    <span class="btn btn-success d-block" routerLink="/login">Finalizar compra</span>
                     <span (click)="FlushCart()" class="btn btn-link btn-sm d-block">Vaciar carrito</span>
                   </div>
                   <div class="alert alert-secondary" role="alert" *ngIf="CartItems.length == 0">

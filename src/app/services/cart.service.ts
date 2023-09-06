@@ -25,6 +25,14 @@ export class CartService {
     window.localStorage.setItem('cart', JSON.stringify(this.items));
   }
 
+  getTotal() {
+    return this.total;
+  }
+
+  getItemsCount() {
+    return this.items.length;
+  }
+
   addAndToCartGoToSummary(product: Product) {
     this.addToCart(product);
     this.router.navigate(['/']);
