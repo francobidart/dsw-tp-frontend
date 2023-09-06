@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="padding-bottom: 50px;">
   <br><br><br>
   <div class="row">
     <div class="product-image col-12 col-md-4" style="text-align: center">
@@ -6,10 +6,11 @@
     </div>
     <div class="product-detail col-12 col-md">
       <h1>{{this.Producto.nombre}}</h1>
+      <br>
       <h2>${{this.Producto.precio | number: '1.0-2'}}</h2>
       <br>
-      <div class="card" style="width: 60%">
-        <div class="card-body">
+      <div class="card" >
+        <div class="card-body" style="width: 100%;">
           Pagalo en hasta <span class="text-primary">12 cuotas sin interés</span>
           con VISA y MasterCard
           <br>
@@ -19,8 +20,10 @@
         </div>
       </div>
       <br>
-      <a (click)="addToCartAndGoToSummary()" class="btn btn-primary">Comprar ahora</a> &nbsp;
-      <a (click)="addToCart()" class="btn btn-outline-secondary">Añadir al carrito</a>
+      <div class="botones-producto" >
+        <a (click)="addToCartAndGoToSummary()" class="btn btn-primary">Comprar ahora</a> &nbsp;
+        <a (click)="addToCart()" class="btn btn-outline-secondary">Añadir al carrito</a>
+      </div>  
       <br><br>
       <div [innerHTML]="this.Producto.descripcion"></div>
     </div>

@@ -1,8 +1,8 @@
 .container-1300 {
     max-width: 1300px;
-    padding-left: 10px;
-    padding-left: 10px;
     margin: 0 auto;
+    padding: 10px 0 ;
+    
 }
 body {
     font-family: 'Montserrat', sans-serif;

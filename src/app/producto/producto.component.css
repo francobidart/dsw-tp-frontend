@@ -1,0 +1,15 @@
+@media(max-width: 700px){
+.botones-producto {
+
+    display: flex; align-items: center; justify-content: center;
+
+}
+ .card {
+width: 100% !important;
+}
+}
+
+.card{
+
+    width: 60%;
+}
