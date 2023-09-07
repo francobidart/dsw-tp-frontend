@@ -34,7 +34,7 @@ export const Products: Product[] = [
   {id: 222, nombre: 'PLACA DE VIDEO NVIDIA GEFORCE GTX 1650 OC 4G PHOENIX GDDR6', precio: 20593, descripcion: '<p>\n' +
         '        El Smart TV Hitachi CDH-LE504KSMART22 de 50 pulgadas tiene una resolución 4K Ultra HD (3840 x 2160 píxeles) que\n' +
         '        es cuatro veces superior a la de una TV Full HD. El nuevo Android TV te ofrece mucho más entretenimiento.\n' +
-        '        Pantalla sin bordes para una experiencia más inmersiva y control por voz manos libres, integrado. Olvidate del\n' +
+        '        Pantalla sin bordes pa ra una experiencia más inmersiva y control por voz manos libres, integrado. Olvidate del\n' +
         '        control remoto y hablale a la tele para controlar todos los contenidos disponibles en el entorno digital.\n' +
         '        <br><br>\n' +
         '        Colores más nítidos y mayor contraste para que disfrutes de las imágenes en la más alta calidad gracias al\n' +
