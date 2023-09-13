@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {CartService} from '../services/cart.service';
 import { Product } from '../models/product'
-
+import{LoginStatusService} from '../login-status.service'
 
 @Component({
   selector: 'app-header',
@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
   Total = 0;
   modalSwitch: boolean=false;
 
-  constructor(public cartService: CartService, ) {
+  constructor(public cartService: CartService, public loginstatusservice: LoginStatusService) {
   }
 
   ngOnInit(): void {

@@ -25,9 +25,14 @@
           </ul>
           <div class="d-flex">
             <ul class="navbar-nav me-auto">
-              <li class="nav-item">
-                <a class="nav-link active" (click)="showLoginPopup()"><i class="fa-solid fa-user"></i> Mi cuenta
+              <li class="nav-item" *ngIf="!loginstatusservice.isAuthenticated">
+                <a class="nav-link active" style="cursor: pointer;" (click)="showLoginPopup()"><i class="fa-solid fa-user"></i> Mi cuenta
                 </a>
+               
+              </li>
+              <li class="nav-item" *ngIf="loginstatusservice.isAuthenticated">
+    
+                <a class="nav-link active" routerLink="micuenta"><i class="fa-solid fa-user"></i></a>
               </li>
               <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-right">
                 <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown3" role="button">

@@ -8,7 +8,7 @@ import {Router} from '@angular/router';
 export class CartService {
 
   items: Product[] = [];
-  total: number;
+  total: number=0;
 
   constructor(public router: Router) {
     const cartSaved = localStorage.getItem('cart');

@@ -18,6 +18,7 @@ import {Product} from "./models/product";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { CheckoutResumeComponent } from './checkout-resume/checkout-resume.component';
+import { MicuentaComponent } from './micuenta/micuenta.component';
 registerLocaleData(localeEsAr, 'es-AR');
 
 @NgModule({
@@ -31,7 +32,8 @@ registerLocaleData(localeEsAr, 'es-AR');
     ProductoDetalleComponent,
     LoginComponent,
     CheckoutResumeComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    MicuentaComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +44,8 @@ registerLocaleData(localeEsAr, 'es-AR');
       {path: 'producto/:id', component: ProductoComponent},
       {path: 'usuarios', component: UsuariosComponent},
       {path: 'login', component: LoginComponent},
-      {path: 'checkout', component: CheckoutResumeComponent}
+      {path: 'checkout', component: CheckoutResumeComponent},
+      {path: 'micuenta', component: MicuentaComponent}
     ]),
     NgbModule,
   ],
