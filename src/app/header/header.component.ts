@@ -13,11 +13,23 @@ export class HeaderComponent implements OnInit {
   Example = [
     {
       "id": 1,
-      "nombre": "Prueba categoria"
+      "nombre": "Procesadores"
     },
     {
       "id": 2,
-      "nombre": "Celulares"
+      "nombre": "Placas de Video"
+    },
+    {
+      "id": 3,
+      "nombre": "Discos Solidos"
+    },
+    {
+      "id": 4,
+      "nombre": "Memoria RAM"
+    },
+    {
+      "id": 5,
+      "nombre": "Otros"
     }
   ]
 
