@@ -1,29 +1,36 @@
 <br>
-<h4>
-  Ingresá en tu cuenta:
-</h4>
-<div class="row" >
-  <div class="col-8">
-    <div class="card">
-      <div class="card-body">
-        <label for="username">Usuario:</label>
-        <input type="text" id="username" class="form-control">
-        <br>
-        <label for="username">Contraseña:</label>
-        <input type="password" id="password" class="form-control">
-        <br>
-        <div class="btn btn-outline-primary d-block" routerLink="/checkout">
-          Ingresar
-        </div>
+<div class="container">
+  <h4>
+    Ingresá en tu cuenta:
+  </h4>
+  <div class="row">
+    <div class="col-12 col-md-8">
+      <div class="card">
+        <form name="FormLogin" [formGroup]="FormLogin">
+          <div class="card-body">
+            <label for="username">Usuario:</label>
+            <input formControlName="usuario" type="text" id="username" class="form-control">
+            <br>
+            <label for="username">Contraseña:</label>
+            <input formControlName="clave" type="password" id="password" class="form-control">
+            <br>
+            <div class="alert alert-danger" *ngIf="this.loginService.errorMessage != null">
+              {{this.loginService.errorMessage}}
+            </div>
+            <span class="btn btn-outline-primary d-block" (click)="this.login()">
+            Ingresar
+          </span>
+          </div>
+        </form>
       </div>
     </div>
-  </div>
-  <div class="col" style="text-align: center">
-    <p>¿No tenés cuenta?</p>
-    <div class="btn btn-outline-warning d-block">
-      Registrate ahora
+    <div class="col" style="text-align: center">
+      <p>¿No tenés cuenta?</p>
+      <div class="btn btn-outline-warning d-block">
+        Registrate ahora
+      </div>
+      <br>
+      <img src="assets/img/cuadrado.fw.png" alt="">
     </div>
-    <br>
-    <img src="assets/img/cuadrado.fw.png" alt="">
   </div>
 </div>

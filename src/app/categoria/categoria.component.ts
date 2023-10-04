@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Product, Products} from "../models/product";
+import {Component, OnInit} from '@angular/core';
+import {Product, Products} from "../models/product";
+import {TipoProductoServiceService} from "../services/tipo-producto-service.service";
+import {ApiResponse} from "../models/apiResponse";
+import {ActivatedRoute, Router} from "@angular/router";
+import {ProductoService} from "../services/producto.service";
 
 @Component({
   selector: 'app-categoria',
@@ -8,11 +12,26 @@ import { Product, Products} from "../models/product";
 })
 export class CategoriaComponent implements OnInit {
 
-  Products = Products;
+  Products: any = [];
+  Category: string = ''
+  CategoryId: number | null = null;
 
-  constructor() { }
+  constructor(private tipoProductoService: TipoProductoServiceService, private route: ActivatedRoute, private productoService: ProductoService) {
+  }
 
   ngOnInit(): void {
+    console.log(Products);
+    this.route.params.subscribe(routeParams => {
+      this.loadData(routeParams['id']);
+    });
+  }
+
+  loadData(id: number) {
+    this.CategoryId = id;
+    if (this.CategoryId) {
+      this.tipoProductoService.getById(this.CategoryId).subscribe((res: any) => this.Category = (res.total_resultados > 0) ? res.resultados[0].nombre : '');
+      this.productoService.getByCategory(this.CategoryId).subscribe((res:any) => this.Products = res.resultados);
+    }
   }
 
   Orden = [
@@ -20,7 +39,7 @@ export class CategoriaComponent implements OnInit {
       "orden": null,
       "nombre": "Destacados"
     },
-    
+
     {
       "orden": "Ascendente",
       "nombre": "Precio menor a mayor"
@@ -28,9 +47,7 @@ export class CategoriaComponent implements OnInit {
     {
       "orden": "Descendente",
       "nombre": "Precio mayor a menor"
-    },
-    
- 
-
+    }
   ]
+
 }

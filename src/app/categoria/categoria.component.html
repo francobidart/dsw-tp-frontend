@@ -1,26 +1,32 @@
-
 <div class="container">
-<div class="row" >
-    
-<div class="orden">
-  <a>Ordenar por:</a>  
-<select name="Ordenar" id="selectorden" class="form-control form-select">
-    <option *ngFor="let item of Orden" value="{{item.orden}}">{{item.nombre}}</option>    
-    </select>
-</div>
+  <div class="row">
+    <div class="orden">
+      <a>Ordenar por:</a>
+      <select name="Ordenar" id="selectorden" class="form-control form-select">
+        <option *ngFor="let item of Orden" value="{{item.orden}}">{{item.nombre}}</option>
+      </select>
+    </div>
+  </div>
 
-
-    <div class="item col-12 col-md-3" routerLink="/producto/{{item.id}}" *ngFor="let item of Products">
-      <div>
-        <img
-          src="{{item.imagen}}"
-          alt="">
-      </div>
-      <div class="product-title">
-        <span>{{item.nombre}}</span>
-      </div>
-      <div class="product-price">
-        <strong>${{item.precio}}</strong>
+  <h1>{{this.Category}}</h1>
+  <p></p>
+  <div class="alert alert-info" *ngIf="Products.length === 0">
+    Parece que en este momento no tenemos artículos disponibles para la categoría <strong>{{this.Category}}</strong>.
+  </div>
+  <div *ngIf="Products.length > 0">
+    <div class="row">
+      <div class="item col-12 col-md-3" routerLink="/producto/{{item.id}}" *ngFor="let item of Products">
+        <div>
+          <img
+            src="{{item.imagen}}"
+            alt="">
+        </div>
+        <div class="product-title">
+          <span>{{item.nombre}}</span>
+        </div>
+        <div class="product-price">
+          <strong>${{item.precio}}</strong>
+        </div>
       </div>
     </div>
   </div>

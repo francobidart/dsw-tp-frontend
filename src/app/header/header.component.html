@@ -16,7 +16,8 @@
               <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true"
                  aria-expanded="false">Categorías</a>
               <div class="dropdown-menu">
-                <a class="dropdown-item" *ngFor="let item of Example" routerLink="categoria/{{item.id}}">{{item.nombre}}</a>
+                <a class="dropdown-item" *ngFor="let item of Categorias"
+                   routerLink="categoria/{{item.id}}">{{item.nombre}}</a>
               </div>
             </li>
             <li class="nav-item">
@@ -26,13 +27,13 @@
           <div class="d-flex">
             <ul class="navbar-nav me-auto">
               <li class="nav-item" *ngIf="!loginstatusservice.isAuthenticated">
-                <a class="nav-link active" style="cursor: pointer;" (click)="showLoginPopup()"><i class="fa-solid fa-user"></i> Mi cuenta
+                <a class="nav-link active" style="cursor: pointer;" (click)="showLoginPopup()"><i
+                  class="fa-solid fa-user"></i> Iniciar sesión
                 </a>
-               
+
               </li>
               <li class="nav-item" *ngIf="loginstatusservice.isAuthenticated">
-    
-                <a class="nav-link active" routerLink="micuenta"><i class="fa-solid fa-user"></i></a>
+                <a class="nav-link active" routerLink="micuenta"><i class="fa-solid fa-user"></i> Mi cuenta</a>
               </li>
               <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-right">
                 <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown3" role="button">
@@ -40,7 +41,7 @@
                 </a>
                 <div ngbDropdownMenu aria-labelledby="navbarDropdown3"
                      style="margin-top: 15px; padding: 20px; width: 400px"
-                     class="dropdown-menu">
+                   class="drop-right" >
                   <p>
                     Mi carrito
                   </p>
@@ -56,8 +57,8 @@
                     <br>
                     <div style="text-align: right">Total: ${{this.cartService.total}}</div>
                     <br>
-                    <span class="btn btn-success d-block" routerLink="/login">Finalizar compra</span>
-                    <span (click)="FlushCart()" class="btn btn-link btn-sm d-block">Vaciar carrito</span>
+                    <span  class="d-block dropdown-item bg-success" style="cursor:pointer; border-radius: 5px; text-align: center" routerLink="/checkout">Finalizar compra</span>
+                    <span  (click)="FlushCart()" class="btn btn-link btn-sm d-block">Vaciar carrito</span>
                   </div>
                   <div class="alert alert-secondary" role="alert" *ngIf="CartItems.length == 0">
                     Todavía no agregaste ningún artículo

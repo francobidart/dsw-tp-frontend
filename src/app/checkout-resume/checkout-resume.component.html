@@ -1,69 +1,72 @@
 <br>
-<div class="row" *ngIf="cartService.items.length > 0">
-  <div class="col-8">
-    <h4>
-      Tus datos personales:
-    </h4>
-    <div class="card">
-      <div class="card-body">
-        <p>Nombre y apellido: <strong>LUCAS JUAREZ</strong></p>
-        <p>Domicilio: <strong>DORREGO 20, ROSARIO, SANTA FE</strong></p>
-        <p>Teléfono: <strong>3415555555</strong></p>
-        <p>Mail: <strong>mi@mail.com</strong></p>
+<div class="container">
+  <div class="row" *ngIf="cartService.items.length > 0">
+    <div class="col-12 col-md-8" style="margin-bottom: 20px">
+      <h4>
+        Tus datos personales:
+      </h4>
+      <div class="card">
+        <div class="card-body">
+          <p>Nombre y apellido: <strong>LUCAS JUAREZ</strong></p>
+          <p>Domicilio: <strong>DORREGO 20, ROSARIO, SANTA FE</strong></p>
+          <p>Teléfono: <strong>3415555555</strong></p>
+          <p>Mail: <strong>mi@mail.com</strong></p>
+        </div>
+      </div>
+      <br>
+      <h4>
+        Método de entrega:
+      </h4>
+      <div class="card">
+        <div class="card-body">
+          <p style="font-weight: bold">Seleccioná la sucursal de entrega:</p>
+          <select name="select-sucursal" id="select-sucursal" class="form-control form-select">
+            <option value="1">Sucursal centro | Dorrego 20, Rosario</option>
+            <option value="1">Sucursal norte | Thedy 100, Rosario</option>
+          </select>
+        </div>
+      </div>
+      <br>
+      <h4>
+        Medio de pago:
+      </h4>
+      <div class="card">
+        <div class="card-body">
+          <p style="font-weight: bold">Seleccioná el medio de pago para tu compra:</p>
+          <select name="select-medio-pago" id="select-medio-pago" class="form-control form-select">
+            <option value="1">Pago en efectivo</option>
+            <option value="1">Mercado Pago</option>
+          </select>
+        </div>
       </div>
     </div>
-    <br>
-    <h4>
-      Método de entrega:
-    </h4>
-    <div class="card">
-      <div class="card-body">
-        <p style="font-weight: bold">Seleccioná la sucursal de entrega:</p>
-        <select name="select-sucursal" id="select-sucursal" class="form-control form-select">
-          <option value="1">Sucursal centro | Dorrego 20, Rosario</option>
-          <option value="1">Sucursal norte | Thedy 100, Rosario</option>
-        </select>
+    <div class="col-12 col-md">
+      <p>Resumen de tu compra</p>
+      <div class="row" *ngFor="let item of cartService.items">
+        <div class="col-3">
+          <img src="{{item.imagen}}" alt="">
+        </div>
+        <div class="col-6">
+          {{item.nombre}}
+        </div>
+        <div class="col" style="text-align: right">
+          ${{item.precio}}
+        </div>
       </div>
-    </div>
-        <br>
-    <h4>
-      Medio de pago:
-    </h4>
-    <div class="card">
-      <div class="card-body">
-        <p style="font-weight: bold">Seleccioná el medio de pago para tu compra:</p>
-        <select name="select-medio-pago" id="select-medio-pago" class="form-control form-select">
-          <option value="1">Pago en efectivo</option>
-          <option value="1">Mercado Pago</option>
-        </select>
+      <div style="text-align: right; font-weight: bold">
+        Total: ${{cartService.getTotal()}}
       </div>
+      <br>
     </div>
   </div>
-  <div class="col">
-    <p>Resumen de tu compra</p>
-    <div class="row" *ngFor="let item of cartService.items">
-      <div class="col-3">
-        <img src="{{item.imagen}}" alt="">
-      </div>
-      <div class="col-6">
-        {{item.nombre}}
-      </div>
-      <div class="col" style="text-align: right">
-        ${{item.precio}}
-      </div>
-    </div>
-    <div style="text-align: right; font-weight: bold">
-      Total: ${{cartService.getTotal()}}
-    </div>
-    <br>
+  <div class="row" *ngIf="cartService.items.length === 0">
+    <h3>
+      Oops!
+    </h3>
+    <p>
+      Parece que no agregaste artículos a tu compra, ¡navegá entre nuestras categorías y encontrá el producto para vos!
+    </p>
+    <a href="#" routerLink="/" class="link-primary"><- Ir al inicio</a>
   </div>
-</div>
-<div class="row" *ngIf="cartService.items.length === 0">
-  <h3>
-    Oops!
-  </h3>
-  <p>
-    Parece que no agregaste artículos a tu compra, ¡navegá entre nuestras categorías y encontrá el producto para vos!
-  </p>
-  <a href="#" routerLink="/" class="link-primary"><- Ir al inicio</a>
+
 </div>

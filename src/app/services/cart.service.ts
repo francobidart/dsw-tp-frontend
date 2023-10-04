@@ -35,7 +35,7 @@ export class CartService {
 
   addAndToCartGoToSummary(product: Product) {
     this.addToCart(product);
-    this.router.navigate(['/']);
+    this.router.navigate(['/checkout']);
   }
 
   getItems() {

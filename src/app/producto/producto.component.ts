@@ -4,6 +4,7 @@ import {Product, Products} from '../models/product';
 import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {CartService} from '../services/cart.service';
+import {ProductoService} from "../services/producto.service";
 
 @Component({
   selector: 'app-producto',
@@ -12,7 +13,7 @@ import {CartService} from '../services/cart.service';
 })
 export class ProductoComponent implements OnInit {
 
-  constructor(private titleService: Title, private cartService: CartService, private route: ActivatedRoute) {
+  constructor(private titleService: Title, private cartService: CartService, private route: ActivatedRoute, private productoService: ProductoService) {
   }
 
   private routeSub: Subscription;
@@ -20,8 +21,7 @@ export class ProductoComponent implements OnInit {
 
   ngOnInit(): void {
     this.routeSub = this.route.params.subscribe(params => {
-      console.log(params)
-      this.Producto = Products.find(item => item.id === parseInt(params['id']))!;
+      this.productoService.getById(parseInt(params['id'])).subscribe((res: any) => this.Producto = res.resultados[0]);
       this.titleService.setTitle(this.Producto.nombre);
     });
   }

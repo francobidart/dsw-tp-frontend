@@ -15,12 +15,16 @@ import {APP_BASE_HREF, registerLocaleData} from '@angular/common';
 import localeEsAr from '@angular/common/locales/es-AR';
 import {ProductoDetalleComponent} from './producto-detalle/producto-detalle.component';
 import {Product} from "./models/product";
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { UsuariosComponent } from './usuarios/usuarios.component';
-import { CheckoutResumeComponent } from './checkout-resume/checkout-resume.component';
-import { MicuentaComponent } from './micuenta/micuenta.component';
-import { CategoriaComponent } from './categoria/categoria.component';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {UsuariosComponent} from './usuarios/usuarios.component';
+import {CheckoutResumeComponent} from './checkout-resume/checkout-resume.component';
+import {MicuentaComponent} from './micuenta/micuenta.component';
+import {CategoriaComponent} from './categoria/categoria.component';
+
 registerLocaleData(localeEsAr, 'es-AR');
+import {HttpClientModule} from '@angular/common/http';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {ToastsContainer} from "./services/toast/toast-container.component";
 
 @NgModule({
   declarations: [
@@ -40,6 +44,8 @@ registerLocaleData(localeEsAr, 'es-AR');
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ToastsContainer,
+    HttpClientModule,
     RouterModule.forRoot([
       {path: '', component: HomeComponent},
       {path: 'nosotros', component: AboutUsComponent},
@@ -52,6 +58,9 @@ registerLocaleData(localeEsAr, 'es-AR');
       {path: 'checkout', component: CheckoutResumeComponent},
     ]),
     NgbModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ToastsContainer,
   ],
   providers: [{provide: APP_BASE_HREF, useValue: '/'}, {provide: LOCALE_ID, useValue: 'es-AR'}],
   bootstrap: [AppComponent]
