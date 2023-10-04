@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Product, Products} from "../models/product";
+import {Product} from "../models/product";
 import {TipoProductoServiceService} from "../services/tipo-producto-service.service";
 import {ApiResponse} from "../models/apiResponse";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -20,7 +20,6 @@ export class CategoriaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(Products);
     this.route.params.subscribe(routeParams => {
       this.loadData(routeParams['id']);
     });

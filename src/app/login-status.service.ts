@@ -31,15 +31,19 @@ export class LoginStatusService {
       );
   }
 
+
   validarSesion(callback: any = null) {
     this.httpClient.get(environment.apiUrl + 'session/validateSession', {withCredentials: true})
       .subscribe((res: any) => {
         this.isAuthenticated = true;
-        if(callback !== null) {
+        if (callback !== null) {
           callback()
         }
       }, (err: any) => {
         this.isAuthenticated = false;
+        if (callback !== null) {
+          callback()
+        }
       })
   }
 
@@ -47,7 +51,7 @@ export class LoginStatusService {
   logout(): void {
     this.httpClient.get(environment.apiUrl + 'logout', {withCredentials: true}).subscribe(
       (res: any) => {
-         this.isAuthenticated = false;
+        this.isAuthenticated = false;
       }
     )
   }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Title} from '@angular/platform-browser';
-import {Product, Products} from '../models/product';
+import {Product} from '../models/product';
 import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {CartService} from '../services/cart.service';

@@ -22,9 +22,10 @@ import {MicuentaComponent} from './micuenta/micuenta.component';
 import {CategoriaComponent} from './categoria/categoria.component';
 
 registerLocaleData(localeEsAr, 'es-AR');
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ToastsContainer} from "./services/toast/toast-container.component";
+import {InterceptorGeneralInterceptor} from "./interceptor-general.interceptor";
 
 @NgModule({
   declarations: [
@@ -62,7 +63,11 @@ import {ToastsContainer} from "./services/toast/toast-container.component";
     ReactiveFormsModule,
     ToastsContainer,
   ],
-  providers: [{provide: APP_BASE_HREF, useValue: '/'}, {provide: LOCALE_ID, useValue: 'es-AR'}],
+  providers: [
+    {provide: APP_BASE_HREF, useValue: '/'},
+    {provide: LOCALE_ID, useValue: 'es-AR'},
+    {provide: HTTP_INTERCEPTORS, useClass: InterceptorGeneralInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
