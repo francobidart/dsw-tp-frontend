@@ -8,7 +8,7 @@ import {Router} from '@angular/router';
 export class CartService {
 
   items: Product[] = [];
-  total: number=0;
+  total: number = 0;
 
   constructor(public router: Router) {
     const cartSaved = localStorage.getItem('cart');
@@ -36,6 +36,11 @@ export class CartService {
   addAndToCartGoToSummary(product: Product) {
     this.addToCart(product);
     this.router.navigate(['/checkout']);
+  }
+
+  DeleteItem(item: any) {
+    let index = this.items.indexOf(item);
+    this.items.splice(index, 1)
   }
 
   getItems() {

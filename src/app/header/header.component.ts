@@ -29,6 +29,10 @@ export class HeaderComponent implements OnInit {
     this.loginstatusservice.validarSesion();
   }
 
+  DeleteItem(item: any) {
+    this.cartService.DeleteItem(item);
+  }
+
   FlushCart() {
     this.CartItems = this.cartService.clearCart();
   }
