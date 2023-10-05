@@ -29,7 +29,6 @@ export class UsuariosComponent implements OnInit {
 
   // Lógica de inicio de sesión y luego cerrar el pop-up
   login() {
-    console.log();
     // Lógica de inicio de sesión aquí
     if (this.FormLogin.valid) {
       let user = (this.FormLogin.controls.usuario.value !== null) ? this.FormLogin.controls.usuario.value : '';

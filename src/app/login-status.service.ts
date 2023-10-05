@@ -27,6 +27,7 @@ export class LoginStatusService {
             callback()
           }
         },
+
         (err: any) => this.errorMessage = err.error.mensaje
       );
   }

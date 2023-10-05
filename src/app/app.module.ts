@@ -27,7 +27,6 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ToastsContainer} from "./services/toast/toast-container.component";
 import {InterceptorGeneralInterceptor} from "./interceptor-general.interceptor";
 import {ServerNotAvailableComponent} from './app/server-not-available/server-not-available.component';
-import {ErrorInterceptorInterceptor} from "./error-interceptor.interceptor";
 
 @NgModule({
   declarations: [
@@ -70,8 +69,7 @@ import {ErrorInterceptorInterceptor} from "./error-interceptor.interceptor";
   providers: [
     {provide: APP_BASE_HREF, useValue: '/'},
     {provide: LOCALE_ID, useValue: 'es-AR'},
-    {provide: HTTP_INTERCEPTORS, useClass: InterceptorGeneralInterceptor, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: InterceptorGeneralInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

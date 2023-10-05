@@ -41,6 +41,7 @@ export class CartService {
   DeleteItem(item: any) {
     let index = this.items.indexOf(item);
     this.items.splice(index, 1)
+    this.updateTotal();
   }
 
   getItems() {
