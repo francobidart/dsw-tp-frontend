@@ -1,0 +1,5 @@
+
+<input [(ngModel)]="query" (input)="buscar()" placeholder="Buscar...">
+<ul>
+  <li *ngFor="let resultado of resultados">{{ resultado.campo }}</li>
+</ul>

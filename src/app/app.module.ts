@@ -27,6 +27,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ToastsContainer} from "./services/toast/toast-container.component";
 import {InterceptorGeneralInterceptor} from "./interceptor-general.interceptor";
 import {ServerNotAvailableComponent} from './app/server-not-available/server-not-available.component';
+import { BuscadorComponent } from './buscador/buscador.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import {ServerNotAvailableComponent} from './app/server-not-available/server-not
     UsuariosComponent,
     MicuentaComponent,
     CategoriaComponent,
-    ServerNotAvailableComponent
+    ServerNotAvailableComponent,
+    BuscadorComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,7 @@ import {CartService} from '../services/cart.service';
 import {Product} from '../models/product'
 import {LoginStatusService} from '../login-status.service'
 import {TipoProductoServiceService} from "../services/tipo-producto-service.service";
+import { SearchComponent } from '../search/search.component';
 
 @Component({
   selector: 'app-header',
