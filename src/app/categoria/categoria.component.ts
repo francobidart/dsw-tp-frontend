@@ -4,6 +4,7 @@ import {TipoProductoServiceService} from "../services/tipo-producto-service.serv
 import {ApiResponse} from "../models/apiResponse";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ProductoService} from "../services/producto.service";
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-categoria',
@@ -15,6 +16,8 @@ export class CategoriaComponent implements OnInit {
   Products: any = [];
   Category: string = ''
   CategoryId: number | null = null;
+  OrdenSeleccionado: string | null = '';
+
 
   constructor(private tipoProductoService: TipoProductoServiceService, private route: ActivatedRoute, private productoService: ProductoService) {
   }
@@ -33,20 +36,28 @@ export class CategoriaComponent implements OnInit {
     }
   }
 
+  loadWithOrder(value: string | null) {
+    this.OrdenSeleccionado = value;
+    if (this.CategoryId) {
+      this.productoService.getByCategory(this.CategoryId, this.OrdenSeleccionado).subscribe((res:any) => this.Products = res.resultados);
+    }
+  }
+
   Orden = [
     {
       "orden": null,
-      "nombre": "Destacados"
+      "nombre": "Alfabeticamente (A-Z)"
     },
 
     {
       "orden": "Ascendente",
-      "nombre": "Precio menor a mayor"
+      "nombre": "Precio (menor a mayor)"
     },
     {
       "orden": "Descendente",
-      "nombre": "Precio mayor a menor"
+      "nombre": "Precio (mayor a menor)"
     }
   ]
+
 
 }

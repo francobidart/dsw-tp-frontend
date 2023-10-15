@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Product} from '../models/product';
 import {Router} from '@angular/router';
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,7 @@ export class CartService {
   items: Product[] = [];
   total: number = 0;
 
-  constructor(public router: Router) {
+  constructor(public router: Router, private httpClient: HttpClient) {
     const cartSaved = localStorage.getItem('cart');
     if (cartSaved && cartSaved.length > 0) {
       this.items = JSON.parse(cartSaved);
@@ -44,15 +46,36 @@ export class CartService {
     this.updateTotal();
   }
 
+  enviarPedido(sucursalRetiro: string, mediodepago: string) {
+    return this.httpClient.post(environment.apiUrl + 'pedidos/registrar', {
+      articulos: this.items,
+      sucursal: sucursalRetiro,
+      mediodepago: mediodepago
+    });
+  }
+
   getItems() {
     return this.items;
   }
 
-  clearCart() {
+  clearCart(callback: any | null = null) {
     this.items = [];
     this.updateTotal();
     window.localStorage.removeItem('cart');
+    if(callback) {
+      callback();
+    }
     return this.items;
+  }
+
+  getCantidadAgregadaProducto(id: number | null) {
+    let cantidad = 0;
+    for(var i = 0; i < this.items.length; i++) {
+      if(this.items[i].id === id) {
+        cantidad += 1
+      }
+    }
+    return cantidad;
   }
 
   updateTotal(): void {

@@ -1,13 +1,13 @@
 import {TipoProducto} from "./tipo-producto";
 
 export class Product {
-  id?: number;
+  id: number | null = null;
   TipoProducto?: TipoProducto;
-  precio: number;
-  nombre: string;
+  precio: number = 0;
+  nombre: string = '';
   categoria?: number;
   descripcion?: string | null;
-  stock?: number;
+  stock: number = 0;
   imagen?: string | null;
   createdAt?: string;
   updatedAt?: string;

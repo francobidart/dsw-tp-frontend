@@ -9,7 +9,7 @@
       <br>
       <h2>${{this.Producto.precio | number: '1.0-2'}}</h2>
       <br>
-      <div class="card" >
+      <div class="card">
         <div class="card-body" style="width: 100%;">
           Pagalo en hasta <span class="text-primary">12 cuotas sin interés</span>
           con VISA y MasterCard
@@ -20,9 +20,13 @@
         </div>
       </div>
       <br>
-      <div class="botones-producto" >
+      <p>Unidades disponibles: {{this.Producto.stock}}</p>
+      <div class="botones-producto" *ngIf="Producto.stock > 0">
         <a (click)="addToCartAndGoToSummary()" class="btn btn-primary">Comprar ahora</a> &nbsp;
         <a (click)="addToCart()" class="btn btn-outline-secondary">Añadir al carrito</a>
+      </div>
+      <div class="botones-producto" *ngIf="Producto.stock === 0">
+        <a class="btn btn-outline-secondary disabled">No hay unidades disponibles</a> &nbsp;
       </div>
       <br><br>
       <div [innerHTML]="this.Producto.descripcion"></div>

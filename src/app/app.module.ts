@@ -27,6 +27,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ToastsContainer} from "./services/toast/toast-container.component";
 import {InterceptorGeneralInterceptor} from "./interceptor-general.interceptor";
 import {ServerNotAvailableComponent} from './app/server-not-available/server-not-available.component';
+import { DetallePedidoComponent } from './detalle-pedido/detalle-pedido.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import {ServerNotAvailableComponent} from './app/server-not-available/server-not
     UsuariosComponent,
     MicuentaComponent,
     CategoriaComponent,
-    ServerNotAvailableComponent
+    ServerNotAvailableComponent,
+    DetallePedidoComponent
   ],
   imports: [
     BrowserModule,
@@ -53,6 +55,7 @@ import {ServerNotAvailableComponent} from './app/server-not-available/server-not
       {path: '', component: HomeComponent},
       {path: 'nosotros', component: AboutUsComponent},
       {path: 'server-unavailable', component: ServerNotAvailableComponent},
+      {path: 'pedidos/:id', component: DetallePedidoComponent},
       {path: 'producto/:id', component: ProductoComponent},
       {path: 'categoria/:id', component: CategoriaComponent},
       {path: 'usuarios', component: UsuariosComponent},

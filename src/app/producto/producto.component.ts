@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {Product} from '../models/product';
 import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {CartService} from '../services/cart.service';
 import {ProductoService} from "../services/producto.service";
+import {ToastService} from "../services/toast/toast-service";
 
 @Component({
   selector: 'app-producto',
@@ -13,11 +14,12 @@ import {ProductoService} from "../services/producto.service";
 })
 export class ProductoComponent implements OnInit {
 
-  constructor(private titleService: Title, private cartService: CartService, private route: ActivatedRoute, private productoService: ProductoService) {
+  constructor(private titleService: Title, private cartService: CartService, private route: ActivatedRoute, private productoService: ProductoService, private toastService: ToastService) {
   }
 
   private routeSub: Subscription;
-  Producto: Product;
+  Producto: Product = new Product();
+  UnidadesSeleccionadas = 0;
 
   ngOnInit(): void {
     this.routeSub = this.route.params.subscribe(params => {
@@ -30,11 +32,21 @@ export class ProductoComponent implements OnInit {
   }
 
   addToCart() {
-    this.cartService.addToCart(this.Producto);
+    this.UnidadesSeleccionadas = this.cartService.getCantidadAgregadaProducto(this.Producto.id);
+    if (this.UnidadesSeleccionadas < this.Producto.stock) {
+      this.cartService.addToCart(this.Producto);
+    } else {
+      this.toastService.show('No se puede agregar más unidades de este producto.')
+    }
   }
 
   addToCartAndGoToSummary() {
-    this.cartService.addAndToCartGoToSummary(this.Producto);
+    this.UnidadesSeleccionadas = this.cartService.getCantidadAgregadaProducto(this.Producto.id);
+    if (this.UnidadesSeleccionadas < this.Producto.stock) {
+      this.cartService.addAndToCartGoToSummary(this.Producto);
+    } else {
+      this.toastService.show('No podés agregar más unidades de este producto.')
+    }
   }
 
   ngOnDestroy() {

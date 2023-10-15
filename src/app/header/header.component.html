@@ -33,23 +33,28 @@
 
               </li>
               <li class="nav-item" *ngIf="loginstatusservice.isAuthenticated">
-                <a class="nav-link active" routerLink="micuenta"><i class="fa-solid fa-user"></i> Mi cuenta</a>
+                <a class="nav-link active" *ngIf="!loginstatusservice.isAdmin" routerLink="micuenta"><i
+                  class="fa-solid fa-user"></i> Mi cuenta</a>
+                <a class="nav-link active" *ngIf="loginstatusservice.isAdmin" routerLink="micuenta"><i
+                  class="fa-solid fa-user"></i> Administrador</a>
               </li>
-              <li class="nav-item" ngbDropdown display="dynamic" placement="bottom-right">
+              <li class="nav-item" ngbDropdown *ngIf="!loginstatusservice.isAdmin" display="dynamic" placement="bottom-right">
                 <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown3" role="button">
-                  Carrito ({{CartItems.length}})
+                  Carrito ({{this.cartService.items.length}})
                 </a>
-                <div ngbDropdownMenu aria-labelledby="navbarDropdown3"
+                <div  ngbDropdownMenu aria-labelledby="navbarDropdown3"
                      style="margin-top: 15px; padding: 20px; width: 400px"
-                   class="drop-right" >
+                     class="drop-right">
                   <p>
                     Mi carrito
                   </p>
-                  <div *ngIf="CartItems.length > 0">
+                  <div *ngIf="this.cartService.items.length > 0">
                     <div style="max-height: 200px" class="overflow-auto">
-                      <div *ngFor="let item of CartItems" class="row" style="width: 100%">
+                      <div *ngFor="let item of this.cartService.items" class="row" style="width: 100%">
                         <div class="col"><img src="{{item.imagen}}" alt=""></div>
-                        <div class="col">{{item.nombre}} <br><br> ${{item.precio}} <span class="btn btn-outline-danger" (click)="DeleteItem(item)"><i class="fa fa-trash"></i></span></div>
+                        <div class="col">{{item.nombre}} <br><br> ${{item.precio}} <span class="btn btn-outline-danger"
+                                                                                         (click)="DeleteItem(item)"><i
+                          class="fa fa-trash"></i></span></div>
                         <br><br>
                         <hr>
                       </div>
@@ -57,10 +62,11 @@
                     <br>
                     <div style="text-align: right">Total: ${{this.cartService.total}}</div>
                     <br>
-                    <span  class="d-block dropdown-item bg-success" style="cursor:pointer; border-radius: 5px; text-align: center" routerLink="/checkout">Finalizar compra</span>
-                    <span  (click)="FlushCart()" class="btn btn-link btn-sm d-block">Vaciar carrito</span>
+                    <span class="d-block dropdown-item bg-success"
+                          style="cursor:pointer; border-radius: 5px; text-align: center" routerLink="/checkout">Finalizar compra</span>
+                    <span (click)="FlushCart()" class="btn btn-link btn-sm d-block">Vaciar carrito</span>
                   </div>
-                  <div class="alert alert-secondary" role="alert" *ngIf="CartItems.length == 0">
+                  <div class="alert alert-secondary" role="alert" *ngIf="this.cartService.items.length == 0">
                     Todavía no agregaste ningún artículo
                   </div>
                 </div>

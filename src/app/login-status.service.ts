@@ -9,6 +9,7 @@ export class LoginStatusService {
 
   public isAuthenticated: boolean = false;
   public errorMessage: string | null = null;
+  public isAdmin: boolean = false;
 
   constructor(private httpClient: HttpClient) {
   }
@@ -37,6 +38,7 @@ export class LoginStatusService {
     this.httpClient.get(environment.apiUrl + 'session/validateSession', {withCredentials: true})
       .subscribe((res: any) => {
         this.isAuthenticated = true;
+        this.isAdmin = res.resultados.isAdmin;
         if (callback !== null) {
           callback()
         }

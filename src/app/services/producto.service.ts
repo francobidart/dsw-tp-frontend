@@ -17,8 +17,9 @@ export class ProductoService {
     return this.httpClient.get(environment.apiUrl + this.resourceUrl + query);
   }
 
-  getByCategory(categoryId: number) {
-    return this.httpClient.get(environment.apiUrl + 'categories/' + categoryId + '/products');
+  getByCategory(categoryId: number, orden: string | null = null) {
+    let order = orden ? '?order=' + orden : '';
+    return this.httpClient.get(environment.apiUrl + 'categories/' + categoryId + '/products' + order);
   }
 
   getById(id: number) {
