@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../environments/environment";
+import { User } from './models/user';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -61,4 +63,10 @@ export class LoginStatusService {
   isLoggedIn(): boolean {
     return this.isAuthenticated;
   }
+
+  getPerfil(): Observable<any> {
+    // Realiza una solicitud GET al servidor Express para obtener el perfil del usuario.
+    return this.http.get('/api/micuenta');
+  }
+
 }

@@ -23,16 +23,22 @@
 <div [ngSwitch]="opcion" style="margin-top: 40px; height: 100%;">
     <div *ngSwitchCase="1" class="row">
       <ul>
-        <li>Nombre: </li>
+        <li>Nombre: {{ perfil.nombre }} </li>
       </ul>
       <ul>
-        <li>Apellido: </li>
+        <li>Apellido: {{ perfil.apellido }} </li>
       </ul>
       <ul>
-        <li>Correo electrónico: </li>
+        <li>Email: {{ perfil.email }} </li>
+      </ul>
+      <ul>
+        <li>Usuario: {{ perfil.usuario }} </li>
+      </ul>
+      <ul>
+        <li>Teléfono: {{ perfil.telefono }} </li>
       </ul>
     </div>
     <div *ngSwitchCase="2" class="row">
-
     </div>
   </div>
+ 
