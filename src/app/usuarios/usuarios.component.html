@@ -2,7 +2,7 @@
   <div class="popup-content">
     <div class="parte-supp">
       <h2 class="Texto">Iniciar sesión</h2>
-      <button class="btn-close" (click)="login()"></button>
+      <button class="btn-close" (click)="this.closePopup.emit()"></button>
     </div>
     <form name="FormLogin" [formGroup]="FormLogin">
       <div class="casilla">

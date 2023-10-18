@@ -24,6 +24,7 @@ export class LoginStatusService {
       .subscribe(
         (res: any) => {
           this.isAuthenticated = true;
+          this.isAdmin = res.resultados.isAdmin;
           if (callback) {
             callback()
           }
@@ -50,11 +51,16 @@ export class LoginStatusService {
       })
   }
 
+  validarAdmin() {
+    return this.httpClient.get(environment.apiUrl + 'session/validateAdmin', {withCredentials: true}).toPromise();
+  }
+
 // Método para cerrar sesión
   logout(): void {
     this.httpClient.get(environment.apiUrl + 'logout', {withCredentials: true}).subscribe(
       (res: any) => {
         this.isAuthenticated = false;
+        this.isAdmin = false;
       }
     )
   }

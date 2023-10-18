@@ -10,7 +10,7 @@
         <div class="collapse navbar-collapse" id="navbarColor01">
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
-              <input type="text" placeholder="Buscar productos..." class="form-control">
+              <input type="text" class="form-control" placeholder="Buscar un producto..">
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true"
@@ -35,14 +35,20 @@
               <li class="nav-item" *ngIf="loginstatusservice.isAuthenticated">
                 <a class="nav-link active" *ngIf="!loginstatusservice.isAdmin" routerLink="micuenta"><i
                   class="fa-solid fa-user"></i> Mi cuenta</a>
-                <a class="nav-link active" *ngIf="loginstatusservice.isAdmin" routerLink="micuenta"><i
+                <a class="nav-link active" *ngIf="loginstatusservice.isAdmin" routerLink="administrador"><i
                   class="fa-solid fa-user"></i> Administrador</a>
               </li>
-              <li class="nav-item" ngbDropdown *ngIf="!loginstatusservice.isAdmin" display="dynamic" placement="bottom-right">
+              <li class="nav-item" *ngIf="loginstatusservice.isAuthenticated">
+                <a href="#" class="nav-link active" *ngIf="loginstatusservice.isAdmin" (click)="loginstatusservice.logout()">
+                  <i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión
+                </a>
+              </li>
+              <li class="nav-item" ngbDropdown *ngIf="!loginstatusservice.isAdmin" display="dynamic"
+                  placement="bottom-right">
                 <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown3" role="button">
                   Carrito ({{this.cartService.items.length}})
                 </a>
-                <div  ngbDropdownMenu aria-labelledby="navbarDropdown3"
+                <div ngbDropdownMenu aria-labelledby="navbarDropdown3"
                      style="margin-top: 15px; padding: 20px; width: 400px"
                      class="drop-right">
                   <p>

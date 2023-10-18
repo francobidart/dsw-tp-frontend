@@ -27,7 +27,11 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ToastsContainer} from "./services/toast/toast-container.component";
 import {InterceptorGeneralInterceptor} from "./interceptor-general.interceptor";
 import {ServerNotAvailableComponent} from './app/server-not-available/server-not-available.component';
+import { SearchComponent } from './search/search.component';
 import { DetallePedidoComponent } from './detalle-pedido/detalle-pedido.component';
+import {ActivateAdminGuard} from "./guards/activate-admin.guard";
+import { DashboardComponent } from './administrador/dashboard/dashboard.component';
+import { NoautorizadoComponent } from './errors/noautorizado/noautorizado.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +48,10 @@ import { DetallePedidoComponent } from './detalle-pedido/detalle-pedido.componen
     MicuentaComponent,
     CategoriaComponent,
     ServerNotAvailableComponent,
-    DetallePedidoComponent
+    DetallePedidoComponent,
+    SearchComponent,
+    DashboardComponent,
+    NoautorizadoComponent
   ],
   imports: [
     BrowserModule,
@@ -63,6 +70,9 @@ import { DetallePedidoComponent } from './detalle-pedido/detalle-pedido.componen
       {path: 'checkout', component: CheckoutResumeComponent},
       {path: 'micuenta', component: MicuentaComponent},
       {path: 'checkout', component: CheckoutResumeComponent},
+      // Path para modulo administrador
+      {path: 'administrador', component: DashboardComponent, canActivate: [ActivateAdminGuard]},
+      {path: 'no-autorizado', component: NoautorizadoComponent}
     ]),
     NgbModule,
     FormsModule,

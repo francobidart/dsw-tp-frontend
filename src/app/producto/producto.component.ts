@@ -6,6 +6,7 @@ import {Subscription} from 'rxjs';
 import {CartService} from '../services/cart.service';
 import {ProductoService} from "../services/producto.service";
 import {ToastService} from "../services/toast/toast-service";
+import {LoginStatusService} from "../login-status.service";
 
 @Component({
   selector: 'app-producto',
@@ -14,7 +15,7 @@ import {ToastService} from "../services/toast/toast-service";
 })
 export class ProductoComponent implements OnInit {
 
-  constructor(private titleService: Title, private cartService: CartService, private route: ActivatedRoute, private productoService: ProductoService, private toastService: ToastService) {
+  constructor(private titleService: Title, private cartService: CartService, private route: ActivatedRoute, private productoService: ProductoService, private toastService: ToastService, public loginStatus: LoginStatusService) {
   }
 
   private routeSub: Subscription;
