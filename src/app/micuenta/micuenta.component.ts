@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {LoginStatusService} from '../login-status.service'
 import {Router} from "@angular/router";
 
+
+
 @Component({
   selector: 'app-micuenta',
   templateUrl: './micuenta.component.html',
@@ -12,9 +14,13 @@ export class MicuentaComponent implements OnInit {
   constructor(public loginstatusservice: LoginStatusService, private router: Router) {
   }
 
-
-  ngOnInit(): void {
+  ngOnInit() {
+    this.loginstatusservice.getPerfil().subscribe(data => {
+      this.perfil = data;
+    });
   }
+
+  perfil: any;
 
   opcion: number = 1;
 
