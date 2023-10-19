@@ -32,6 +32,7 @@ import { DetallePedidoComponent } from './detalle-pedido/detalle-pedido.componen
 import {ActivateAdminGuard} from "./guards/activate-admin.guard";
 import { DashboardComponent } from './administrador/dashboard/dashboard.component';
 import { NoautorizadoComponent } from './errors/noautorizado/noautorizado.component';
+import { ResultadosComponent } from './resultados/resultados.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { NoautorizadoComponent } from './errors/noautorizado/noautorizado.compon
     DetallePedidoComponent,
     SearchComponent,
     DashboardComponent,
-    NoautorizadoComponent
+    NoautorizadoComponent,
+    ResultadosComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +74,8 @@ import { NoautorizadoComponent } from './errors/noautorizado/noautorizado.compon
       {path: 'checkout', component: CheckoutResumeComponent},
       // Path para modulo administrador
       {path: 'administrador', component: DashboardComponent, canActivate: [ActivateAdminGuard]},
-      {path: 'no-autorizado', component: NoautorizadoComponent}
+      {path: 'no-autorizado', component: NoautorizadoComponent},
+      {path: 'resultados', component: ResultadosComponent}
     ]),
     NgbModule,
     FormsModule,

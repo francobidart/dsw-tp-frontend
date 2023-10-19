@@ -12,6 +12,7 @@ export class LoginStatusService {
   public isAuthenticated: boolean = false;
   public errorMessage: string | null = null;
   public isAdmin: boolean = false;
+  http: any;
 
   constructor(private httpClient: HttpClient) {
   }
@@ -74,7 +75,7 @@ export class LoginStatusService {
 
   getPerfil(): Observable<any> {
     // Realiza una solicitud GET al servidor Express para obtener el perfil del usuario.
-    return this.http.get('/api/micuenta');
+    return this.httpClient.get('/api/micuenta');
   }
 
 }
