@@ -12,6 +12,7 @@ export class LoginStatusService {
   public isAuthenticated: boolean = false;
   public errorMessage: string | null = null;
   public isAdmin: boolean = false;
+  http: any;
 
   constructor(private httpClient: HttpClient) {
   }
