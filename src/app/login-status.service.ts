@@ -74,7 +74,7 @@ export class LoginStatusService {
 
   getPerfil(): Observable<any> {
     // Realiza una solicitud GET al servidor Express para obtener el perfil del usuario.
-    return this.http.get('/api/micuenta');
+    return this.httpClient.get('/api/micuenta');
   }
 
 }
