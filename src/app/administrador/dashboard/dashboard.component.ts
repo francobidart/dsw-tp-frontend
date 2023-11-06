@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {PedidosService} from "../../services/pedidos.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private pedidosService: PedidosService) { }
+
+  PedidosPendientes: number = 0;
+  TotalFacturado: number = 0;
+  PedidosDelMes: number = 0;
 
   ngOnInit(): void {
+    this.getPedidosPendientes();
+  }
+
+  getPedidosPendientes() {
+    this.pedidosService.getPedidosPendientes().subscribe((res: any) => {
+      console.log(res.resultados)
+      this.PedidosPendientes = res.resultados.cantidadPedidosPendientes;
+      this.TotalFacturado = res.resultados.importeVentasMensuales;
+      this.PedidosDelMes = res.resultados.cantidadPedidosMes;
+    })
   }
 
 }

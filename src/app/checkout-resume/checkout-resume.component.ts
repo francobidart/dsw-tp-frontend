@@ -21,7 +21,7 @@ export class CheckoutResumeComponent implements OnInit {
   Sucursales: Array<Sucursal> = [];
   MediosDePago: Array<MedioDePago> = [];
   SucursalSeleccionada: string = '1';
-  MedioDePagoSeleccionado: string = 'efectivo';
+  MedioDePagoSeleccionado: number = 1;
 
   constructor(public cartService: CartService, public loginService: LoginStatusService, private router: Router, public userService: UserService, private storeService: StoreService, private toastService: ToastService) {
   }
@@ -72,7 +72,7 @@ export class CheckoutResumeComponent implements OnInit {
       this.toastService.showError('Seleccionar una sucursal es obligatorio');
       error = true;
     }
-    if (this.MedioDePagoSeleccionado === '') {
+    if (this.MedioDePagoSeleccionado === undefined) {
       this.toastService.showError('Seleccionar un medio de pago es obligatorio');
       error = true;
     }

@@ -1,1 +1,56 @@
-<p>dashboard works!</p>
+<app-navbar-admin></app-navbar-admin>
+<div class="container-1300">
+  <br>
+  <h1>¡Hola!</h1>
+  <p>
+    Bienvenido al administrador, elegí una opción del menú para comenzar.
+  </p>
+
+  <div class="row">
+    <div class="col-md-4 col-12">
+      <div class="card h-100">
+        <div class="card-header">
+          Pedidos pendientes
+        </div>
+        <div class="card-body">
+          <h1>
+            {{this.PedidosPendientes}}
+          </h1>
+          <p>
+            Estos son los pedidos que se encuentran en estado: Generado, Pendiente de cobro o pendientes de entrega.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-12">
+      <div class="card h-100">
+        <div class="card-header">
+          Total vendido en este mes
+        </div>
+        <div class="card-body">
+          <h1>
+            {{this.TotalFacturado | currency: 'ARS': 'symbol-narrow'}}
+          </h1>
+          <p>
+            Este es el importe vendido del mes, para pedidos pendientes de entrega y entregados.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-12">
+      <div class="card h-100">
+        <div class="card-header">
+          Pedidos del mes
+        </div>
+        <div class="card-body">
+          <h1>
+            {{this.PedidosDelMes}}
+          </h1>
+          <p>
+            Este es el total de pedidos recibidos durante el mes, que se encuentran en todos los estados.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -46,7 +46,7 @@ export class CartService {
     this.updateTotal();
   }
 
-  enviarPedido(sucursalRetiro: string, mediodepago: string) {
+  enviarPedido(sucursalRetiro: string, mediodepago: number) {
     return this.httpClient.post(environment.apiUrl + 'pedidos/registrar', {
       articulos: this.items,
       sucursal: sucursalRetiro,

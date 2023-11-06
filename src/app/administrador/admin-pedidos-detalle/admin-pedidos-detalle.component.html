@@ -1,0 +1,105 @@
+<app-navbar-admin></app-navbar-admin>
+<br>
+<h2>
+  Pedido N° {{Pedido.id}}
+</h2>
+<p>Creado el: {{Pedido.createdAt | date: 'dd/MM/yyyy HH:mm'}} | Estado:
+  <strong>{{Pedido.detalleEstadoActual?.nombre}}</strong> | Medio de pago:
+  <strong>{{Pedido.medioDePagoPedido.nombre}}</strong></p>
+<div class="row align-items-center ">
+  <div class="col-md-10 col-12">
+    <div class="card">
+      <div class="card-header">
+        Datos del cliente
+      </div>
+      <div class="card-body">
+        <p>
+          Nombre: <strong>{{Pedido.clientePedido.nombre}} {{Pedido.clientePedido.apellido}}</strong>
+        </p>
+        <p>Email: <strong>{{Pedido.clientePedido.email}}</strong></p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-2 col-12 align-items-end">
+    <div class="card">
+      <div class="card-header" style="text-align: center">
+        Acciones
+      </div>
+      <div class="card-body" style="text-align: center" *ngIf="Pedido.estadoActual !== 4 && Pedido.estadoActual !== 5">
+    <span class="btn btn-outline-success" (click)="entregarPedido()">
+      Entregar pedido
+    </span>&nbsp;
+        <span class="btn btn-outline-danger" (click)="cancelarPedido()">
+      Cancelar pedido
+    </span>
+      </div>
+      <div class="card-body" style="text-align: center" *ngIf="Pedido.estadoActual === 4 || Pedido.estadoActual === 5">
+        <p>
+          No hay acciones disponibles para este pedido.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+
+<div class="card">
+  <div class="card-header">
+    Detalle del pedido
+  </div>
+  <div class="card-body">
+
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">Artículo</th>
+        <th scope="col">Cantidad</th>
+        <th scope="col">Precio unitario</th>
+        <th scope="col">Monto total</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let detalle of Pedido.detallePedido">
+        <td>{{detalle.detalleArticulo.nombre}}</td>
+        <td>{{detalle.cantidad}}</td>
+        <td>{{detalle.precioUnitario | currency: 'ARS':'symbol-narrow'}}</td>
+        <td>{{detalle.montoTotal | currency: 'ARS':'symbol-narrow'}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<br>
+<div style="text-align: right">
+  <p>
+    Monto total del pedido: <strong>{{Pedido.montoTotal | currency: 'ARS': 'symbol-narrow'}}</strong>
+  </p>
+</div>
+<br>
+<div class="card" *ngIf="Pedido.historialEstadoPedido.length > 0">
+  <div class="card-header">
+    Historial de estados del pedido
+  </div>
+  <div class="card-body">
+
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">Estado</th>
+        <th scope="col">Fecha de estado</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let estado of Pedido.historialEstadoPedido">
+        <td>
+          {{estado.detalleEstado?.nombre}}
+        </td>
+        <td>
+          {{estado.createdAt | date: 'dd/MM/yyyy HH:mm'}}
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -36,7 +36,7 @@
           <select name="select-medio-pago" id="select-medio-pago" [(ngModel)]="MedioDePagoSeleccionado"
                   (ngModelChange)="this.MedioDePagoSeleccionado = $event" class="form-control form-select">
             <option value="" selected>Seleccionar un medio de pago...</option>
-            <option *ngFor="let MedioDePago of MediosDePago" value="{{MedioDePago.tag}}">{{MedioDePago.nombre}}</option>
+            <option *ngFor="let MedioDePago of MediosDePago" value="{{MedioDePago.id}}">{{MedioDePago.nombre}}</option>
           </select>
         </div>
       </div>

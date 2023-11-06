@@ -27,12 +27,15 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ToastsContainer} from "./services/toast/toast-container.component";
 import {InterceptorGeneralInterceptor} from "./interceptor-general.interceptor";
 import {ServerNotAvailableComponent} from './app/server-not-available/server-not-available.component';
-import { SearchComponent } from './search/search.component';
-import { DetallePedidoComponent } from './detalle-pedido/detalle-pedido.component';
+import {SearchComponent} from './search/search.component';
+import {DetallePedidoComponent} from './detalle-pedido/detalle-pedido.component';
 import {ActivateAdminGuard} from "./guards/activate-admin.guard";
-import { DashboardComponent } from './administrador/dashboard/dashboard.component';
-import { NoautorizadoComponent } from './errors/noautorizado/noautorizado.component';
-import { ResultadosComponent } from './resultados/resultados.component';
+import {DashboardComponent} from './administrador/dashboard/dashboard.component';
+import {NoautorizadoComponent} from './errors/noautorizado/noautorizado.component';
+import {ResultadosComponent} from './resultados/resultados.component';
+import {NavbarAdminComponent} from './administrador/navbar-admin/navbar-admin.component';
+import {AdminPedidosComponent} from './administrador/admin-pedidos/admin-pedidos.component';
+import {AdminPedidosDetalleComponent} from './administrador/admin-pedidos-detalle/admin-pedidos-detalle.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +56,10 @@ import { ResultadosComponent } from './resultados/resultados.component';
     SearchComponent,
     DashboardComponent,
     NoautorizadoComponent,
-    ResultadosComponent
+    ResultadosComponent,
+    NavbarAdminComponent,
+    AdminPedidosComponent,
+    AdminPedidosDetalleComponent
   ],
   imports: [
     BrowserModule,
@@ -74,6 +80,8 @@ import { ResultadosComponent } from './resultados/resultados.component';
       {path: 'checkout', component: CheckoutResumeComponent},
       // Path para modulo administrador
       {path: 'administrador', component: DashboardComponent, canActivate: [ActivateAdminGuard]},
+      {path: 'administrador/pedidos', component: AdminPedidosComponent, canActivate: [ActivateAdminGuard]},
+      {path: 'administrador/pedidos/:id', component: AdminPedidosDetalleComponent, canActivate: [ActivateAdminGuard]},
       {path: 'no-autorizado', component: NoautorizadoComponent},
       {path: 'resultados', component: ResultadosComponent}
     ]),
