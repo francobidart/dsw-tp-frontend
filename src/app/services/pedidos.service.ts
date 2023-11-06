@@ -16,6 +16,7 @@ export class PedidosService {
     return this.httpClient.get(environment.apiUrl + this.resourceUrl + '/' + id, {withCredentials: true});
   }
 
+<<<<<<< Updated upstream
   getPedidos() {
     return this.httpClient.get(environment.apiUrl + this.resourceUrl, {withCredentials: true});
   }
@@ -30,5 +31,10 @@ export class PedidosService {
 
   getPedidosPendientes() {
     return this.httpClient.get(environment.apiUrl + this.resourceUrl + '/stats', {withCredentials: true});
+=======
+  getPedidoClient(){
+    return this.httpClient.get(environment.apiUrl + this.resourceUrl,{withCredentials: true})
+
+>>>>>>> Stashed changes
   }
 }
