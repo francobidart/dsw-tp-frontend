@@ -36,6 +36,7 @@ import {ResultadosComponent} from './resultados/resultados.component';
 import {NavbarAdminComponent} from './administrador/navbar-admin/navbar-admin.component';
 import {AdminPedidosComponent} from './administrador/admin-pedidos/admin-pedidos.component';
 import {AdminPedidosDetalleComponent} from './administrador/admin-pedidos-detalle/admin-pedidos-detalle.component';
+import { RegistrarseComponent } from './registrarse/registrarse.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import {AdminPedidosDetalleComponent} from './administrador/admin-pedidos-detall
     ResultadosComponent,
     NavbarAdminComponent,
     AdminPedidosComponent,
-    AdminPedidosDetalleComponent
+    AdminPedidosDetalleComponent,
+    RegistrarseComponent
   ],
   imports: [
     BrowserModule,
@@ -78,6 +80,7 @@ import {AdminPedidosDetalleComponent} from './administrador/admin-pedidos-detall
       {path: 'checkout', component: CheckoutResumeComponent},
       {path: 'micuenta', component: MicuentaComponent},
       {path: 'checkout', component: CheckoutResumeComponent},
+      {path: 'registrarse', component: RegistrarseComponent},
       // Path para modulo administrador
       {path: 'administrador', component: DashboardComponent, canActivate: [ActivateAdminGuard]},
       {path: 'administrador/pedidos', component: AdminPedidosComponent, canActivate: [ActivateAdminGuard]},

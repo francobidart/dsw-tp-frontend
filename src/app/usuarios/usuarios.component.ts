@@ -2,6 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {LoginStatusService} from "../login-status.service";
 import {FormControl, FormGroup, Validator, Validators} from "@angular/forms";
 import {ToastService} from "../services/toast/toast-service";
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-usuarios',

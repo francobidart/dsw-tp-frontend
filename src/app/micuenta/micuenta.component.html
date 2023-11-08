@@ -46,24 +46,33 @@
           <th scope="col">Cliente</th>
           <th scope="col">Fecha generación</th>
           <th scope="col">Estado actual</th>
-          <th scope="col">Monto</th>
-          <th scope="col">Acciones</th>
+          <th scope="col">Detalle</th>
+          <th scope="col">Monto Total</th>
+          
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let pedido of pedidos">
           <td>{{pedido.id}}</td>
+          <td>{{pedido.clientePedido.nombre}} {{pedido.clientePedido.apellido}}</td>
           <td>{{pedido.createdAt | date:'dd/MM/yyyy HH:mm'}}</td>
           <td>{{pedido.detalleEstadoActual?.nombre}}</td>
-          <td>{{pedido.montoTotal | currency: 'ARS':'symbol-narrow'}}</td>
           <td>
-            <span class="btn btn-sm btn-outline-primary" routerLink="/administrador/pedidos/{{pedido.id}}">
-              <i class="fas fa-eye"></i>
-            </span>
+            <table>
+              <tr *ngFor="let producto of pedido.detallePedido">
+                <td>{{ producto.detalle }} =  {{producto.montoTotal| currency: 'ARS':'symbol-narrow'}}</td>              
+              </tr>
+
+            </table>
           </td>
+          <td>{{pedido.montoTotal | currency: 'ARS':'symbol-narrow'}}</td>
+         
+            
+         
         </tr>
         </tbody>
       </table>
 
     </div>
-</div>
+  </div>
+ 
