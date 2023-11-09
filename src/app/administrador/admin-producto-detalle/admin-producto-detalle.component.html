@@ -1,0 +1,66 @@
+<app-navbar-admin></app-navbar-admin>
+<br>
+<h2>
+  <strong>{{Producto.id}}</strong> | {{NombreProducto}}
+</h2>
+<br>
+<div class="card">
+  <div class="card-header">
+    Datos del producto
+  </div>
+  <div class="card-body">
+    <form name="FormProducto" [formGroup]="FormProducto">
+      <fieldset>
+        <div class="row">
+          <div class="col">
+            <label for="nombre-producto">Nombre:</label>
+            <input type="text" id="nombre-producto" formControlName="nombre" [(ngModel)]="Producto.nombre"
+                   class="form-control">
+          </div>
+          <div class="col">
+            <label for="nombre-producto">Categoría:</label>
+            <select name="categoria-producto" id="categoria-producto" formControlName="categoria"
+                    class="form-control form-select">
+              <option value="">Seleccionar una opción...</option>
+              <option *ngFor="let cat of Categorias" value="{{cat.id}}">{{cat.nombre}}</option>
+            </select>
+          </div>
+          <div class="col">
+            <label for="nombre-producto">Stock:</label>
+            <input type="number" id="stock-producto" formControlName="stock" [(ngModel)]="Producto.stock"
+                   class="form-control">
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col">
+            <label for="nombre-producto">Descripción:</label>
+            <textarea name="descripcion-producto" formControlName="descripcion" [(ngModel)]="Producto.descripcion"
+                      id="descripcion-producto" cols="30"
+                      rows="10" class="form-control"></textarea>
+          </div>
+          <div class="col">
+            <label for="nombre-producto">Imagen (URL):</label>
+            <input type="text" id="imagen-producto" formControlName="imagen" [(ngModel)]="Producto.imagen"
+                   value="{{Producto.imagen}}" class="form-control">
+            <div style="text-align: center; padding: 20px">
+              <img src="{{Producto.imagen}}" *ngIf="Producto.imagen !== ''" style="height: 200px"
+                   alt="Imagen no disponible...">
+            </div>
+          </div>
+          <div class="col">
+            <label for="nombre-producto">Precio:</label>
+            <input type="number" id="precio-producto" formControlName="precio" [(ngModel)]="Producto.precio"
+                   class="form-control">
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>
+<br>
+<div style="text-align: right">
+  <div class="btn btn-outline-secondary" (click)="FormProducto.enable()" *ngIf="FormProducto.disabled">Editar producto</div>
+  <div class="btn btn-outline-danger" (click)="FormProducto.disable(); this.cargarDatos()" *ngIf="FormProducto.enabled">Descartar cambios</div>&nbsp;
+  <div class="btn btn-success" (click)="guardarProducto()" *ngIf="FormProducto.enabled">Guardar cambios</div>
+</div>

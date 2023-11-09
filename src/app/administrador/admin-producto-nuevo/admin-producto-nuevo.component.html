@@ -1,0 +1,59 @@
+<div class="modal-header">
+  <h4 class="modal-title">Nuevo producto</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+  <form name="FormProducto" [formGroup]="FormProducto">
+    <fieldset>
+      <div class="row">
+        <div class="col">
+          <label for="nombre">Nombre:</label>
+          <input type="text" formControlName="nombre" id="nombre" class="form-control" [ngClass]="{ 'is-invalid': (FormProducto.controls.nombre.touched && FormProducto.controls.nombre.invalid) }">
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col">
+          <label for="nombre">Categoría:</label>
+          <select name="categoria" formControlName="categoria" id="categoria" class="form-control form-select">
+            <option value="">Seleccione una opción...</option>
+            <option *ngFor="let categoria of Categorias" value="{{categoria.id}}">{{categoria.nombre}}</option>
+          </select>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col">
+          <label for="stock">Stock:</label>
+          <input type="text" formControlName="stock" class="form-control" id="stock">
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col">
+          <label for="descripcion">Descripcion:</label>
+          <textarea name="descripcion"  id="descripcion" formControlName="descripcion" class="form-control" cols="30"
+                    rows="10"></textarea>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col">
+          <label for="precio">Precio:</label>
+          <input type="text" formControlName="precio" class="form-control" id="precio">
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col">
+          <label for="imagen">Imagen (URL):</label>
+          <input type="text" formControlName="imagen" class="form-control" id="imagen">
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-danger" (click)="activeModal.close()">Cancelar</button>
+  <button type="button" class="btn btn-outline-success" (click)="registrarProducto()">Registrar producto</button>
+</div>

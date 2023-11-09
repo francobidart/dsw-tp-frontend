@@ -1,0 +1,98 @@
+<app-navbar-admin></app-navbar-admin>
+<br>
+<h2>
+  Productos
+</h2>
+<br>
+<div class="row">
+  <div class="col-md-8 col-12 ">
+    <div class="card">
+      <div class="card-header">
+        Buscar por nombre
+      </div>
+      <div class="card-body">
+        <input type="text" class="form-control" [ngModel]="Buscador" (ngModelChange)="buscarProductos($event)"
+               placeholder="Ingresá un termino para buscar..."/>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 col-12">
+    <div class="card h-100">
+      <div class="card-header text-center">
+        Acciones
+      </div>
+      <div class="card-body" style="text-align: center">
+        <span (click)="nuevoProducto()" class="btn btn-outline-success">
+          Nuevo producto
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th scope="col">N°</th>
+    <th scope="col">Nombre</th>
+    <th scope="col">Inventario actual</th>
+    <th scope="col">Categoría</th>
+    <th scope="col">Precio</th>
+    <th scope="col">Acciones</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let producto of Productos">
+    <td>{{producto.id}}</td>
+    <td>{{producto.nombre}}</td>
+    <td>{{producto.stock}} unidades</td>
+    <td>{{producto.TipoProducto?.nombre}}</td>
+    <td>{{producto.precio | currency: 'ARS':'symbol-narrow'}}</td>
+    <td>
+      <span class="btn btn-sm btn-outline-primary" routerLink="/administrador/productos/{{producto.id}}">
+        <i class="fas fa-eye"></i>
+      </span>&nbsp;<span class="btn btn-sm btn-outline-secondary" routerLink="/administrador/productos/{{producto.id}}"
+                         [queryParams]="{mode: 'edit'}">
+        <i class="fas fa-pen"></i>
+      </span>&nbsp;<span class="btn btn-sm btn-outline-danger" (click)="deshabilitarProducto(producto)">
+        <i class="fas fa-trash"></i>
+      </span>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<div *ngIf="ProductosDeshabilitados.length > 0">
+  <hr>
+  <h5>
+    Productos deshabilitados
+  </h5>
+
+  <table class="table table-hover">
+  <thead>
+  <tr>
+    <th scope="col">N°</th>
+    <th scope="col">Nombre</th>
+    <th scope="col">Inventario actual</th>
+    <th scope="col">Categoría</th>
+    <th scope="col">Precio</th>
+    <th scope="col">Acciones</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let producto of ProductosDeshabilitados">
+    <td>{{producto.id}}</td>
+    <td>{{producto.nombre}}</td>
+    <td>{{producto.stock}} unidades</td>
+    <td>{{producto.TipoProducto?.nombre}}</td>
+    <td>{{producto.precio | currency: 'ARS':'symbol-narrow'}}</td>
+    <td>
+      <span class="btn btn-sm btn-outline-success" (click)="habilitarProducto(producto)">
+        <i class="fas fa-check"></i> Habilitar
+      </span>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</div>

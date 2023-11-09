@@ -36,6 +36,10 @@ import {ResultadosComponent} from './resultados/resultados.component';
 import {NavbarAdminComponent} from './administrador/navbar-admin/navbar-admin.component';
 import {AdminPedidosComponent} from './administrador/admin-pedidos/admin-pedidos.component';
 import {AdminPedidosDetalleComponent} from './administrador/admin-pedidos-detalle/admin-pedidos-detalle.component';
+import { AdminProductosComponent } from './administrador/admin-productos/admin-productos.component';
+import { AdminProductoDetalleComponent } from './administrador/admin-producto-detalle/admin-producto-detalle.component';
+import { AdminProductoModalDetalleComponent } from './administrador/admin-producto-modal-detalle/admin-producto-modal-detalle.component';
+import { AdminProductoNuevoComponent } from './administrador/admin-producto-nuevo/admin-producto-nuevo.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +63,11 @@ import {AdminPedidosDetalleComponent} from './administrador/admin-pedidos-detall
     ResultadosComponent,
     NavbarAdminComponent,
     AdminPedidosComponent,
-    AdminPedidosDetalleComponent
+    AdminPedidosDetalleComponent,
+    AdminProductosComponent,
+    AdminProductoDetalleComponent,
+    AdminProductoModalDetalleComponent,
+    AdminProductoNuevoComponent
   ],
   imports: [
     BrowserModule,
@@ -80,6 +88,8 @@ import {AdminPedidosDetalleComponent} from './administrador/admin-pedidos-detall
       {path: 'checkout', component: CheckoutResumeComponent},
       // Path para modulo administrador
       {path: 'administrador', component: DashboardComponent, canActivate: [ActivateAdminGuard]},
+      {path: 'administrador/productos', component: AdminProductosComponent, canActivate: [ActivateAdminGuard]},
+      {path: 'administrador/productos/:id', component: AdminProductoDetalleComponent, canActivate: [ActivateAdminGuard]},
       {path: 'administrador/pedidos', component: AdminPedidosComponent, canActivate: [ActivateAdminGuard]},
       {path: 'administrador/pedidos/:id', component: AdminPedidosDetalleComponent, canActivate: [ActivateAdminGuard]},
       {path: 'no-autorizado', component: NoautorizadoComponent},

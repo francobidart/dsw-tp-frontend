@@ -12,9 +12,14 @@ export class ProductoService {
     this.resourceUrl = 'products';
   }
 
-  get(limit: number|null = null) {
+  get(limit: number | null = null) {
     let query = (limit !== null) ? '?limit=' + limit : '';
     return this.httpClient.get(environment.apiUrl + this.resourceUrl + query);
+  }
+
+  getDisabled(limit: number | null = null) {
+    let query = (limit !== null) ? '?limit=' + limit : '';
+    return this.httpClient.get(environment.apiUrl + this.resourceUrl + '/disabled' + query);
   }
 
   getByCategory(categoryId: number, orden: string | null = null) {
@@ -24,5 +29,21 @@ export class ProductoService {
 
   getById(id: number) {
     return this.httpClient.get(environment.apiUrl + this.resourceUrl + '/' + id);
+  }
+
+  createProducto(data: any) {
+    return this.httpClient.post(environment.apiUrl + this.resourceUrl, data)
+  }
+
+  updateProducto(id: number, data: any) {
+    return this.httpClient.post(environment.apiUrl + this.resourceUrl + '/' + id, data)
+  }
+
+  enableProducto(id: number | null) {
+    return this.httpClient.get(environment.apiUrl + this.resourceUrl + '/' + id + '/enable');
+  }
+
+  disableProducto(id: number | null) {
+    return this.httpClient.get(environment.apiUrl + this.resourceUrl + '/' + id + '/disable');
   }
 }
