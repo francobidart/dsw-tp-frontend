@@ -40,6 +40,7 @@ import { AdminProductosComponent } from './administrador/admin-productos/admin-p
 import { AdminProductoDetalleComponent } from './administrador/admin-producto-detalle/admin-producto-detalle.component';
 import { AdminProductoModalDetalleComponent } from './administrador/admin-producto-modal-detalle/admin-producto-modal-detalle.component';
 import { AdminProductoNuevoComponent } from './administrador/admin-producto-nuevo/admin-producto-nuevo.component';
+import { RegistrarseComponent } from './registrarse/registrarse.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { AdminProductoNuevoComponent } from './administrador/admin-producto-nuev
     AdminProductoDetalleComponent,
     AdminProductoModalDetalleComponent,
     AdminProductoNuevoComponent
+    RegistrarseComponent
   ],
   imports: [
     BrowserModule,
@@ -86,6 +88,7 @@ import { AdminProductoNuevoComponent } from './administrador/admin-producto-nuev
       {path: 'checkout', component: CheckoutResumeComponent},
       {path: 'micuenta', component: MicuentaComponent},
       {path: 'checkout', component: CheckoutResumeComponent},
+      {path: 'registrarse', component: RegistrarseComponent},
       // Path para modulo administrador
       {path: 'administrador', component: DashboardComponent, canActivate: [ActivateAdminGuard]},
       {path: 'administrador/productos', component: AdminProductosComponent, canActivate: [ActivateAdminGuard]},
