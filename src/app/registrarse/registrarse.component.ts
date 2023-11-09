@@ -1,6 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { RegisterserviceService } from '../services/registerservice.service';
+
 
 @Component({
   selector: 'registrarse',
@@ -8,14 +10,19 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./registrarse.component.css']
 })
 export class RegistrarseComponent implements OnInit {
+  http: any;
  
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.registrarseSer.registrarUsuario(() => {
+   if (this.Completado === 1) {
+    this.formulario
+   }
+    });
   }
 
   formulario: FormGroup;
 
-  constructor() {
+  constructor(public registrarseSer : RegisterserviceService) {
     this.formulario = new FormGroup({
       nombre: new FormControl('', Validators.required),
       apellido: new FormControl('', Validators.required),
@@ -26,25 +33,21 @@ export class RegistrarseComponent implements OnInit {
     });
   }
 
+   Completado:number= 0;
   validarFormulario() {
     if (this.formulario.valid) {
       if (this.formulario.value.contraseña === this.formulario.value.repetirContraseña) {
         
-        console.log('Formulario válido y contraseñas coinciden');
+         this.Completado = 1;
       } else {
-        console.log('Las contraseñas no coinciden');
+        this.Completado = 2;
       }
     } else {
-      console.log('Por favor, complete todos los campos', this.formulario.value.email);
+      this.Completado = 3;
       
     }
-  }
-  telfono(arg0: string, telfono: any) {
-    throw new Error('Method not implemented.');
-  }
 
 
 
 
-
-}
+  }}

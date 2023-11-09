@@ -2,7 +2,10 @@
 <h1>Regístrece!</h1>
 <br>
 
-<form [formGroup]="formulario" (ngSubmit)="validarFormulario()">
+<form [formGroup]="formulario"  (ngSubmit)="validarFormulario()">
+  
+  <div class="formulario">
+  <div class="col1">
   <div class="form-group">
     <label for="nombre">Nombre:</label>
     <input class="form-control" id="nombre" placeholder="Nombre" formControlName="nombre">
@@ -17,9 +20,11 @@
     <label for="telefono">Telefono:</label>
     <input class="form-control" id="telefono" placeholder="Telefono" formControlName="telefono">
   </div>
+</div>
 
+<div class="col2">
   <div class="form-group">
-    <label for="email">Email:</label>
+    <label for="email">     Email:</label>
     <input type="email" class="form-control" id="email" placeholder="Email" formControlName="email">
   </div>
 
@@ -32,7 +37,25 @@
     <label for="repetirContraseña">Repita la Contraseña:</label>
     <input type="password" class="form-control" id="repetirContraseña" placeholder="Repita la Contraseña" formControlName="repetirContraseña">
   </div>
+</div>
+</div>
 
+<div class="botones">
   <button type="submit" style="margin: 10px" class="btn btn-danger">Salir</button>
   <button type="submit" style="margin: 10px" class="btn btn-primary">Registrarse</button>
+</div>
+
 </form>
+<div [ngSwitch]="Completado">
+  <div *ngSwitchCase="1">
+     Registrado Correctamente
+ </div>
+ <div *ngSwitchCase="2">
+  Las contraseñas no coinciden
+</div>
+<div *ngSwitchCase="3">
+  Complete todos los campos por favor.
+</div>
+
+
+</div>
