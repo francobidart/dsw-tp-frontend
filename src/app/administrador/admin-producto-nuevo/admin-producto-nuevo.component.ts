@@ -54,7 +54,7 @@ export class AdminProductoNuevoComponent implements OnInit {
         this.toastService.showError(err.error.mensaje);
       })
     } else {
-      console.log('NO valido')
+      this.toastService.showError('Faltan datos obligatorios.')
     }
   }
 }

@@ -1,0 +1,38 @@
+<app-navbar-admin></app-navbar-admin>
+<br>
+<h2>
+  Categoría: {{Categoria.nombre}}
+</h2>
+<p>Creada el: {{Categoria.createdAt | date: 'dd/MM/yyyy HH:mm'}}</p>
+<br>
+
+<h5>
+  Productos de la categoría:
+</h5>
+
+<div class="alert alert-info" *ngIf="Productos.length === 0">
+  No existen artículos asociados a la categoría <strong>{{this.Categoria.nombre}}</strong>.
+</div>
+
+<div class="table-responsive">
+  <table class="table table-hover" *ngIf="Productos.length > 0">
+    <thead>
+    <tr>
+      <th scope="col">N°</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Inventario actual</th>
+      <th scope="col">Categoría</th>
+      <th scope="col">Precio</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let producto of Productos">
+      <td>{{producto.id}}</td>
+      <td>{{producto.nombre}}</td>
+      <td>{{producto.stock}} unidades</td>
+      <td>{{producto.TipoProducto?.nombre}}</td>
+      <td>{{producto.precio | currency: 'ARS':'symbol-narrow'}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

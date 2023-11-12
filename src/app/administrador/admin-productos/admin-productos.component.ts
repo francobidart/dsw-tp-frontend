@@ -17,7 +17,6 @@ import {AdminProductoNuevoComponent} from "../admin-producto-nuevo/admin-product
 export class AdminProductosComponent implements OnInit {
 
   Productos: Array<Product> = [];
-  ProductosDeshabilitados: Array<Product> = [];
   Buscador: string = ''
 
   constructor(private productosService: ProductoService, private buscarService: BuscarService, private modalService: NgbModal, private toastService: ToastService) {
@@ -43,9 +42,6 @@ export class AdminProductosComponent implements OnInit {
       this.Productos = res.resultados;
     })
 
-    this.productosService.getDisabled().subscribe((res: any) => {
-      this.ProductosDeshabilitados = res.resultados;
-    })
   }
 
   habilitarProducto(producto: Product) {

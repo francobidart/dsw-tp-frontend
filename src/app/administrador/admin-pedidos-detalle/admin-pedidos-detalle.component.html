@@ -7,7 +7,7 @@
   <strong>{{Pedido.detalleEstadoActual?.nombre}}</strong> | Medio de pago:
   <strong>{{Pedido.medioDePagoPedido.nombre}}</strong></p>
 <div class="row align-items-center ">
-  <div class="col-md-10 col-12">
+  <div class="col-md-10 col-12 mb-2">
     <div class="card">
       <div class="card-header">
         Datos del cliente
@@ -49,25 +49,26 @@
     Detalle del pedido
   </div>
   <div class="card-body">
-
-    <table class="table table-hover">
-      <thead>
-      <tr>
-        <th scope="col">Artículo</th>
-        <th scope="col">Cantidad</th>
-        <th scope="col">Precio unitario</th>
-        <th scope="col">Monto total</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let detalle of Pedido.detallePedido">
-        <td>{{detalle.detalleArticulo.nombre}}</td>
-        <td>{{detalle.cantidad}}</td>
-        <td>{{detalle.precioUnitario | currency: 'ARS':'symbol-narrow'}}</td>
-        <td>{{detalle.montoTotal | currency: 'ARS':'symbol-narrow'}}</td>
-      </tr>
-      </tbody>
-    </table>
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th scope="col">Artículo</th>
+          <th scope="col">Cantidad</th>
+          <th scope="col">Precio unitario</th>
+          <th scope="col">Monto total</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let detalle of Pedido.detallePedido">
+          <td>{{detalle.detalleArticulo.nombre}}</td>
+          <td>{{detalle.cantidad}}</td>
+          <td>{{detalle.precioUnitario | currency: 'ARS':'symbol-narrow'}}</td>
+          <td>{{detalle.montoTotal | currency: 'ARS':'symbol-narrow'}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 <br>
@@ -82,24 +83,25 @@
     Historial de estados del pedido
   </div>
   <div class="card-body">
-
-    <table class="table table-hover">
-      <thead>
-      <tr>
-        <th scope="col">Estado</th>
-        <th scope="col">Fecha de estado</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let estado of Pedido.historialEstadoPedido">
-        <td>
-          {{estado.detalleEstado?.nombre}}
-        </td>
-        <td>
-          {{estado.createdAt | date: 'dd/MM/yyyy HH:mm'}}
-        </td>
-      </tr>
-      </tbody>
-    </table>
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th scope="col">Estado</th>
+          <th scope="col">Fecha de estado</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let estado of Pedido.historialEstadoPedido">
+          <td>
+            {{estado.detalleEstado?.nombre}}
+          </td>
+          <td>
+            {{estado.createdAt | date: 'dd/MM/yyyy HH:mm'}}
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

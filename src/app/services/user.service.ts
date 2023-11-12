@@ -14,4 +14,12 @@ export class UserService {
   obtenerInformacionDeCuenta() {
     return this.httpClient.get(environment.apiUrl + 'account/profile', {withCredentials: true})
   }
+
+  registrarUsuario(data: any) {
+    return this.httpClient.post(environment.apiUrl + 'usuarios', data)
+  }
+
+  registrarUsuarioAdm(data: any) {
+    return this.httpClient.post(environment.apiUrl + 'usuarios/registrar', data)
+  }
 }

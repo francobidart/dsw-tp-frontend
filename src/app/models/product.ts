@@ -9,6 +9,7 @@ export class Product {
   descripcion?: string | null;
   stock: number = 0;
   imagen?: string | null;
+  activo?: boolean;
   createdAt?: string;
   updatedAt?: string;
 }

@@ -6,7 +6,7 @@ import { ActivatedRoute } from '@angular/router';
   selector: 'app-resultados',
   templateUrl: './resultados.component.html',
   styleUrls: ['./resultados.component.css']
-  
+
 })
 export class ResultadosComponent implements OnInit {
 
@@ -14,11 +14,11 @@ export class ResultadosComponent implements OnInit {
   resultados: any[] = [];
 
   constructor(private buscarService: BuscarService, private route: ActivatedRoute) {}
-  
+
   ngOnInit() {
     this.route.queryParams
       .subscribe(params => {
-        console.log(params); 
+        console.log(params);
 
         this.query = params['q'];
 
@@ -29,5 +29,10 @@ export class ResultadosComponent implements OnInit {
   buscar() {
     this.buscarService.buscar(this.query).subscribe(data => {
       this.resultados = data.resultados;
-    });}
+    });
+  }
+
+  imgError(event: any) {
+    event.target.src = "/assets/img/not-found.png";
+  }
 }

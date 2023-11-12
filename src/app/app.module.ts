@@ -41,6 +41,11 @@ import { AdminProductoDetalleComponent } from './administrador/admin-producto-de
 import { AdminProductoModalDetalleComponent } from './administrador/admin-producto-modal-detalle/admin-producto-modal-detalle.component';
 import { AdminProductoNuevoComponent } from './administrador/admin-producto-nuevo/admin-producto-nuevo.component';
 import { RegistrarseComponent } from './registrarse/registrarse.component';
+import { AdminCategoriaNuevaComponent } from './administrador/admin-categoria-nueva/admin-categoria-nueva.component';
+import { AdminCategoriaEditarComponent } from './administrador/admin-categoria-editar/admin-categoria-editar.component';
+import { AdminCategoriaComponent } from './administrador/admin-categoria/admin-categoria.component';
+import { AdminCategoriaDetalleComponent } from './administrador/admin-categoria-detalle/admin-categoria-detalle.component';
+import { AdminCategoriaConfirmarEliminacionComponent } from './administrador/admin-categoria-confirmar-eliminacion/admin-categoria-confirmar-eliminacion.component';
 
 @NgModule({
   declarations: [
@@ -68,8 +73,13 @@ import { RegistrarseComponent } from './registrarse/registrarse.component';
     AdminProductosComponent,
     AdminProductoDetalleComponent,
     AdminProductoModalDetalleComponent,
-    AdminProductoNuevoComponent
-    RegistrarseComponent
+    AdminProductoNuevoComponent,
+    RegistrarseComponent,
+    AdminCategoriaNuevaComponent,
+    AdminCategoriaEditarComponent,
+    AdminCategoriaComponent,
+    AdminCategoriaDetalleComponent,
+    AdminCategoriaConfirmarEliminacionComponent
   ],
   imports: [
     BrowserModule,
@@ -95,6 +105,8 @@ import { RegistrarseComponent } from './registrarse/registrarse.component';
       {path: 'administrador/productos/:id', component: AdminProductoDetalleComponent, canActivate: [ActivateAdminGuard]},
       {path: 'administrador/pedidos', component: AdminPedidosComponent, canActivate: [ActivateAdminGuard]},
       {path: 'administrador/pedidos/:id', component: AdminPedidosDetalleComponent, canActivate: [ActivateAdminGuard]},
+      {path: 'administrador/categorias', component: AdminCategoriaComponent, canActivate: [ActivateAdminGuard]},
+      {path: 'administrador/categorias/:id', component: AdminCategoriaDetalleComponent, canActivate: [ActivateAdminGuard]},
       {path: 'no-autorizado', component: NoautorizadoComponent},
       {path: 'resultados', component: ResultadosComponent}
     ]),

@@ -1,5 +1,7 @@
+<div class="input-group">
+  <input [(ngModel)]="query" class="form-control" (keyup.enter)="buscar()" placeholder="Buscar...">
+  <button class="btn btn-outline-secondary" type="button" (click)="buscar()">
+    <i class="fa fa-search"></i>
+  </button>
+</div>
 
-<input [(ngModel)]="query" class="form-control" (keyup.enter)="buscar()" placeholder="Buscar...">
-<ul>
-  <li *ngFor="let resultado of resultados">{{ resultado.campo }}</li>
-</ul>

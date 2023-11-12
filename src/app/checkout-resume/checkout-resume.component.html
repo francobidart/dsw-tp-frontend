@@ -19,7 +19,8 @@
       <div class="card">
         <div class="card-body">
           <p style="font-weight: bold">Seleccioná la sucursal de entrega:</p>
-          <select name="select-sucursal" id="select-sucursal" [(ngModel)]="SucursalSeleccionada" (ngModelChange)="this.SucursalSeleccionada = $event" class="form-control form-select">
+          <select name="select-sucursal" id="select-sucursal" [(ngModel)]="SucursalSeleccionada"
+                  (ngModelChange)="this.SucursalSeleccionada = $event" class="form-control form-select">
             <option value="" selected>Seleccionar una sucursal...</option>
             <option *ngFor="let Sucursal of Sucursales" value="{{Sucursal.id}}">{{Sucursal.nombre}}
               | {{Sucursal.direccion}}</option>
@@ -58,12 +59,19 @@
         Total: ${{cartService.getTotal()}}
       </div>
       <br>
-      <div class="btn btn-success" (click)="confirmarCompra()" style="width: 100%">
-        Confirmar pedido
+      <div *ngIf="!Usuario.isAdmin">
+        <div class="btn btn-success" (click)="confirmarCompra()" style="width: 100%">
+          Confirmar pedido
+        </div>
+        <p></p>
+        <div class="btn btn-outline-danger" routerLink="/" style="width: 100%">
+          Cancelar pedido
+        </div>
       </div>
-      <p></p>
-      <div class="btn btn-outline-danger" routerLink="/" style="width: 100%">
-        Cancelar pedido
+      <div *ngIf="Usuario.isAdmin">
+        <div class="alert alert-primary">
+          Para realizar una compra, deberás ingresar con un usuario de tipo CLIENTE, los administradores no pueden realizar compras en la plataforma.
+        </div>
       </div>
     </div>
   </div>

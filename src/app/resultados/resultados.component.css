@@ -1,0 +1,32 @@
+@media (min-width: 700px) {
+  .item {
+    text-align: center;
+    cursor: pointer;
+    padding: 10px;
+    -webkit-transition: all 200ms ease-in-out;
+    -moz-transition: all 200ms ease-in-out;
+    -ms-transition: all 200ms ease-in-out;
+    -o-transition: all 200ms ease-in-out;
+    transition: all 200ms ease-in-out;
+  }
+
+  .item:hover {
+    box-shadow: 1px 1px 5px 0px rgba(128, 128, 128, 0.75);
+    -webkit-box-shadow: 1px 1px 5px 0px rgba(128, 128, 128, 0.75);
+    -moz-box-shadow: 1px 1px 5px 0px rgba(128, 128, 128, 0.75);
+  }
+
+  .item img {
+    width: 80%;
+  }
+
+  .item .product-price {
+    font-size: 1.5rem;
+  }
+
+  div.orden select {
+    width: 300px;
+    margin-left: 10px;
+  }
+
+}

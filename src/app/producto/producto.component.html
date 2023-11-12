@@ -11,12 +11,10 @@
       <br>
       <div class="card">
         <div class="card-body" style="width: 100%;">
-          Pagalo en hasta <span class="text-primary">12 cuotas sin interés</span>
-          con VISA y MasterCard
+          Pagalo en EFECTIVO o TRANSFERENCIA en 1 cuota.
           <br>
-          <small>12 cuotas de ${{(this.Producto.precio / 12) | number: '1.0-2'}}</small>
+          <small>1 cuota de {{Producto.precio | currency: 'ARS': 'symbol-narrow'}}</small>
           <br>
-          <a style="cursor: pointer" (click)="openInstallmentsModal()" class="small text-secondary">Calcular cuotas</a>
         </div>
       </div>
       <br>

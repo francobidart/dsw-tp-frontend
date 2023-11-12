@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Product} from "../models/product";
 import {TipoProductoServiceService} from "../services/tipo-producto-service.service";
 import {ApiResponse} from "../models/apiResponse";
@@ -18,6 +18,7 @@ export class CategoriaComponent implements OnInit {
   CategoryId: number | null = null;
   OrdenSeleccionado: string | null = '';
 
+  @Input() id?: number;
 
   constructor(private tipoProductoService: TipoProductoServiceService, private route: ActivatedRoute, private productoService: ProductoService) {
   }
@@ -26,6 +27,10 @@ export class CategoriaComponent implements OnInit {
     this.route.params.subscribe(routeParams => {
       this.loadData(routeParams['id']);
     });
+    if(this.id) {
+      // Se ingresó por referencia al componente, no por ruta. (EJ: Modal de administrador)
+      this.loadData(this.id);
+    }
   }
 
   loadData(id: number) {

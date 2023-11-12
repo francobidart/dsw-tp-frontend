@@ -21,4 +21,16 @@ export class TipoProductoServiceService {
   getById(id: number) {
     return this.httpClient.get(environment.apiUrl + this.resourceUrl + '/' + id);
   }
+
+  create(data: any) {
+    return this.httpClient.post(environment.apiUrl + this.resourceUrl, data);
+  }
+
+  update(id: number, data: any) {
+    return this.httpClient.post(environment.apiUrl + this.resourceUrl + '/' + id + '/update', data);
+  }
+
+  delete(id: number) {
+    return this.httpClient.get(environment.apiUrl + this.resourceUrl + '/' + id + '/borrar');
+  }
 }

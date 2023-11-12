@@ -1,17 +1,21 @@
 <div class="container" style="margin-top: 60px;">
-    <div class="row" >
-      <div class="item col-12 col-md-3" routerLink="producto/{{item.id}}" *ngFor="let item of resultados">
-        <div>
-          <img
-            src="{{item.imagen}}"
-            alt="">
-        </div>
-        <div class="product-title">
-          <span>{{item.nombre}}</span>
-        </div>
-        <div class="product-price">
-          <strong>${{item.precio}}</strong>
-        </div>
+  <h1>
+    Buscador de productos
+  </h1>
+  <div class="row">
+    <div class="alert alert-primary" *ngIf="resultados.length === 0">
+      No se encontraron artículos que coincidan con: <strong>{{query}}</strong>
+    </div>
+    <div class="item col-12 col-md-3" style="cursor: pointer" routerLink="/producto/{{item.id}}" *ngFor="let item of resultados">
+      <div>
+        <img src="{{item.imagen}}" alt="">
+      </div>
+      <div class="product-title">
+        <span>{{item.nombre}}</span>
+      </div>
+      <div class="product-price">
+        <strong>${{item.precio}}</strong>
       </div>
     </div>
   </div>
+</div>

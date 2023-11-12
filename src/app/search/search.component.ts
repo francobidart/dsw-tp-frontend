@@ -1,7 +1,7 @@
 // search.component.ts
-import { Component } from '@angular/core';
-import { BuscarService } from '../services/buscar/buscar.service';
-import { Router } from '@angular/router';
+import {Component} from '@angular/core';
+import {BuscarService} from '../services/buscar/buscar.service';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -13,8 +13,13 @@ export class SearchComponent {
   query: string = '';
   resultados: any[] = [];
 
-  constructor(private buscarService: BuscarService, private router: Router) {}
+  constructor(private buscarService: BuscarService, private router: Router) {
+  }
 
-  buscar() { this.router.navigate(['resultados'], { queryParams: { q: this.query }})   
+  buscar() {
+    if (this.query !== '') {
+      this.router.navigate(['resultados'], {queryParams: {q: this.query}});
+      this.query = ''
+    }
   }
 }
