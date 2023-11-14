@@ -1,5 +1,5 @@
 export class User {
-  id?: number;
+  id: number = 0;
   nombre: string = '';
   apellido: string = '';
   email: string = '';
@@ -9,4 +9,5 @@ export class User {
   isAdmin: boolean = false;
   createdAt?: string;
   updatedAt?: string;
+  active: boolean = true;
 }

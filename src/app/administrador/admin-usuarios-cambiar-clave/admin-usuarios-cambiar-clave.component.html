@@ -1,0 +1,29 @@
+<div class="modal-header">
+  <h4 class="modal-title">Cambiar contraseña</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+  <form name="FormUsuario" [formGroup]="FormUsuario">
+    <fieldset>
+      <div class="row mb-2">
+        <div class="col">
+          <strong>{{Usuario.nombre}} {{Usuario.apellido}}</strong>
+        </div>
+        <div class="col">
+          Email: <strong>{{Usuario.email}}</strong>
+        </div>
+      </div>
+      <hr>
+      <div class="row mb-2">
+        <div class="col">
+          <label for="password">Nueva contraseña (*):</label>
+          <input type="password" id="password" formControlName="password" class="form-control">
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-danger" (click)="activeModal.close()">Cancelar</button>
+  <button type="button" class="btn btn-outline-success" (click)="cambiarClave()">Guardar contraseña</button>
+</div>

@@ -1,0 +1,53 @@
+<div class="modal-header">
+  <h4 class="modal-title">Nuevo usuario</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+  <form name="FormCategoria" [formGroup]="FormUsuario">
+    <fieldset>
+      <div class="row mb-2">
+        <div class="col">
+          <label for="nombre">Nombre (*):</label>
+          <input type="text" formControlName="nombre" id="nombre" class="form-control">
+        </div>
+        <div class="col">
+          <label for="apellido">Apellido (*):</label>
+          <input type="text" formControlName="apellido" id="apellido" class="form-control">
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col">
+          <label for="email">Email (*):</label>
+          <input type="text" formControlName="email" id="email" class="form-control">
+        </div>
+        <div class="col">
+          <label for="telefono">Telefono (*):</label>
+          <input type="text" formControlName="telefono" id="telefono" class="form-control">
+        </div>
+      </div>
+      <hr>
+      <div class="row mb-2">
+        <div class="col">
+          <div class="mb-2">
+            Tipo de usuario:
+          </div>
+          <select name="isAdmin" id="isAdmin" class="form-control form-select" formControlName="isAdmin">
+            <option value="0" selected>Cliente</option>
+            <option value="1">Administrador</option>
+          </select>
+        </div>
+      </div>
+      <hr>
+      <div class="row mb-2">
+        <div class="col">
+          <label for="password">Contraseña (*):</label>
+          <input type="password" id="password" formControlName="password" class="form-control">
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-danger" (click)="activeModal.close()">Cancelar</button>
+  <button type="button" class="btn btn-outline-success" (click)="registrarUsuario()">Registrar usuario</button>
+</div>

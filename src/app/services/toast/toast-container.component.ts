@@ -13,8 +13,10 @@ import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 			*ngFor="let toast of toastService.toasts"
 			[class]="toast.classname"
 			[autohide]="true"
+      [animation]="true"
 			[delay]="toast.delay || 5000"
 			(hidden)="toastService.remove(toast)"
+      header="Información"
 		>
 			<ng-template [ngIf]="isTemplate(toast)" [ngIfElse]="text">
 				<ng-template [ngTemplateOutlet]="toast.textOrTpl"></ng-template>
