@@ -12,7 +12,7 @@
 
 1. Clonar el repositorio de frontend desde https://github.com/francobidart/dsw-tp-frontend
 2. Ingresar al directorio de frontend y ejecutar el comando ``` npm install ```
-3. Configurar los datos apiUrl en los archivos /src/environments/environment.ts y /src/environments/environment.prod.ts con la URL correspondiente al backend agregar una barra **/** al final, ejemplo http://localhost:3000/).
+3. Configurar los datos apiUrl en los archivos /src/environments/environment.ts y /src/environments/environment.prod.ts con la URL correspondiente al backend (agregar una barra **/** al final, ejemplo http://localhost:3000/).
 
 ### Ejecución de la aplicación
 
