@@ -57,4 +57,4 @@ ng e2e
 
 ![image](./img/ejecucion_e2e_crear_pedido.png)
 
-[Enlace a imagen completa](LINK)
+[Enlace a imagen completa](https://github.com/francobidart/dsw-tp-frontend/blob/main/docs/img/ejecucion_e2e_crear_pedido.png)
