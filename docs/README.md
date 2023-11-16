@@ -31,3 +31,30 @@ Es importante recordar que en caso de utilizar otro puerto deberá ajustar la ur
 Para realizar este cambio, ingrese a la carpeta de backend y modifique las rutas disponibles en la variable _corsOptions_ dentro del archivo **app.js** ubicado en la carpeta raíz.
 
 ---
+
+### Tests automáticos de frontend
+
+Utilizamos las siguientes librerías para la definición de pruebas automatizadas
+* Cypress
+* Mocha
+
+Se incluye una prueba e2e que realiza las siguientes acciones para la creación de un pedido:
+
+* Navegación a un determinado artículo.
+* Selección de opción comprar ahora.
+* Login de usuario con datos de prueba.
+* Confirmación de la compra.
+
+
+Para ejecutar la prueba se utilizan los datos iniciales disponibles en el backend, para ejecutar los tests realice el siguiente comando en la carpeta
+raíz del proyecto frontend:
+
+```
+ng e2e
+```
+
+#### Imagen de verificación de resultados de la ejecución de las pruebas:
+
+![image](./img/ejecucion_e2e_crear_pedido.png)
+
+[Enlace a imagen completa](LINK)

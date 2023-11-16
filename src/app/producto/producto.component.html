@@ -18,9 +18,9 @@
         </div>
       </div>
       <br>
-      <p>Unidades disponibles: {{this.Producto.stock}}</p>
+      <p>Unidades disponibles: <span class="unidades-disponibles">{{this.Producto.stock}}</span></p>
       <div class="botones-producto" *ngIf="Producto.stock > 0 && !this.loginStatus.isAdmin">
-        <a (click)="addToCartAndGoToSummary()" class="btn btn-primary">Comprar ahora</a> &nbsp;
+        <a (click)="addToCartAndGoToSummary()" id="comprarAhora" class="btn btn-primary">Comprar ahora</a> &nbsp;
         <a (click)="addToCart()" class="btn btn-outline-secondary">Añadir al carrito</a>
       </div>
       <div class="botones-producto" *ngIf="Producto.stock === 0 && !this.loginStatus.isAdmin">

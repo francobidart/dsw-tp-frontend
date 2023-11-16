@@ -24,8 +24,10 @@ export class ProductoComponent implements OnInit {
 
   ngOnInit(): void {
     this.routeSub = this.route.params.subscribe(params => {
-      this.productoService.getById(parseInt(params['id'])).subscribe((res: any) => this.Producto = res.resultados[0]);
-      this.titleService.setTitle(this.Producto.nombre);
+      this.productoService.getById(parseInt(params['id'])).subscribe((res: any) => {
+        this.Producto = res.resultados[0]
+        this.titleService.setTitle(this.Producto.nombre);
+      });
     });
   }
 
