@@ -16,10 +16,34 @@ export class UserService {
   }
 
   registrarUsuario(data: any) {
-    return this.httpClient.post(environment.apiUrl + 'usuarios', data)
+    return this.httpClient.post(environment.apiUrl + 'users', data)
+  }
+
+  listarUsuarios() {
+    return this.httpClient.get(environment.apiUrl + 'users')
+  }
+
+  getUsuario(id: number) {
+    return this.httpClient.get(environment.apiUrl + 'users/' + id)
   }
 
   registrarUsuarioAdm(data: any) {
-    return this.httpClient.post(environment.apiUrl + 'usuarios/registrar', data)
+    return this.httpClient.post(environment.apiUrl + 'users/registrar', data)
+  }
+
+  actualizarUsuario(id: number, data: any) {
+    return this.httpClient.post(environment.apiUrl + 'users/' + id, data)
+  }
+
+  deshabilitarUsuario(id: number) {
+    return this.httpClient.get(environment.apiUrl + 'users/' + id + '/disable')
+  }
+
+  cambiarClave(id: number, data: any) {
+    return this.httpClient.post(environment.apiUrl + 'users/' + id + '/cambiarClave', data)
+  }
+
+  habilitarUsuario(id: number) {
+    return this.httpClient.get(environment.apiUrl + 'users/' + id + '/enable')
   }
 }

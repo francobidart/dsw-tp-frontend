@@ -1,0 +1,48 @@
+<div class="modal-header">
+  <h4 class="modal-title">Editar usuario</h4>
+  <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+  <form name="FormUsuario" [formGroup]="FormUsuario">
+    <fieldset>
+      <div class="row mb-2">
+        <div class="col">
+          <label for="nombre">Nombre (*):</label>
+          <input type="text" formControlName="nombre" id="nombre" [(ngModel)]="Usuario.nombre" class="form-control">
+        </div>
+        <div class="col">
+          <label for="apellido">Apellido (*):</label>
+          <input type="text" formControlName="apellido" id="apellido" [(ngModel)]="Usuario.apellido"
+                 class="form-control">
+        </div>
+      </div>
+      <div class="row mb-2">
+        <div class="col">
+          <label for="email">Email (*):</label>
+          <input type="text" formControlName="email" [(ngModel)]="Usuario.email" id="email" class="form-control">
+        </div>
+        <div class="col">
+          <label for="telefono">Telefono (*):</label>
+          <input type="text" formControlName="telefono" [(ngModel)]="Usuario.telefono" id="telefono"
+                 class="form-control">
+        </div>
+      </div>
+      <hr>
+      <div class="row mb-2">
+        <div class="col">
+          <div class="mb-2">
+            Tipo de usuario:
+            <strong>
+              <span *ngIf="Usuario.isAdmin">Administrador</span>
+              <span *ngIf="!Usuario.isAdmin">Cliente</span>
+            </strong>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-danger" (click)="activeModal.close()">Cancelar</button>
+  <button type="button" class="btn btn-outline-success" (click)="actualizarUsuario()">Guardar cambios</button>
+</div>

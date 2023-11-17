@@ -17,6 +17,7 @@ export class ActivateAdminGuard implements CanActivate {
     return this.loginStatus.validarAdmin().then((res: any) => {
       return true;
     }).catch((error) => {
+      this.loginStatus.logout();
       this.router.navigate(['no-autorizado'])
       return false;
     })

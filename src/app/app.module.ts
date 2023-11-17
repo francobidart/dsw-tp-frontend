@@ -46,6 +46,10 @@ import { AdminCategoriaEditarComponent } from './administrador/admin-categoria-e
 import { AdminCategoriaComponent } from './administrador/admin-categoria/admin-categoria.component';
 import { AdminCategoriaDetalleComponent } from './administrador/admin-categoria-detalle/admin-categoria-detalle.component';
 import { AdminCategoriaConfirmarEliminacionComponent } from './administrador/admin-categoria-confirmar-eliminacion/admin-categoria-confirmar-eliminacion.component';
+import { AdminUsuariosComponent } from './administrador/admin-usuarios/admin-usuarios.component';
+import { AdminUsuariosNuevoComponent } from './administrador/admin-usuarios-nuevo/admin-usuarios-nuevo.component';
+import { AdminUsuariosEditarComponent } from './administrador/admin-usuarios-editar/admin-usuarios-editar.component';
+import { AdminUsuariosCambiarClaveComponent } from './administrador/admin-usuarios-cambiar-clave/admin-usuarios-cambiar-clave.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +83,11 @@ import { AdminCategoriaConfirmarEliminacionComponent } from './administrador/adm
     AdminCategoriaEditarComponent,
     AdminCategoriaComponent,
     AdminCategoriaDetalleComponent,
-    AdminCategoriaConfirmarEliminacionComponent
+    AdminCategoriaConfirmarEliminacionComponent,
+    AdminUsuariosComponent,
+    AdminUsuariosNuevoComponent,
+    AdminUsuariosEditarComponent,
+    AdminUsuariosCambiarClaveComponent
   ],
   imports: [
     BrowserModule,
@@ -107,6 +115,7 @@ import { AdminCategoriaConfirmarEliminacionComponent } from './administrador/adm
       {path: 'administrador/pedidos/:id', component: AdminPedidosDetalleComponent, canActivate: [ActivateAdminGuard]},
       {path: 'administrador/categorias', component: AdminCategoriaComponent, canActivate: [ActivateAdminGuard]},
       {path: 'administrador/categorias/:id', component: AdminCategoriaDetalleComponent, canActivate: [ActivateAdminGuard]},
+      {path: 'administrador/usuarios', component: AdminUsuariosComponent, canActivate: [ActivateAdminGuard]},
       {path: 'no-autorizado', component: NoautorizadoComponent},
       {path: 'resultados', component: ResultadosComponent}
     ]),

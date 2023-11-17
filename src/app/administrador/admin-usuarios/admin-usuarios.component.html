@@ -1,0 +1,62 @@
+<app-navbar-admin></app-navbar-admin>
+<br>
+<div class="row">
+  <div class="col-md-10 col-7">
+    <h2>
+      Usuarios
+    </h2>
+  </div>
+  <div class="col-md col" style="text-align: right">
+    <span class="btn btn-outline-success" (click)="nuevoUsuario()">
+      Nuevo usuario
+    </span>
+  </div>
+</div>
+<br>
+<div class="alert alert-primary" *ngIf="Usuarios.length === 0">
+  Aún no hay usuarios registrados
+</div>
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th scope="col">N°</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Tipo</th>
+      <th scope="col">Mail</th>
+      <th scope="col">Telefono</th>
+      <th scope="col">Fecha de alta</th>
+      <th scope="col" style="text-align: right">Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let usuario of Usuarios">
+      <td>{{usuario.id}}</td>
+      <td>{{usuario.nombre}} {{usuario.apellido}}</td>
+      <td>
+        <span *ngIf="usuario.isAdmin">Administrador</span>
+        <span *ngIf="!usuario.isAdmin">Cliente</span>
+      </td>
+      <td>{{usuario.email}}</td>
+      <td>{{usuario.telefono}}</td>
+      <td>{{usuario.createdAt | date: 'dd/MM/yyyy HH:mm'}}</td>
+      <td style="text-align: right">
+    <span class="btn btn-sm btn-outline-primary" ngbTooltip="Editar usuario" (click)="editarUsuario(usuario)">
+        <i class="fas fa-pen"></i>
+      </span>&nbsp;<span ngbTooltip="Cambiar contraseña" class="btn btn-sm btn-outline-info"
+                         (click)="cambiarClave(usuario.id)">
+        <i class="fas fa-lock"></i>
+      </span>&nbsp;<span *ngIf="usuario.active" class="btn btn-sm btn-outline-danger"
+                         (click)="deshabilitarUsuario(usuario.id)" ngbTooltip="Deshabilitar usuario">
+        <i class="fas fa-trash"></i>
+      </span>
+        <span *ngIf="!usuario.active" class="btn btn-sm btn-outline-success" (click)="habilitarUsuario(usuario.id)"
+              ngbTooltip="Habilitar usuario">
+          <i class="fas fa-check"></i></span>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
