@@ -5,7 +5,10 @@
 </h2>
 <p>Creado el: {{Pedido.createdAt | date: 'dd/MM/yyyy HH:mm'}} | Estado:
   <strong>{{Pedido.detalleEstadoActual?.nombre}}</strong> | Medio de pago:
-  <strong>{{Pedido.medioDePagoPedido.nombre}}</strong></p>
+  <strong>{{Pedido.medioDePagoPedido.nombre}}</strong> | Sucursal de entrega:
+  <strong>{{Pedido.sucursalPedido.nombre}}</strong>
+</p>
+
 <div class="row align-items-center ">
   <div class="col-md-10 col-12 mb-2">
     <div class="card">

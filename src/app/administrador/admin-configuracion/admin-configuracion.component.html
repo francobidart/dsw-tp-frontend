@@ -1,0 +1,106 @@
+<app-navbar-admin></app-navbar-admin>
+<br>
+<h2>Sucursales y medios de pago</h2>
+<br>
+<div class="row mb-3">
+  <div class="col-9">
+    <p>Listado de <strong>sucursales</strong> disponibles:</p>
+  </div>
+  <div class="col" style="text-align: right">
+    <div class="btn btn-outline-success" (click)="nuevaSucursal()">
+      <i class="fas fa-plus"></i> Nueva sucursal
+    </div>
+  </div>
+</div>
+<div class="alert alert-primary" *ngIf="Sucursales.length === 0">
+  No hay sucursales registradas en la plataforma
+</div>
+<div *ngIf="Sucursales.length > 0">
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">N°</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Dirección</th>
+        <th scope="col">Teléfono</th>
+        <th scope="col">Estado</th>
+        <th scope="col">Fecha de alta</th>
+        <th scope="col" style="text-align: right">Acciones</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let sucursal of Sucursales">
+        <td>{{sucursal.id}}</td>
+        <td>{{sucursal.nombre}}</td>
+        <td>{{sucursal.direccion}}</td>
+        <td>{{sucursal.telefono}}</td>
+        <td>{{sucursal.active ? 'Habilitada' : 'Deshabilitada'}}</td>
+        <td>{{sucursal.createdAt | date: 'dd/MM/yyyy HH:mm'}}</td>
+        <td style="text-align: right">
+      <span class="btn btn-sm btn-outline-secondary" (click)="editarSucursal(sucursal.id)">
+      <i class="fas fa-pen"></i>
+    </span>&nbsp;<span class="btn btn-sm btn-outline-danger" (click)="deshabilitarSucursal(sucursal.id)"
+                       ngbTooltip="Deshabilitar" *ngIf="sucursal.active">
+      <i class="fas fa-trash"></i>
+    </span><span class="btn btn-sm btn-outline-success" (click)="habilitarSucursal(sucursal.id)" ngbTooltip="Habilitar"
+                 *ngIf="!sucursal.active">
+      <i class="fas fa-check"></i>
+    </span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<br>
+<hr>
+<br>
+<div class="row mb-3">
+  <div class="col-9">
+    <p>Listado de <strong>medios de pago</strong> disponibles:</p>
+  </div>
+  <div class="col" style="text-align: right">
+    <div class="btn btn-outline-success" (click)="nuevoMedioDePago()">
+      <i class="fas fa-plus"></i> Nuevo medio de pago
+    </div>
+  </div>
+</div>
+<div class="alert alert-primary" *ngIf="MediosDePago.length === 0">
+  No hay medios de pago registrados en la plataforma
+</div>
+<div *ngIf="MediosDePago.length > 0">
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th scope="col">N°</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Descripción</th>
+        <th scope="col">Estado</th>
+        <th scope="col">Fecha de alta</th>
+        <th scope="col" style="text-align: right">Acciones</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let mediodepago of MediosDePago">
+        <td>{{mediodepago.id}}</td>
+        <td>{{mediodepago.nombre}}</td>
+        <td>{{mediodepago.descripcion ? mediodepago.descripcion : '-'}}</td>
+        <td>{{mediodepago.active ? 'Habilitado' : 'Deshabilitado'}}</td>
+        <td>{{mediodepago.createdAt | date: 'dd/MM/yyyy HH:mm'}}</td>
+        <td style="text-align: right">
+      <span class="btn btn-sm btn-outline-secondary" (click)="editarMedioDePago(mediodepago.id)">
+      <i class="fas fa-pen"></i>
+    </span>&nbsp;<span class="btn btn-sm btn-outline-danger" (click)="deshabilitarMedioDePago(mediodepago.id)" ngbTooltip="Deshabilitar" *ngIf="mediodepago.active">
+      <i class="fas fa-trash"></i>
+    </span><span class="btn btn-sm btn-outline-success" (click)="habilitarMedioDePago(mediodepago.id)" ngbTooltip="Habilitar" *ngIf="!mediodepago.active">
+      <i class="fas fa-check"></i>
+    </span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

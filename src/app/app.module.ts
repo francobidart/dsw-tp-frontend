@@ -50,6 +50,9 @@ import { AdminUsuariosComponent } from './administrador/admin-usuarios/admin-usu
 import { AdminUsuariosNuevoComponent } from './administrador/admin-usuarios-nuevo/admin-usuarios-nuevo.component';
 import { AdminUsuariosEditarComponent } from './administrador/admin-usuarios-editar/admin-usuarios-editar.component';
 import { AdminUsuariosCambiarClaveComponent } from './administrador/admin-usuarios-cambiar-clave/admin-usuarios-cambiar-clave.component';
+import { AdminConfiguracionComponent } from './administrador/admin-configuracion/admin-configuracion.component';
+import { AdminConfiguracionAccionesSucursalComponent } from './administrador/admin-configuracion-acciones-sucursal/admin-configuracion-acciones-sucursal.component';
+import { AdminConfiguracionAccionesMediodepagoComponent } from './administrador/admin-configuracion-acciones-mediodepago/admin-configuracion-acciones-mediodepago.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +90,10 @@ import { AdminUsuariosCambiarClaveComponent } from './administrador/admin-usuari
     AdminUsuariosComponent,
     AdminUsuariosNuevoComponent,
     AdminUsuariosEditarComponent,
-    AdminUsuariosCambiarClaveComponent
+    AdminUsuariosCambiarClaveComponent,
+    AdminConfiguracionComponent,
+    AdminConfiguracionAccionesSucursalComponent,
+    AdminConfiguracionAccionesMediodepagoComponent
   ],
   imports: [
     BrowserModule,
@@ -116,6 +122,7 @@ import { AdminUsuariosCambiarClaveComponent } from './administrador/admin-usuari
       {path: 'administrador/categorias', component: AdminCategoriaComponent, canActivate: [ActivateAdminGuard]},
       {path: 'administrador/categorias/:id', component: AdminCategoriaDetalleComponent, canActivate: [ActivateAdminGuard]},
       {path: 'administrador/usuarios', component: AdminUsuariosComponent, canActivate: [ActivateAdminGuard]},
+      {path: 'administrador/configuracion', component: AdminConfiguracionComponent, canActivate: [ActivateAdminGuard]},
       {path: 'no-autorizado', component: NoautorizadoComponent},
       {path: 'resultados', component: ResultadosComponent}
     ]),

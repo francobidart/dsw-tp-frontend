@@ -3,4 +3,6 @@ export class Sucursal {
   nombre: string = '';
   direccion?: string;
   telefono?: string
+  createdAt?: string
+  active: boolean = true;
 }

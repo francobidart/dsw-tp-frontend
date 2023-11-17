@@ -9,12 +9,20 @@ export class Pedido {
   historialEstadoPedido: Array<HistorialEstadoPedido> = new Array<HistorialEstadoPedido>();
   detalleEstadoActual?: DetalleEstadoPedido;
   medioDePagoPedido: MedioPagoPedido = new MedioPagoPedido();
+  sucursalPedido: SucursalPedido = new SucursalPedido();
 }
 
 export class MedioPagoPedido {
   id: number = 0;
   nombre: string = '';
   tag: string = '';
+}
+
+export class SucursalPedido {
+  id: number = 0;
+  nombre: string = '';
+  direccion: string = '';
+  telefono: string = '';
 }
 
 export class DetalleEstadoPedido {

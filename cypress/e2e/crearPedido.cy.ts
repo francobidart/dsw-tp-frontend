@@ -4,7 +4,7 @@ describe('Ingreso a la información de un producto', () => {
   });
 
   it('Debe ingresar a un producto, verificar que tenga inventario y generar un pedido sobre ese producto', () => {
-    cy.title().should('equal', 'MICROPROCESADOR INTEL CEfLERON G5905 TRAY OEM BULK 3.50GHZ 4MB 1200');
+    cy.title().should('equal', 'MICROPROCESADOR INTEL CELERON G5905 TRAY OEM BULK 3.50GHZ 4MB 1200');
     cy.get('.unidades-disponibles').then($value => {
       let unidades = parseInt($value[0].innerHTML);
       if (unidades > 0) {
