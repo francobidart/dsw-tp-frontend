@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
-import {RegisterserviceService} from '../services/registerservice.service';
-import {User} from "../models/user";
 import {UserService} from "../services/user.service";
 import {ToastService} from "../services/toast/toast-service";
 import {Router} from "@angular/router";
@@ -28,10 +26,11 @@ export class RegistrarseComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', Validators.required),
       repetirpassword: new FormControl('', Validators.required),
+      
     });
   }
 
-  Completado: number = 0;
+  Completado: string = '';
 
 
   registrarUsuario() {
@@ -39,15 +38,21 @@ export class RegistrarseComponent implements OnInit {
       if (this.formulario.value.password === this.formulario.value.repetirpassword) {
         this.usuarioService.registrarUsuario(this.formulario.value).subscribe((res: any) => {
           this.toastService.showSuccess(res.mensaje);
-          this.router.navigate(['/login'])
+          this.router.navigate(['/login']);
+          
+          
         }, (error: any) => {
           this.toastService.showError(error.error.mensaje);
-        });
+        })
+        this.Completado =  'Se ha registrado correctamente'
+        
+        ;
       } else {
-        this.Completado = 2;
+        this.Completado =  'Las contraseñas no coinciden'
+        ;
       }
     } else {
-      this.Completado = 3;
+      this.Completado = 'Complete todos los campos correctamente por favor';
     }
   }
 }

@@ -16,6 +16,7 @@ export class UserService {
   }
 
   registrarUsuario(data: any) {
+    console.log(data)
     return this.httpClient.post(environment.apiUrl + 'users', data)
   }
 

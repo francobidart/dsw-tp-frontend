@@ -45,17 +45,12 @@
     </div>
   </fieldset>
 </form>
-<div [ngSwitch]="Completado">
-  <div *ngSwitchCase="1">
-    Registrado Correctamente
-  </div>
-  <div *ngSwitchCase="2">
-    Las contraseñas no coinciden
-  </div>
-  <div *ngSwitchCase="3">
-    Complete todos los campos por favor.
-  </div>
+<div >
+  
+{{this.Completado}}
+
 </div>
+
 <div class="botones">
   <button routerLink="/" style="margin: 10px" class="btn btn-outline-danger">< Volver al inicio</button>
   <button (click)="registrarUsuario()" style="margin: 10px" class="btn btn-primary">Registrarse</button>
