@@ -37,7 +37,11 @@ Para realizar este cambio, ingrese a la carpeta de backend y modifique las rutas
 Utilizamos las siguientes librerías para la definición de pruebas automatizadas
 * Cypress
 * Mocha
+* Jasmine 
 
+---
+
+#### Prueba end-to-end (e2e)
 Se incluye una prueba e2e que realiza las siguientes acciones para la creación de un pedido:
 
 * Navegación a un determinado artículo.
@@ -58,3 +62,28 @@ ng e2e
 ![image](./img/ejecucion_e2e_crear_pedido.png)
 
 [Enlace a imagen completa](https://github.com/francobidart/dsw-tp-frontend/blob/main/docs/img/ejecucion_e2e_crear_pedido.png)
+
+---
+
+#### Prueba unitaria para el registro de usuarios
+Se incluye una prueba unitaria para el componente de registro de usuarios, que incluye la validación del formulario, la 
+prueba de los respectivos mensajes de validación así como también la validación de los toasts de confirmación, los casos definidos son:
+
+* Mostrar mensaje de error si las contraseñas no coinciden.
+* Mostrar mensaje de error en caso de que falten datos obligatorios.
+* Realizar el registro de un usuario, mostrando el mensaje de confirmación.
+* Mostrar un mensaje de error general en caso de que haya algún problema en el registro.
+
+Para ejecutar la prueba se deberá ejecutar el comando:
+
+```
+ng test
+```
+
+La prueba incluida se correponde a **RegistrarseComponent**
+
+#### Imagen de verificación de resultados de la ejecución de la prueba:
+
+![image](./img/ejecucion_unit_registrarse_component.png)
+
+[Enlace a imagen completa](https://github.com/francobidart/dsw-tp-frontend/blob/main/docs/img/ejecucion_unit_registrarse_component.png)

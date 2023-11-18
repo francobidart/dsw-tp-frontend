@@ -12,7 +12,7 @@ describe('RegistrarseComponent', () => {
   let userServiceSpy: jasmine.SpyObj<UserService>;
   let toastServiceSpy: jasmine.SpyObj<ToastService>;
   let routerSpy: jasmine.SpyObj<Router>;
-  
+
 
 
   beforeEach(() => {
@@ -67,12 +67,12 @@ describe('RegistrarseComponent', () => {
 
     component.registrarUsuario();
 
-    expect(component.Completado).toBe('Complete todos los campos por favor');
+    expect(component.Completado).toBe('Complete todos los campos correctamente por favor');
     expect(userServiceSpy.registrarUsuario).not.toHaveBeenCalled();
   });
 
   it('Deberia mostrar se cargo correctamente y registrarse los datos en el back', () => {
-    userServiceSpy.registrarUsuario.and.returnValue(of({ mensaje: 'Registration successful' }));
+    userServiceSpy.registrarUsuario.and.returnValue(of({ mensaje: 'Se Registro Correctamente' }));
 
     component.formulario.setValue({
       nombre: 'Lisandro',
@@ -90,7 +90,7 @@ describe('RegistrarseComponent', () => {
     expect(routerSpy.navigate).toHaveBeenCalledWith(['/login']);
   });
 
-  it('deberia mostrar mensaje de error', () => {
+  it('Deberia mostrar mensaje de error', () => {
     const errorMessage = 'Fallo Registro';
     userServiceSpy.registrarUsuario.and.returnValue(throwError({ error: { mensaje: errorMessage } }));
 
