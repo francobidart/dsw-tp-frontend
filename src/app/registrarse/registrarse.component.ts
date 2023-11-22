@@ -44,7 +44,7 @@ export class RegistrarseComponent implements OnInit {
         }, (error: any) => {
           this.toastService.showError(error.error.mensaje);
         })
-        this.Completado =  'Se ha registrado correctamente'
+    
         
         ;
       } else {

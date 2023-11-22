@@ -36,6 +36,11 @@ export class UserService {
     return this.httpClient.post(environment.apiUrl + 'users/' + id, data)
   }
 
+  actualizarCliente( data: any) {
+    return this.httpClient.post(environment.apiUrl + 'account/profile/', data)
+  }
+
+
   deshabilitarUsuario(id: number) {
     return this.httpClient.get(environment.apiUrl + 'users/' + id + '/disable')
   }
