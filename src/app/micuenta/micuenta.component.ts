@@ -26,8 +26,6 @@ export class MicuentaComponent implements OnInit {
         apellido: new FormControl('', Validators.required),
         telefono: new FormControl('', Validators.required),
         email: new FormControl('', [Validators.required, Validators.email]),
-        password: new FormControl('', Validators.required),
-        repetirpassword: new FormControl('', Validators.required),
         
       });}
 
@@ -45,7 +43,9 @@ export class MicuentaComponent implements OnInit {
 
   opcion: number = 1;
 
-  cambiaop1() {
+  cambiaop1() {this.loginstatusservice.getPerfil().subscribe(data => {
+    this.perfil = data.resultados;
+  });
     this.opcion = 1;
   }
 
@@ -67,14 +67,18 @@ export class MicuentaComponent implements OnInit {
 
 editarUsuario(){
   if (this.formulario.valid) {
-    if (this.formulario.value.password === this.formulario.value.repetirpassword) {
       this.usuarioService.actualizarCliente(this.formulario.value).subscribe((res: any) => {
         this.toastService.showSuccess(res.mensaje);
-        
+        this.cambiaop1()
       }, (error: any) => {
         this.toastService.showError(error.error.mensaje);
       })
-    } 
+    
+  
+  }
+  else {
+    this.toastService.showError("Complete los datos correctamente");
+
   } 
 }
 

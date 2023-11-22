@@ -91,7 +91,7 @@
 
               <div class="form-group">
                 <label for="email"> Email:</label>
-                <input type="email" class="form-control" id="email" placeholder="Email" formControlName="email">
+                <input type="email" class="form-control" id="email" [(ngModel)]="perfil.email" placeholder="Email" formControlName="email">
               </div>
 
             </div>
@@ -99,12 +99,12 @@
             <div class="col2">
               <div class="form-group">
                 <label for="apellido">Apellido:</label>
-                <input class="form-control" id="apellido" placeholder="Apellido" formControlName="apellido">
+                <input class="form-control" id="apellido" [(ngModel)]="perfil.apellido" placeholder="Apellido" formControlName="apellido">
               </div>
 
               <div class="form-group">
                 <label for="telefono">Telefono:</label>
-                <input class="form-control" id="telefono" placeholder="Telefono" formControlName="telefono">
+                <input class="form-control" id="telefono" [(ngModel)]="perfil.telefono" placeholder="Telefono" formControlName="telefono">
               </div>
             </div>
 
@@ -112,8 +112,8 @@
         </fieldset>
       </form>
       <div>
-        <button style="margin-right: 20px;" class="btn btn-outline-danger"> Cancelar</button>
-        <button class="btn btn-outline-success" > Guardar Cambios</button>
+        <button style="margin-right: 20px;" (click)="cambiaop1()" class="btn btn-outline-danger"> Cancelar</button>
+        <button class="btn btn-outline-success" (click)="editarUsuario()"> Guardar Cambios</button>
       </div>
     </div>
   </div>
