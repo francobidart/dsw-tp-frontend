@@ -87,3 +87,11 @@ La prueba incluida se correponde a **RegistrarseComponent**
 ![image](./img/ejecucion_unit_registrarse_component.png)
 
 [Enlace a imagen completa](https://github.com/francobidart/dsw-tp-frontend/blob/main/docs/img/ejecucion_unit_registrarse_component.png)
+
+---
+
+### Demostración en video del funcionamiento de la plataforma
+
+[![Demostración en video](https://img.youtube.com/vi/XbLrnse9iSo/0.jpg)](https://www.youtube.com/watch?v=XbLrnse9iSo "Demostración en video")
+
+[Enlace a video completo](https://www.youtube.com/watch?v=XbLrnse9iSo)
