@@ -6,7 +6,7 @@
 * Bootstrap / NGBootstrap
 * Typescript
 
-### Información sobre instalación:
+### Información sobre instalación, tests automáticos (e2e y unit) y video de demostración:
 
 Disponible en https://github.com/francobidart/dsw-tp-frontend/blob/main/docs/README.md
 
