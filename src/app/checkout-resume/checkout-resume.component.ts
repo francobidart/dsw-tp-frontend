@@ -44,6 +44,7 @@ export class CheckoutResumeComponent implements OnInit {
         this.storeService.getMediosDePago().subscribe((res: any) => {
           this.MediosDePago = res.resultados;
         })
+        this.cartService.updateItems();
       }
     })
   }
