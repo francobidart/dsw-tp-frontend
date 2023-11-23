@@ -16,15 +16,39 @@ export class CartService {
     const cartSaved = localStorage.getItem('cart');
     if (cartSaved && cartSaved.length > 0) {
       this.items = JSON.parse(cartSaved);
-      this.total = 0;
-      this.updateTotal();
+      let idArray = this.getItemIds();
+      this.httpClient.post(environment.apiUrl + 'cart/updatePrices', idArray).subscribe((res: any) => {
+        this.items = res.resultados;
+        this.total = 0;
+        this.updateTotal();
+      }, (err: any) => {
+        this.total = 0;
+        this.updateTotal();
+      })
     }
+  }
+
+  getItemIds() {
+    let idItems = this.items.map(item => (item.id));
+    return idItems;
   }
 
   addToCart(product: Product) {
     this.items.push(product);
     this.updateTotal();
     window.localStorage.setItem('cart', JSON.stringify(this.items));
+  }
+
+  updateItems() {
+    let idArray = this.getItemIds();
+    this.httpClient.post(environment.apiUrl + 'cart/updatePrices', idArray).subscribe((res: any) => {
+      this.items = res.resultados;
+      this.total = 0;
+      this.updateTotal();
+    }, (err: any) => {
+      this.total = 0;
+      this.updateTotal();
+    })
   }
 
   getTotal() {
@@ -62,7 +86,7 @@ export class CartService {
     this.items = [];
     this.updateTotal();
     window.localStorage.removeItem('cart');
-    if(callback) {
+    if (callback) {
       callback();
     }
     return this.items;
@@ -70,8 +94,8 @@ export class CartService {
 
   getCantidadAgregadaProducto(id: number | null) {
     let cantidad = 0;
-    for(var i = 0; i < this.items.length; i++) {
-      if(this.items[i].id === id) {
+    for (var i = 0; i < this.items.length; i++) {
+      if (this.items[i].id === id) {
         cantidad += 1
       }
     }
