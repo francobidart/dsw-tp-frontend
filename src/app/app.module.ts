@@ -125,7 +125,7 @@ import { AdminConfiguracionAccionesMediodepagoComponent } from './administrador/
       {path: 'administrador/configuracion', component: AdminConfiguracionComponent, canActivate: [ActivateAdminGuard]},
       {path: 'no-autorizado', component: NoautorizadoComponent},
       {path: 'resultados', component: ResultadosComponent}
-    ]),
+    ], { useHash: true }),
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
