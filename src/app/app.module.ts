@@ -10,7 +10,6 @@ import {FooterComponent} from './footer/footer.component';
 import {LoginComponent} from './login/login.component'
 import {APP_BASE_HREF, registerLocaleData} from '@angular/common';
 import localeEsAr from '@angular/common/locales/es-AR';
-import {ProductoDetalleComponent} from './producto-detalle/producto-detalle.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {UsuariosComponent} from './usuarios/usuarios.component';
 import {CheckoutResumeComponent} from './checkout-resume/checkout-resume.component';
@@ -29,7 +28,6 @@ import {NoautorizadoComponent} from './errors/noautorizado/noautorizado.componen
 import {ResultadosComponent} from './resultados/resultados.component';
 import {RegistrarseComponent} from './registrarse/registrarse.component';
 import {AppAdminModule} from "./app-admin.module";
-
 @NgModule({
     declarations: [
         AppComponent,
@@ -38,7 +36,6 @@ import {AppAdminModule} from "./app-admin.module";
         HeaderComponent,
         AboutUsComponent,
         FooterComponent,
-        ProductoDetalleComponent,
         LoginComponent,
         CheckoutResumeComponent,
         UsuariosComponent,

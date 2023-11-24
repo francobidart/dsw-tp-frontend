@@ -10,14 +10,11 @@ import {TipoProducto} from "../../models/tipo-producto";
   templateUrl: './admin-categoria-confirmar-eliminacion.component.html',
   styleUrls: ['./admin-categoria-confirmar-eliminacion.component.css']
 })
-export class AdminCategoriaConfirmarEliminacionComponent implements OnInit {
+export class AdminCategoriaConfirmarEliminacionComponent {
 
   @Input() Categoria: TipoProducto = new TipoProducto();
 
   constructor(public activeModal: NgbActiveModal, private tipoProductoService: TipoProductoServiceService, private toastService: ToastService, private productoService: ProductoService) {
-  }
-
-  ngOnInit(): void {
   }
 
   confirmarEliminacion() {

@@ -15,12 +15,8 @@ import {AdminConfiguracionComponent} from "./administrador/admin-configuracion/a
 import {NoautorizadoComponent} from "./errors/noautorizado/noautorizado.component";
 import {ResultadosComponent} from "./resultados/resultados.component";
 import {NavbarAdminComponent} from "./administrador/navbar-admin/navbar-admin.component";
-import {
-    AdminProductoModalDetalleComponent
-} from "./administrador/admin-producto-modal-detalle/admin-producto-modal-detalle.component";
 import {AdminProductoNuevoComponent} from "./administrador/admin-producto-nuevo/admin-producto-nuevo.component";
 import {AdminCategoriaNuevaComponent} from "./administrador/admin-categoria-nueva/admin-categoria-nueva.component";
-import {AdminCategoriaEditarComponent} from "./administrador/admin-categoria-editar/admin-categoria-editar.component";
 import {
     AdminCategoriaConfirmarEliminacionComponent
 } from "./administrador/admin-categoria-confirmar-eliminacion/admin-categoria-confirmar-eliminacion.component";
@@ -48,10 +44,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
         AdminPedidosDetalleComponent,
         AdminProductosComponent,
         AdminProductoDetalleComponent,
-        AdminProductoModalDetalleComponent,
         AdminProductoNuevoComponent,
         AdminCategoriaNuevaComponent,
-        AdminCategoriaEditarComponent,
         AdminCategoriaComponent,
         AdminCategoriaDetalleComponent,
         AdminCategoriaConfirmarEliminacionComponent,

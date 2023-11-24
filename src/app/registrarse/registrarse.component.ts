@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {UserService} from "../services/user.service";
 import {ToastService} from "../services/toast/toast-service";
@@ -11,7 +11,7 @@ import {error} from "@angular/compiler-cli/src/transformers/util";
   templateUrl: './registrarse.component.html',
   styleUrls: ['./registrarse.component.css']
 })
-export class RegistrarseComponent implements OnInit {
+export class RegistrarseComponent {
 
   formulario = new FormGroup({
     nombre: new FormControl('', Validators.required),
@@ -45,8 +45,5 @@ export class RegistrarseComponent implements OnInit {
     } else {
       this.Completado = 'Complete todos los campos correctamente por favor';
     }
-  }
-
-  ngOnInit(): void {
   }
 }

@@ -3,9 +3,6 @@ import {Product} from "../../models/product";
 import {ProductoService} from "../../services/producto.service";
 import {BuscarService} from "../../services/buscar/buscar.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {
-  AdminProductoModalDetalleComponent
-} from "../admin-producto-modal-detalle/admin-producto-modal-detalle.component";
 import {ToastService} from "../../services/toast/toast-service";
 import {AdminProductoNuevoComponent} from "../admin-producto-nuevo/admin-producto-nuevo.component";
 

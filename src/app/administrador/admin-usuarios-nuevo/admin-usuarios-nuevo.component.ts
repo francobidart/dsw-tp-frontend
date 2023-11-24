@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {ToastService} from "../../services/toast/toast-service";
@@ -9,7 +9,7 @@ import {UserService} from "../../services/user.service";
   templateUrl: './admin-usuarios-nuevo.component.html',
   styleUrls: ['./admin-usuarios-nuevo.component.css']
 })
-export class AdminUsuariosNuevoComponent implements OnInit {
+export class AdminUsuariosNuevoComponent {
 
   constructor(public activeModal: NgbActiveModal, private toastService: ToastService, private userService: UserService) {
   }
@@ -34,9 +34,6 @@ export class AdminUsuariosNuevoComponent implements OnInit {
       Validators.required
     ])
   })
-
-  ngOnInit(): void {
-  }
 
   registrarUsuario() {
     if (this.FormUsuario.valid) {
