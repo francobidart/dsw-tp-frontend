@@ -12,7 +12,7 @@ export class UserService {
   }
 
   obtenerInformacionDeCuenta() {
-    return this.httpClient.get(environment.apiUrl + 'account/profile', {withCredentials: true})
+    return this.httpClient.get(environment.apiUrl + 'sesion/account/profile', {withCredentials: true})
   }
 
   registrarUsuario(data: any) {
@@ -37,7 +37,7 @@ export class UserService {
   }
 
   actualizarCliente( data: any) {
-    return this.httpClient.post(environment.apiUrl + 'account/profile/', data)
+    return this.httpClient.post(environment.apiUrl + 'sesion/account/profile/', data)
   }
 
 
