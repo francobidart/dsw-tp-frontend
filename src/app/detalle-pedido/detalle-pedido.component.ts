@@ -24,15 +24,18 @@ export class DetallePedidoComponent implements OnInit {
   }
 
   loadData(id: number) {
-    this.pedidosService.getPedido(id).subscribe((res: any) => {
-      this.Pedido = res.resultados;
-      console.log(this.Pedido.detallePedido);
-    }, (error: any) => {
-      if (error.error.mensaje) {
-        this.toastService.showError(error.error.mensaje);
-        this.router.navigate(['/']);
-      } else {
-        this.toastService.showError('Ocurrió un error al consultar el pedido');
+    this.pedidosService.getPedido(id).subscribe({
+      next: (res: any) => {
+        this.Pedido = res.resultados;
+        console.log(this.Pedido.detallePedido);
+      },
+      error: (error: any) => {
+        if (error.error.mensaje) {
+          this.toastService.showError(error.error.mensaje);
+          this.router.navigate(['/']);
+        } else {
+          this.toastService.showError('Ocurrió un error al consultar el pedido');
+        }
       }
     });
   }

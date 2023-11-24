@@ -33,17 +33,21 @@ export class AdminCategoriaComponent implements OnInit {
 
 
   cargarCategorias() {
-    this.tipoProductoService.get().subscribe((res: any) => {
-      this.Categorias = res.resultados;
+    this.tipoProductoService.get().subscribe({
+      next: (res: any) => {
+        this.Categorias = res.resultados;
+      }
     })
   }
 
   eliminarCategoria(categoria: TipoProducto) {
     const modalRef = this.modalService.open(AdminCategoriaConfirmarEliminacionComponent);
     modalRef.componentInstance.Categoria = categoria;
-    modalRef.closed.subscribe((data: any) => {
-      if (data === 'eliminada') {
-        this.cargarCategorias();
+    modalRef.closed.subscribe({
+      next: (data: any) => {
+        if (data === 'eliminada') {
+          this.cargarCategorias();
+        }
       }
     })
   }
@@ -51,18 +55,22 @@ export class AdminCategoriaComponent implements OnInit {
   editarCategoria(categoria: TipoProducto) {
     const refModal = this.modalService.open(NgbdModalEditarCategoria);
     refModal.componentInstance.id = categoria.id;
-    refModal.closed.subscribe((data: any) => {
-      if (data === 'registrado') {
-        this.cargarCategorias();
+    refModal.closed.subscribe({
+      next: (data: any) => {
+        if (data === 'registrado') {
+          this.cargarCategorias();
+        }
       }
     })
   }
 
   nuevaCategoria() {
     const refModal = this.modalService.open(AdminCategoriaNuevaComponent);
-    refModal.closed.subscribe((data: any) => {
-      if (data === 'registrado') {
-        this.cargarCategorias();
+    refModal.closed.subscribe({
+      next: (data: any) => {
+        if (data === 'registrado') {
+          this.cargarCategorias();
+        }
       }
     })
   }
@@ -83,7 +91,8 @@ export class AdminCategoriaComponent implements OnInit {
           <div class="row">
             <div class="col">
               <label for="nombre">Nombre:</label>
-              <input type="text" formControlName="nombre" id="nombre" [(ngModel)]="Categoria.nombre" value="{{Categoria.nombre}}" class="form-control">
+              <input type="text" formControlName="nombre" id="nombre" [(ngModel)]="Categoria.nombre"
+                     value="{{Categoria.nombre}}" class="form-control">
             </div>
           </div>
         </fieldset>
@@ -114,18 +123,23 @@ export class NgbdModalEditarCategoria {
   }
 
   ngOnInit(): void {
-    this.tipoProductoService.getById(this.id).subscribe((res: any) => {
-      this.Categoria = res.resultados[0];
+    this.tipoProductoService.getById(this.id).subscribe({
+      next: (res: any) => {
+        this.Categoria = res.resultados[0];
+      }
     })
   }
 
   actualizarCategoria() {
     if (this.FormCategoria.valid) {
-      this.tipoProductoService.update(this.id, this.FormCategoria.value).subscribe((res: any) => {
-        this.activeModal.close('registrado');
-        this.toastService.showSuccess(res.mensaje);
-      }, (err: any) => {
-        this.toastService.showError(err.error.mensaje);
+      this.tipoProductoService.update(this.id, this.FormCategoria.value).subscribe({
+        next: (res: any) => {
+          this.activeModal.close('registrado');
+          this.toastService.showSuccess(res.mensaje);
+        },
+        error: (err: any) => {
+          this.toastService.showError(err.error.mensaje);
+        }
       })
     } else {
       this.toastService.showError('Por favor ingresá todos los datos obligatorios')

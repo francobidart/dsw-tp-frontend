@@ -1,0 +1,16 @@
+.loader-container {
+    background-color: var(--bs-success);
+    color: white;
+    width: 70px;
+    text-align: center;
+    padding: 20px;
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    border-radius: 20px;
+    z-index: 9999;
+}
+
+.loader-container i {
+    font-size: 20px;
+}

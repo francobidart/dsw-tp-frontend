@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {Product} from '../models/product';
 import {ActivatedRoute} from '@angular/router';
-import {Subscription} from 'rxjs';
 import {CartService} from '../services/cart.service';
 import {ProductoService} from "../services/producto.service";
 import {ToastService} from "../services/toast/toast-service";
@@ -18,20 +17,18 @@ export class ProductoComponent implements OnInit {
   constructor(private titleService: Title, private cartService: CartService, private route: ActivatedRoute, private productoService: ProductoService, private toastService: ToastService, public loginStatus: LoginStatusService) {
   }
 
-  private routeSub: Subscription;
   Producto: Product = new Product();
   UnidadesSeleccionadas = 0;
 
   ngOnInit(): void {
-    this.routeSub = this.route.params.subscribe(params => {
-      this.productoService.getById(parseInt(params['id'])).subscribe((res: any) => {
-        this.Producto = res.resultados[0]
-        this.titleService.setTitle(this.Producto.nombre);
+    this.route.params.subscribe(params => {
+      this.productoService.getById(parseInt(params['id'])).subscribe({
+        next: (res: any) => {
+          this.Producto = res.resultados[0]
+          this.titleService.setTitle(this.Producto.nombre);
+        }
       });
     });
-  }
-
-  openInstallmentsModal(): void {
   }
 
   addToCart() {
@@ -51,10 +48,4 @@ export class ProductoComponent implements OnInit {
       this.toastService.show('No podés agregar más unidades de este producto.')
     }
   }
-
-  ngOnDestroy() {
-    this.routeSub.unsubscribe();
-  }
-
-
 }

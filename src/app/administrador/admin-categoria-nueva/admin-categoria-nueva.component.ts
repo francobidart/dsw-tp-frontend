@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TipoProducto} from "../../models/tipo-producto";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
@@ -29,18 +29,23 @@ export class AdminCategoriaNuevaComponent implements OnInit {
   }
 
   cargarCategorias() {
-    this.tipoProductoService.get().subscribe((res: any) => {
-      this.Categorias = res.resultados;
+    this.tipoProductoService.get().subscribe({
+      next: (res: any) => {
+        this.Categorias = res.resultados;
+      }
     })
   }
 
   registrarCategoria() {
     if (this.FormCategoria.valid) {
-      this.tipoProductoService.create(this.FormCategoria.value).subscribe((res: any) => {
-        this.activeModal.close('registrado');
-        this.toastService.showSuccess(res.mensaje);
-      }, (err: any) => {
-        this.toastService.showError(err.error.mensaje);
+      this.tipoProductoService.create(this.FormCategoria.value).subscribe({
+        next: (res: any) => {
+          this.activeModal.close('registrado');
+          this.toastService.showSuccess(res.mensaje);
+        },
+        error: (err: any) => {
+          this.toastService.showError(err.error.mensaje);
+        }
       })
     } else {
       this.toastService.showError('Por favor ingresá todos los datos obligatorios')

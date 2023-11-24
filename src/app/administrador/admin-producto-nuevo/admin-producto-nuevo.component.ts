@@ -40,18 +40,23 @@ export class AdminProductoNuevoComponent implements OnInit {
   }
 
   cargarCategorias() {
-    this.tipoProductoService.get().subscribe((res: any) => {
-      this.Categorias = res.resultados;
+    this.tipoProductoService.get().subscribe({
+      next: (res: any) => {
+        this.Categorias = res.resultados;
+      }
     })
   }
 
   registrarProducto() {
     if (this.FormProducto.valid) {
-      this.productoService.createProducto(this.FormProducto.value).subscribe((res: any) => {
-        this.activeModal.close('registrado');
-        this.toastService.showSuccess(res.mensaje);
-      }, (err: any) => {
-        this.toastService.showError(err.error.mensaje);
+      this.productoService.createProducto(this.FormProducto.value).subscribe({
+        next: (res: any) => {
+          this.activeModal.close('registrado');
+          this.toastService.showSuccess(res.mensaje);
+        },
+        error: (err: any) => {
+          this.toastService.showError(err.error.mensaje);
+        }
       })
     } else {
       this.toastService.showError('Faltan datos obligatorios.')

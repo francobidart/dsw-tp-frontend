@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
       let password = (this.FormLogin.controls.clave.value !== null) ? this.FormLogin.controls.clave.value : '';
       var me = this;
       this.loginService.login(user, password, () => {
-        this.toastsService.show('¡Bienvenido!', {classname: 'bg-success text-light', delay: 3000})
+        this.toastsService.showSuccess('¡Bienvenido!');
         if (this.route.snapshot.queryParams['siguiente'] !== undefined) {
           this.router.navigate([this.route.snapshot.queryParams['siguiente']]);
         } else {

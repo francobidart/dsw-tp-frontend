@@ -10,22 +10,22 @@ import {TipoProducto} from "../../models/tipo-producto";
   templateUrl: './admin-categoria-confirmar-eliminacion.component.html',
   styleUrls: ['./admin-categoria-confirmar-eliminacion.component.css']
 })
-export class AdminCategoriaConfirmarEliminacionComponent implements OnInit {
+export class AdminCategoriaConfirmarEliminacionComponent {
 
   @Input() Categoria: TipoProducto = new TipoProducto();
 
   constructor(public activeModal: NgbActiveModal, private tipoProductoService: TipoProductoServiceService, private toastService: ToastService, private productoService: ProductoService) {
   }
 
-  ngOnInit(): void {
-  }
-
   confirmarEliminacion() {
-    return this.tipoProductoService.delete(this.Categoria.id).subscribe((res: any) => {
-      this.toastService.showSuccess(res.mensaje)
-       this.activeModal.close('eliminada');
-    }, (err: any) => {
-      this.toastService.showError(err.error.mensaje);
+    return this.tipoProductoService.delete(this.Categoria.id).subscribe({
+      next: (res: any) => {
+        this.toastService.showSuccess(res.mensaje)
+        this.activeModal.close('eliminada');
+      },
+      error: (err: any) => {
+        this.toastService.showError(err.error.mensaje);
+      }
     })
   }
 }

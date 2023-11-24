@@ -44,7 +44,7 @@ export class AdminProductoDetalleComponent implements OnInit {
   ngOnInit(): void {
     this.IdProducto = this.route.snapshot.params['id'];
     let modoForm = this.route.snapshot.queryParams['mode'];
-    if(modoForm !== undefined && modoForm === 'edit') {
+    if (modoForm !== undefined && modoForm === 'edit') {
       this.FormProducto.enable();
     } else {
       this.FormProducto.disable();
@@ -53,29 +53,35 @@ export class AdminProductoDetalleComponent implements OnInit {
   }
 
   cargarProducto() {
-    this.productosService.getById(this.IdProducto).subscribe((res: any) => {
-      this.Producto = res.resultados[0];
-      let selectCategoria = this.Producto.categoria
-      this.NombreProducto = res.resultados[0].nombre;
-      this.FormProducto.controls.categoria.setValue(selectCategoria.toString());
+    this.productosService.getById(this.IdProducto).subscribe({
+      next: (res: any) => {
+        this.Producto = res.resultados[0];
+        let selectCategoria = this.Producto.categoria
+        this.NombreProducto = res.resultados[0].nombre;
+        this.FormProducto.controls.categoria.setValue(selectCategoria.toString());
+      }
     })
   }
 
   cargarDatos() {
-    this.tipoProductoService.get().subscribe((res: any) => {
-      this.Categorias = res.resultados;
-      this.cargarProducto();
+    this.tipoProductoService.get().subscribe({
+      next: (res: any) => {
+        this.Categorias = res.resultados;
+        this.cargarProducto();
+      }
     })
   }
 
   guardarProducto() {
-    this.productosService.updateProducto(this.IdProducto, this.FormProducto.value).subscribe((res: any) => {
-      this.toastService.showSuccess('Producto actualizado correctamente');
-      this.FormProducto.disable();
-      this.cargarDatos();
-    }, (err: any) => {
-      this.toastService.showError(err.error.mensaje);
+    this.productosService.updateProducto(this.IdProducto, this.FormProducto.value).subscribe({
+      next: (res: any) => {
+        this.toastService.showSuccess('Producto actualizado correctamente');
+        this.FormProducto.disable();
+        this.cargarDatos();
+      },
+      error: (err: any) => {
+        this.toastService.showError(err.error.mensaje);
+      }
     })
   }
-
 }

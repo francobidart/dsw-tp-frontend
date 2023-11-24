@@ -35,14 +35,20 @@ export class CheckoutResumeComponent implements OnInit {
           }
         });
       } else {
-        this.userService.obtenerInformacionDeCuenta().subscribe((res: any) => {
-          this.Usuario = res.resultados;
+        this.userService.obtenerInformacionDeCuenta().subscribe({
+          next: (res: any) => {
+            this.Usuario = res.resultados;
+          }
         })
-        this.storeService.getSucursales().subscribe((res: any) => {
-          this.Sucursales = res.resultados;
+        this.storeService.getSucursales().subscribe({
+          next: (res: any) => {
+            this.Sucursales = res.resultados;
+          }
         })
-        this.storeService.getMediosDePago().subscribe((res: any) => {
-          this.MediosDePago = res.resultados;
+        this.storeService.getMediosDePago().subscribe({
+          next: (res: any) => {
+            this.MediosDePago = res.resultados;
+          }
         })
         this.cartService.updateItems();
       }
@@ -51,17 +57,20 @@ export class CheckoutResumeComponent implements OnInit {
 
   confirmarCompra() {
     if (!this.validarDatos()) {
-      this.cartService.enviarPedido(this.SucursalSeleccionada, this.MedioDePagoSeleccionado).subscribe((res: any) => {
-        let idPedido = res.resultados.id;
-        this.toastService.showSuccess('¡Registramos tu pedido! | Orden N°: ' + idPedido);
-        this.cartService.clearCart(() => {
-          this.router.navigate(['/']);
-        });
-      }, (error: any) => {
-        if (error.error.mensaje) {
-          this.toastService.showError(error.error.mensaje);
-        } else {
-          this.toastService.showError('Ocurrió un error al registrar el pedido');
+      this.cartService.enviarPedido(this.SucursalSeleccionada, this.MedioDePagoSeleccionado).subscribe({
+        next: (res: any) => {
+          let idPedido = res.resultados.id;
+          this.toastService.showSuccess('¡Registramos tu pedido! | Orden N°: ' + idPedido);
+          this.cartService.clearCart(() => {
+            this.router.navigate(['/']);
+          });
+        },
+        error: (error: any) => {
+          if (error.error.mensaje) {
+            this.toastService.showError(error.error.mensaje);
+          } else {
+            this.toastService.showError('Ocurrió un error al registrar el pedido');
+          }
         }
       });
     }

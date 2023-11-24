@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {PedidosService} from "../../services/pedidos.service";
 
 @Component({
@@ -8,7 +8,8 @@ import {PedidosService} from "../../services/pedidos.service";
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private pedidosService: PedidosService) { }
+  constructor(private pedidosService: PedidosService) {
+  }
 
   PedidosPendientes: number = 0;
   TotalFacturado: number = 0;
@@ -19,11 +20,12 @@ export class DashboardComponent implements OnInit {
   }
 
   getPedidosPendientes() {
-    this.pedidosService.getPedidosPendientes().subscribe((res: any) => {
-      console.log(res.resultados)
-      this.PedidosPendientes = res.resultados.cantidadPedidosPendientes;
-      this.TotalFacturado = res.resultados.importeVentasMensuales;
-      this.PedidosDelMes = res.resultados.cantidadPedidosMes;
+    this.pedidosService.getPedidosPendientes().subscribe({
+      next: (res: any) => {
+        this.PedidosPendientes = res.resultados.cantidadPedidosPendientes;
+        this.TotalFacturado = res.resultados.importeVentasMensuales;
+        this.PedidosDelMes = res.resultados.cantidadPedidosMes;
+      }
     })
   }
 

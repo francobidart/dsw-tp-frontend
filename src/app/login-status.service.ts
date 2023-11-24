@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../environments/environment";
-import { User } from './models/user';
-import { Observable } from 'rxjs';
+import {User} from './models/user';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -24,32 +24,34 @@ export class LoginStatusService {
     formData.append('email', username);
     formData.append('password', password);
     this.httpClient.post(environment.apiUrl + 'sesion/login', formData, {withCredentials: true})
-      .subscribe(
-        (res: any) => {
-          this.isAuthenticated = true;
-          this.isAdmin = res.resultados.isAdmin;
-          if (callback) {
-            callback()
-          }
-        },
-
-        (err: any) => this.errorMessage = err.error.mensaje
-      );
+      .subscribe({
+          next: (res: any) => {
+            this.isAuthenticated = true;
+            this.isAdmin = res.resultados.isAdmin;
+            if (callback) {
+              callback()
+            }
+          },
+          error: (err: any) => this.errorMessage = err.error.mensaje
+        });
   }
 
 
   validarSesion(callback: any = null) {
     this.httpClient.get(environment.apiUrl + 'sesion/session/validateSession', {withCredentials: true})
-      .subscribe((res: any) => {
-        this.isAuthenticated = true;
-        this.isAdmin = res.resultados.isAdmin;
-        if (callback !== null) {
-          callback()
-        }
-      }, (err: any) => {
-        this.isAuthenticated = false;
-        if (callback !== null) {
-          callback()
+      .subscribe({
+        next: (res: any) => {
+          this.isAuthenticated = true;
+          this.isAdmin = res.resultados.isAdmin;
+          if (callback !== null) {
+            callback()
+          }
+        },
+        error: (err: any) => {
+          this.isAuthenticated = false;
+          if (callback !== null) {
+            callback()
+          }
         }
       })
   }
@@ -60,12 +62,12 @@ export class LoginStatusService {
 
 // Método para cerrar sesión
   logout(): void {
-    this.httpClient.get(environment.apiUrl + 'sesion/logout', {withCredentials: true}).subscribe(
-      (res: any) => {
+    this.httpClient.get(environment.apiUrl + 'sesion/logout', {withCredentials: true}).subscribe({
+      next: (res: any) => {
         this.isAuthenticated = false;
         this.isAdmin = false;
       }
-    )
+    })
   }
 
 // Método para verificar el estado de inicio de sesión

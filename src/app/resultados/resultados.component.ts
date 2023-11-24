@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { BuscarService } from '../services/buscar/buscar.service';
-import { ActivatedRoute } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {BuscarService} from '../services/buscar/buscar.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-resultados',
@@ -13,26 +13,21 @@ export class ResultadosComponent implements OnInit {
   query: string = '';
   resultados: any[] = [];
 
-  constructor(private buscarService: BuscarService, private route: ActivatedRoute) {}
+  constructor(private buscarService: BuscarService, private route: ActivatedRoute) {
+  }
 
   ngOnInit() {
-    this.route.queryParams
-      .subscribe(params => {
-        console.log(params);
-
-        this.query = params['q'];
-
-        this.buscar()
-      }
-    );}
-
-  buscar() {
-    this.buscarService.buscar(this.query).subscribe(data => {
-      this.resultados = data.resultados;
+    this.route.queryParams.subscribe(params => {
+      this.query = params['q'];
+      this.buscar()
     });
   }
 
-  imgError(event: any) {
-    event.target.src = "/assets/img/not-found.png";
+  buscar() {
+    this.buscarService.buscar(this.query).subscribe({
+      next: data => {
+        this.resultados = data.resultados;
+      }
+    });
   }
 }

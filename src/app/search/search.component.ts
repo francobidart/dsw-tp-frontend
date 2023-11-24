@@ -1,4 +1,3 @@
-// search.component.ts
 import {Component} from '@angular/core';
 import {BuscarService} from '../services/buscar/buscar.service';
 import {Router} from '@angular/router';

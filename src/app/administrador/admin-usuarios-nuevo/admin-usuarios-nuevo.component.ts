@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {ToastService} from "../../services/toast/toast-service";
@@ -9,9 +9,10 @@ import {UserService} from "../../services/user.service";
   templateUrl: './admin-usuarios-nuevo.component.html',
   styleUrls: ['./admin-usuarios-nuevo.component.css']
 })
-export class AdminUsuariosNuevoComponent implements OnInit {
+export class AdminUsuariosNuevoComponent {
 
-  constructor(public activeModal: NgbActiveModal, private toastService: ToastService, private userService: UserService) { }
+  constructor(public activeModal: NgbActiveModal, private toastService: ToastService, private userService: UserService) {
+  }
 
   FormUsuario = new FormGroup({
     nombre: new FormControl('', [
@@ -34,16 +35,16 @@ export class AdminUsuariosNuevoComponent implements OnInit {
     ])
   })
 
-  ngOnInit(): void {
-  }
-
   registrarUsuario() {
-    if(this.FormUsuario.valid) {
-      this.userService.registrarUsuarioAdm(this.FormUsuario.value).subscribe((res: any) => {
-        this.toastService.showSuccess(res.mensaje);
-        this.activeModal.close('registrado');
-      }, (err: any) => {
-        this.toastService.showError(err.error.mensaje);
+    if (this.FormUsuario.valid) {
+      this.userService.registrarUsuarioAdm(this.FormUsuario.value).subscribe({
+        next: (res: any) => {
+          this.toastService.showSuccess(res.mensaje);
+          this.activeModal.close('registrado');
+        },
+        error: (err: any) => {
+          this.toastService.showError(err.error.mensaje);
+        }
       })
     } else {
       this.toastService.showError('Verificá los datos obligatorios')
