@@ -14,6 +14,7 @@ export class AdminUsuariosEditarComponent implements OnInit {
 
   Id: number = 0;
   Usuario: User = new User();
+
   constructor(public activeModal: NgbActiveModal, private toastService: ToastService, private userService: UserService) {
   }
 
@@ -33,22 +34,26 @@ export class AdminUsuariosEditarComponent implements OnInit {
   })
 
   ngOnInit(): void {
-    this.userService.getUsuario(this.Id).subscribe((res: any) => {
-      this.Usuario = res.resultados
+    this.userService.getUsuario(this.Id).subscribe({
+      next: (res: any) => {
+        this.Usuario = res.resultados
+      }
     })
   }
 
   actualizarUsuario() {
     if (this.FormUsuario.valid) {
-      this.userService.actualizarUsuario(this.Id, this.FormUsuario.value).subscribe((res: any) => {
-        this.toastService.showSuccess(res.mensaje);
-        this.activeModal.close('guardado');
-      }, (err: any) => {
-        this.toastService.showError(err.error.mensaje);
+      this.userService.actualizarUsuario(this.Id, this.FormUsuario.value).subscribe({
+        next: (res: any) => {
+          this.toastService.showSuccess(res.mensaje);
+          this.activeModal.close('guardado');
+        },
+        error: (err: any) => {
+          this.toastService.showError(err.error.mensaje);
+        }
       })
     } else {
       this.toastService.showError('Verificá los datos obligatorios')
     }
   }
-
 }

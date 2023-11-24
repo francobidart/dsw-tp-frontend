@@ -17,21 +17,24 @@ export class CartService {
     if (cartSaved && cartSaved.length > 0) {
       this.items = JSON.parse(cartSaved);
       let idArray = this.getItemIds();
-      this.httpClient.post(environment.apiUrl + 'cart/updatePrices', idArray).subscribe((res: any) => {
-        for (var i = 0; i < res.resultados.length; i++) {
-          let product = res.resultados[i];
-          for (var j = 0; j < this.items.length; j++) {
-            let item = this.items[j];
-            if (item.id === product.id) {
-              item.precio = product.precio;
+      this.httpClient.post(environment.apiUrl + 'cart/updatePrices', idArray).subscribe({
+        next: (res: any) => {
+          for (var i = 0; i < res.resultados.length; i++) {
+            let product = res.resultados[i];
+            for (var j = 0; j < this.items.length; j++) {
+              let item = this.items[j];
+              if (item.id === product.id) {
+                item.precio = product.precio;
+              }
             }
           }
+          this.total = 0;
+          this.updateTotal();
+        },
+        error: (err: any) => {
+          this.total = 0;
+          this.updateTotal();
         }
-        this.total = 0;
-        this.updateTotal();
-      }, (err: any) => {
-        this.total = 0;
-        this.updateTotal();
       })
     }
   }
@@ -49,21 +52,24 @@ export class CartService {
 
   updateItems() {
     let idArray = this.getItemIds();
-    this.httpClient.post(environment.apiUrl + 'cart/updatePrices', idArray).subscribe((res: any) => {
-      for (var i = 0; i < res.resultados.length; i++) {
-        let product = res.resultados[i];
-        for (var j = 0; j < this.items.length; j++) {
-          let item = this.items[j];
-          if (item.id === product.id) {
-            item.precio = product.precio;
+    this.httpClient.post(environment.apiUrl + 'cart/updatePrices', idArray).subscribe({
+      next: (res: any) => {
+        for (var i = 0; i < res.resultados.length; i++) {
+          let product = res.resultados[i];
+          for (var j = 0; j < this.items.length; j++) {
+            let item = this.items[j];
+            if (item.id === product.id) {
+              item.precio = product.precio;
+            }
           }
         }
+        this.total = 0;
+        this.updateTotal();
+      },
+      error: (err: any) => {
+        this.total = 0;
+        this.updateTotal();
       }
-      this.total = 0;
-      this.updateTotal();
-    }, (err: any) => {
-      this.total = 0;
-      this.updateTotal();
     })
   }
 

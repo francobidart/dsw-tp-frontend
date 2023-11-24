@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Product} from "../../models/product";
 import {ProductoService} from "../../services/producto.service";
 import {BuscarService} from "../../services/buscar/buscar.service";
@@ -25,41 +25,53 @@ export class AdminCategoriaDetalleComponent implements OnInit {
 
   ngOnInit(): void {
     this.CategoriaId = this.route.snapshot.params['id'];
-    this.tipoProductoService.getById(this.CategoriaId).subscribe((res: any) => {
-      this.Categoria = res.resultados[0]
-      this.cargarProductos()
+    this.tipoProductoService.getById(this.CategoriaId).subscribe({
+      next: (res: any) => {
+        this.Categoria = res.resultados[0]
+        this.cargarProductos()
+      }
     })
   }
 
   cargarProductos() {
-    this.productosService.getByCategory(this.Categoria.id).subscribe((res: any) => {
-      this.Productos = res.resultados;
+    this.productosService.getByCategory(this.Categoria.id).subscribe({
+      next: (res: any) => {
+        this.Productos = res.resultados;
+      }
     })
   }
 
   habilitarProducto(producto: Product) {
-    return this.productosService.enableProducto(producto.id).subscribe((res: any) => {
-      this.toastService.showSuccess(res.mensaje)
-      this.cargarProductos();
-    }, (err) => {
-      this.toastService.showError(err);
+    return this.productosService.enableProducto(producto.id).subscribe({
+      next: (res: any) => {
+        this.toastService.showSuccess(res.mensaje)
+        this.cargarProductos();
+      },
+      error: (err) => {
+        this.toastService.showError(err);
+      }
     })
   }
 
   deshabilitarProducto(producto: Product) {
-    return this.productosService.disableProducto(producto.id).subscribe((res: any) => {
-      this.toastService.showSuccess(res.mensaje)
-      this.cargarProductos();
-    }, (err) => {
-      this.toastService.showError(err);
+    return this.productosService.disableProducto(producto.id).subscribe({
+      next: (res: any) => {
+        this.toastService.showSuccess(res.mensaje)
+        this.cargarProductos();
+      },
+      error: (err) => {
+        this.toastService.showError(err);
+      }
     })
   }
 
   nuevoProducto() {
     const refModal = this.modalService.open(AdminProductoNuevoComponent);
-    refModal.closed.subscribe((data: any) => {
-      if(data === 'registrado') {
-        this.cargarProductos();
+    refModal.closed.subscribe({
+      next: (data: any) => {
+        if (data === 'registrado') {
+          this.cargarProductos();
+        }
       }
     })
   }

@@ -23,26 +23,34 @@ export class AdminPedidosDetalleComponent implements OnInit {
   }
 
   cargarPedido() {
-    this.pedidosService.getPedido(this.IdPedido).subscribe((res: any) => {
-      this.Pedido = res.resultados;
+    this.pedidosService.getPedido(this.IdPedido).subscribe({
+      next: (res: any) => {
+        this.Pedido = res.resultados;
+      }
     })
   }
 
   entregarPedido() {
-    this.pedidosService.entregarPedido(this.IdPedido).subscribe((res: any) => {
-      this.toastService.showSuccess('Pedido entregado correctamente');
-      this.cargarPedido();
-    }, (error: any) => {
-      this.toastService.showError(error);
+    this.pedidosService.entregarPedido(this.IdPedido).subscribe({
+      next: (res: any) => {
+        this.toastService.showSuccess('Pedido entregado correctamente');
+        this.cargarPedido();
+      },
+      error: (error: any) => {
+        this.toastService.showError(error);
+      }
     })
   }
 
   cancelarPedido() {
-    this.pedidosService.cancelarPedido(this.IdPedido).subscribe((res: any) => {
-      this.toastService.showSuccess('Pedido cancelado correctamente');
-      this.cargarPedido();
-    }, (error: any) => {
-      this.toastService.showError(error);
+    this.pedidosService.cancelarPedido(this.IdPedido).subscribe({
+      next: (res: any) => {
+        this.toastService.showSuccess('Pedido cancelado correctamente');
+        this.cargarPedido();
+      },
+      error: (error: any) => {
+        this.toastService.showError(error);
+      }
     })
   }
 }

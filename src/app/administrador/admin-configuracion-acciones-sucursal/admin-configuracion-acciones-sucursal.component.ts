@@ -35,8 +35,10 @@ export class AdminConfiguracionAccionesSucursalComponent implements OnInit {
   ngOnInit(): void {
     if (this.Accion === 'editar') {
       this.NombreAccion = 'Editar sucursal';
-      this.sucursalService.getSucursal(this.Id).subscribe((res: any) => {
-        this.Sucursal = res.resultados;
+      this.sucursalService.getSucursal(this.Id).subscribe({
+        next: (res: any) => {
+          this.Sucursal = res.resultados;
+        }
       })
     } else {
       this.NombreAccion = 'Crear sucursal';
@@ -46,18 +48,24 @@ export class AdminConfiguracionAccionesSucursalComponent implements OnInit {
   guardarCambios() {
     if (this.FormSucursal.valid) {
       if (this.Accion === 'editar') {
-        this.sucursalService.editarSucursal(this.Id, this.FormSucursal.value).subscribe((res: any) => {
-          this.toastService.showSuccess(res.mensaje);
-          this.activeModal.close('success');
-        }, (err: any) => {
-          this.toastService.showError(err.error.mensaje);
+        this.sucursalService.editarSucursal(this.Id, this.FormSucursal.value).subscribe({
+          next: (res: any) => {
+            this.toastService.showSuccess(res.mensaje);
+            this.activeModal.close('success');
+          },
+          error: (err: any) => {
+            this.toastService.showError(err.error.mensaje);
+          }
         });
       } else {
-        this.sucursalService.crearSucursal(this.FormSucursal.value).subscribe((res: any) => {
-          this.toastService.showSuccess(res.mensaje);
-          this.activeModal.close('success');
-        }, (err: any) => {
-          this.toastService.showError(err.error.mensaje);
+        this.sucursalService.crearSucursal(this.FormSucursal.value).subscribe({
+          next: (res: any) => {
+            this.toastService.showSuccess(res.mensaje);
+            this.activeModal.close('success');
+          },
+          error: (err: any) => {
+            this.toastService.showError(err.error.mensaje);
+          }
         });
       }
     } else {

@@ -17,7 +17,9 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.titleService.setTitle('EL PATRÓN DEL HARD')
-    this.productoService.get(4).subscribe((res: any) => this.Products = res.resultados);
+    this.productoService.get(4).subscribe({
+      next: (res: any) => this.Products = res.resultados
+    });
   }
 
 }

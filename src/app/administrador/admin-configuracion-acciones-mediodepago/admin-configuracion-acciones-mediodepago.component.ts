@@ -30,8 +30,10 @@ export class AdminConfiguracionAccionesMediodepagoComponent implements OnInit {
   ngOnInit(): void {
     if (this.Accion === 'editar') {
       this.NombreAccion = 'Editar medio de pago';
-      this.sucursalService.getMedioDePago(this.Id).subscribe((res: any) => {
-        this.MedioDePago = res.resultados[0];
+      this.sucursalService.getMedioDePago(this.Id).subscribe({
+        next: (res: any) => {
+          this.MedioDePago = res.resultados[0];
+        }
       })
     } else {
       this.NombreAccion = 'Crear medio de pago';
@@ -41,18 +43,24 @@ export class AdminConfiguracionAccionesMediodepagoComponent implements OnInit {
   guardarCambios() {
     if (this.FormMedioDePago.valid) {
       if (this.Accion === 'editar') {
-        this.sucursalService.editarMedioDePago(this.Id, this.FormMedioDePago.value).subscribe((res: any) => {
-          this.toastService.showSuccess(res.mensaje);
-          this.activeModal.close('success');
-        }, (err: any) => {
-          this.toastService.showError(err.error.mensaje);
+        this.sucursalService.editarMedioDePago(this.Id, this.FormMedioDePago.value).subscribe({
+          next: (res: any) => {
+            this.toastService.showSuccess(res.mensaje);
+            this.activeModal.close('success');
+          },
+          error: (err: any) => {
+            this.toastService.showError(err.error.mensaje);
+          }
         });
       } else {
-        this.sucursalService.crearMedioDePago(this.FormMedioDePago.value).subscribe((res: any) => {
-          this.toastService.showSuccess(res.mensaje);
-          this.activeModal.close('success');
-        }, (err: any) => {
-          this.toastService.showError(err.error.mensaje);
+        this.sucursalService.crearMedioDePago(this.FormMedioDePago.value).subscribe({
+          next: (res: any) => {
+            this.toastService.showSuccess(res.mensaje);
+            this.activeModal.close('success');
+          },
+          error: (err: any) => {
+            this.toastService.showError(err.error.mensaje);
+          }
         });
       }
     } else {

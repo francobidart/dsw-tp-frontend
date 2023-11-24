@@ -34,44 +34,56 @@ export class AdminUsuariosComponent implements OnInit {
 
 
   cargarUsuarios() {
-    this.usuariosService.listarUsuarios().subscribe((res: any) => {
-      this.Usuarios = res.resultados;
+    this.usuariosService.listarUsuarios().subscribe({
+      next: (res: any) => {
+        this.Usuarios = res.resultados;
+      }
     })
   }
 
   editarUsuario(usuario: User) {
     const refModal = this.modalService.open(AdminUsuariosEditarComponent);
     refModal.componentInstance.Id = usuario.id;
-    refModal.closed.subscribe((data: any) => {
-      if (data === 'guardado') {
-        this.cargarUsuarios();
+    refModal.closed.subscribe({
+      next: (data: any) => {
+        if (data === 'guardado') {
+          this.cargarUsuarios();
+        }
       }
     })
   }
 
   deshabilitarUsuario(id: number) {
-    this.usuariosService.deshabilitarUsuario(id).subscribe((res: any) => {
-      this.toastService.showSuccess(res.mensaje);
-      this.cargarUsuarios();
-    }, (err: any) => {
-      this.toastService.showError(err.error.mensaje);
+    this.usuariosService.deshabilitarUsuario(id).subscribe({
+      next: (res: any) => {
+        this.toastService.showSuccess(res.mensaje);
+        this.cargarUsuarios();
+      },
+      error: (err: any) => {
+        this.toastService.showError(err.error.mensaje);
+      }
     })
   }
 
   habilitarUsuario(id: number) {
-    this.usuariosService.habilitarUsuario(id).subscribe((res: any) => {
-      this.toastService.showSuccess(res.mensaje);
-      this.cargarUsuarios();
-    }, (err: any) => {
-      this.toastService.showError(err.error.mensaje);
+    this.usuariosService.habilitarUsuario(id).subscribe({
+      next: (res: any) => {
+        this.toastService.showSuccess(res.mensaje);
+        this.cargarUsuarios();
+      },
+      error: (err: any) => {
+        this.toastService.showError(err.error.mensaje);
+      }
     })
   }
 
   nuevoUsuario() {
     const refModal = this.modalService.open(AdminUsuariosNuevoComponent);
-    refModal.closed.subscribe((data: any) => {
-      if (data === 'registrado') {
-        this.cargarUsuarios();
+    refModal.closed.subscribe({
+      next: (data: any) => {
+        if (data === 'registrado') {
+          this.cargarUsuarios();
+        }
       }
     })
   }
@@ -79,11 +91,12 @@ export class AdminUsuariosComponent implements OnInit {
   cambiarClave(id: number) {
     const refModal = this.modalService.open(AdminUsuariosCambiarClaveComponent);
     refModal.componentInstance.Id = id;
-    refModal.closed.subscribe((data: any) => {
-      if (data === 'guardado') {
-        this.cargarUsuarios();
+    refModal.closed.subscribe({
+      next: (data: any) => {
+        if (data === 'guardado') {
+          this.cargarUsuarios();
+        }
       }
     })
   }
-
 }

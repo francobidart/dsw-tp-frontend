@@ -21,11 +21,14 @@ export class AdminCategoriaConfirmarEliminacionComponent implements OnInit {
   }
 
   confirmarEliminacion() {
-    return this.tipoProductoService.delete(this.Categoria.id).subscribe((res: any) => {
-      this.toastService.showSuccess(res.mensaje)
-       this.activeModal.close('eliminada');
-    }, (err: any) => {
-      this.toastService.showError(err.error.mensaje);
+    return this.tipoProductoService.delete(this.Categoria.id).subscribe({
+      next: (res: any) => {
+        this.toastService.showSuccess(res.mensaje)
+        this.activeModal.close('eliminada');
+      },
+      error: (err: any) => {
+        this.toastService.showError(err.error.mensaje);
+      }
     })
   }
 }

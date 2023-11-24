@@ -30,41 +30,53 @@ export class AdminConfiguracionComponent implements OnInit {
   }
 
   cargarSucursales() {
-    this.sucursalesService.getSucursales().subscribe((res: any) => {
-      this.Sucursales = res.resultados;
+    this.sucursalesService.getSucursales().subscribe({
+      next: (res: any) => {
+        this.Sucursales = res.resultados;
+      }
     })
   }
 
   cargarMediosDePago() {
-    this.sucursalesService.getMediosDePago().subscribe((res: any) => {
-      this.MediosDePago = res.resultados;
+    this.sucursalesService.getMediosDePago().subscribe({
+      next: (res: any) => {
+        this.MediosDePago = res.resultados;
+      }
     })
   }
 
   habilitarSucursal(id: number) {
-    this.sucursalesService.enableStore(id).subscribe((res: any) => {
-      this.toastService.showSuccess(res.mensaje);
-      this.cargarSucursales();
-    }, (err: any) => {
-      this.toastService.showError(err.error.mensaje);
+    this.sucursalesService.enableStore(id).subscribe({
+      next: (res: any) => {
+        this.toastService.showSuccess(res.mensaje);
+        this.cargarSucursales();
+      },
+      error: (err: any) => {
+        this.toastService.showError(err.error.mensaje);
+      }
     })
   }
 
   deshabilitarSucursal(id: number) {
-    this.sucursalesService.disableStore(id).subscribe((res: any) => {
-      this.toastService.showSuccess(res.mensaje);
-      this.cargarSucursales();
-    }, (err: any) => {
-      this.toastService.showError(err.error.mensaje);
+    this.sucursalesService.disableStore(id).subscribe({
+      next: (res: any) => {
+        this.toastService.showSuccess(res.mensaje);
+        this.cargarSucursales();
+      },
+      error: (err: any) => {
+        this.toastService.showError(err.error.mensaje);
+      }
     })
   }
 
   nuevaSucursal() {
     let modalRef = this.modalService.open(AdminConfiguracionAccionesSucursalComponent);
     modalRef.componentInstance.Accion = 'crear';
-    modalRef.closed.subscribe((data: any) => {
-      if (data === 'success') {
-        this.cargarSucursales();
+    modalRef.closed.subscribe({
+      next: (data: any) => {
+        if (data === 'success') {
+          this.cargarSucursales();
+        }
       }
     })
   }
@@ -73,37 +85,47 @@ export class AdminConfiguracionComponent implements OnInit {
     let modalRef = this.modalService.open(AdminConfiguracionAccionesSucursalComponent);
     modalRef.componentInstance.Accion = 'editar';
     modalRef.componentInstance.Id = id;
-    modalRef.closed.subscribe((data: any) => {
-      if (data === 'success') {
-        this.cargarSucursales();
+    modalRef.closed.subscribe({
+      next: (data: any) => {
+        if (data === 'success') {
+          this.cargarSucursales();
+        }
       }
     })
   }
 
   habilitarMedioDePago(id: number) {
-    this.sucursalesService.enableMedioDePago(id).subscribe((res: any) => {
-      this.toastService.showSuccess(res.mensaje);
-      this.cargarMediosDePago();
-    }, (err: any) => {
-      this.toastService.showError(err.error.mensaje);
+    this.sucursalesService.enableMedioDePago(id).subscribe({
+      next: (res: any) => {
+        this.toastService.showSuccess(res.mensaje);
+        this.cargarMediosDePago();
+      },
+      error: (err: any) => {
+        this.toastService.showError(err.error.mensaje);
+      }
     })
   }
 
   deshabilitarMedioDePago(id: number) {
-    this.sucursalesService.disableMedioDePago(id).subscribe((res: any) => {
-      this.toastService.showSuccess(res.mensaje);
-      this.cargarMediosDePago();
-    }, (err: any) => {
-      this.toastService.showError(err.error.mensaje);
+    this.sucursalesService.disableMedioDePago(id).subscribe({
+      next: (res: any) => {
+        this.toastService.showSuccess(res.mensaje);
+        this.cargarMediosDePago();
+      },
+      error: (err: any) => {
+        this.toastService.showError(err.error.mensaje);
+      }
     })
   }
 
   nuevoMedioDePago() {
     let modalRef = this.modalService.open(AdminConfiguracionAccionesMediodepagoComponent);
     modalRef.componentInstance.Accion = 'crear';
-    modalRef.closed.subscribe((data: any) => {
-      if (data === 'success') {
-        this.cargarMediosDePago();
+    modalRef.closed.subscribe({
+      next: (data: any) => {
+        if (data === 'success') {
+          this.cargarMediosDePago();
+        }
       }
     })
   }
@@ -112,12 +134,12 @@ export class AdminConfiguracionComponent implements OnInit {
     let modalRef = this.modalService.open(AdminConfiguracionAccionesMediodepagoComponent);
     modalRef.componentInstance.Accion = 'editar';
     modalRef.componentInstance.Id = id;
-    modalRef.closed.subscribe((data: any) => {
-      if (data === 'success') {
-        this.cargarMediosDePago();
+    modalRef.closed.subscribe({
+      next: (data: any) => {
+        if (data === 'success') {
+          this.cargarMediosDePago();
+        }
       }
     })
   }
-
-
 }

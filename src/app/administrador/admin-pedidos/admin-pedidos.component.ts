@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Pedido} from "../../models/pedido";
 import {PedidosService} from "../../services/pedidos.service";
 
@@ -10,15 +10,19 @@ import {PedidosService} from "../../services/pedidos.service";
 export class AdminPedidosComponent implements OnInit {
 
   Pedidos: Pedido[] = [];
-  constructor(private pedidosService: PedidosService) { }
+
+  constructor(private pedidosService: PedidosService) {
+  }
 
   ngOnInit(): void {
     this.cargarPedidos();
   }
 
   cargarPedidos() {
-    this.pedidosService.getPedidos().subscribe((res: any) => {
-      this.Pedidos = res.resultados;
+    this.pedidosService.getPedidos().subscribe({
+      next: (res: any) => {
+        this.Pedidos = res.resultados;
+      }
     })
   }
 }

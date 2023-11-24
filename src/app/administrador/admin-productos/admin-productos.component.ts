@@ -31,42 +31,53 @@ export class AdminProductosComponent implements OnInit {
     if (this.Buscador === '') {
       this.cargarProductos();
     } else {
-      this.buscarService.buscar(this.Buscador).subscribe((res: any) => {
-        this.Productos = res.resultados;
+      this.buscarService.buscar(this.Buscador).subscribe({
+        next: (res: any) => {
+          this.Productos = res.resultados;
+        }
       })
     }
   }
 
   cargarProductos() {
-    this.productosService.get().subscribe((res: any) => {
-      this.Productos = res.resultados;
+    this.productosService.get().subscribe({
+      next: (res: any) => {
+        this.Productos = res.resultados;
+      }
     })
-
   }
 
   habilitarProducto(producto: Product) {
-    return this.productosService.enableProducto(producto.id).subscribe((res: any) => {
-      this.toastService.showSuccess(res.mensaje)
-      this.cargarProductos();
-    }, (err) => {
-      this.toastService.showError(err);
+    return this.productosService.enableProducto(producto.id).subscribe({
+      next: (res: any) => {
+        this.toastService.showSuccess(res.mensaje)
+        this.cargarProductos();
+      },
+      error: (err) => {
+        this.toastService.showError(err);
+      }
     })
   }
 
   deshabilitarProducto(producto: Product) {
-    return this.productosService.disableProducto(producto.id).subscribe((res: any) => {
-      this.toastService.showSuccess(res.mensaje)
-      this.cargarProductos();
-    }, (err) => {
-      this.toastService.showError(err);
+    return this.productosService.disableProducto(producto.id).subscribe({
+      next: (res: any) => {
+        this.toastService.showSuccess(res.mensaje)
+        this.cargarProductos();
+      },
+      error: (err) => {
+        this.toastService.showError(err);
+      }
     })
   }
 
   nuevoProducto() {
     const refModal = this.modalService.open(AdminProductoNuevoComponent);
-    refModal.closed.subscribe((data: any) => {
-      if(data === 'registrado') {
-        this.cargarProductos();
+    refModal.closed.subscribe({
+      next: (data: any) => {
+        if (data === 'registrado') {
+          this.cargarProductos();
+        }
       }
     })
   }
