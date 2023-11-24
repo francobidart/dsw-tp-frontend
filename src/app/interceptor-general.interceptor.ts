@@ -5,17 +5,23 @@ import {
   HttpEvent,
   HttpInterceptor, HttpErrorResponse
 } from '@angular/common/http';
-import {catchError, Observable} from 'rxjs';
+import {catchError, finalize, Observable} from 'rxjs';
+import {LoaderService} from "./services/loader-service.service";
 @Injectable()
 export class InterceptorGeneralInterceptor implements HttpInterceptor {
 
-  constructor() {
+  constructor(private loaderService: LoaderService) {
   }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    this.loaderService.mostrarCargando();
     request = request.clone({
       withCredentials: true
     })
-    return next.handle(request);
+    return next.handle(request).pipe(
+        finalize(() => {
+          this.loaderService.ocultarCargando();
+        })
+    );
   }
 }

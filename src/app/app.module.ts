@@ -20,7 +20,6 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ToastsContainer} from "./services/toast/toast-container.component";
 import {InterceptorGeneralInterceptor} from "./interceptor-general.interceptor";
-import {ServerNotAvailableComponent} from './app/server-not-available/server-not-available.component';
 import {SearchComponent} from './search/search.component';
 import {DetallePedidoComponent} from './detalle-pedido/detalle-pedido.component';
 import {DashboardComponent} from './administrador/dashboard/dashboard.component';
@@ -28,6 +27,7 @@ import {NoautorizadoComponent} from './errors/noautorizado/noautorizado.componen
 import {ResultadosComponent} from './resultados/resultados.component';
 import {RegistrarseComponent} from './registrarse/registrarse.component';
 import {AppAdminModule} from "./app-admin.module";
+import {CargandoComponentComponent} from "./cargando-component/cargando-component.component";
 @NgModule({
     declarations: [
         AppComponent,
@@ -41,13 +41,13 @@ import {AppAdminModule} from "./app-admin.module";
         UsuariosComponent,
         MicuentaComponent,
         CategoriaComponent,
-        ServerNotAvailableComponent,
         DetallePedidoComponent,
         SearchComponent,
         DashboardComponent,
         NoautorizadoComponent,
         ResultadosComponent,
-        RegistrarseComponent
+        RegistrarseComponent,
+        CargandoComponentComponent
     ],
     imports: [
         BrowserModule,
@@ -57,7 +57,6 @@ import {AppAdminModule} from "./app-admin.module";
         RouterModule.forRoot([
             {path: '', component: HomeComponent},
             {path: 'nosotros', component: AboutUsComponent},
-            {path: 'server-unavailable', component: ServerNotAvailableComponent},
             {path: 'pedidos/:id', component: DetallePedidoComponent},
             {path: 'producto/:id', component: ProductoComponent},
             {path: 'categoria/:id', component: CategoriaComponent},
