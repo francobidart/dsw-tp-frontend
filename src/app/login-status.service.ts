@@ -23,7 +23,7 @@ export class LoginStatusService {
     const formData = new FormData();
     formData.append('email', username);
     formData.append('password', password);
-    this.httpClient.post(environment.apiUrl + 'login', formData, {withCredentials: true})
+    this.httpClient.post(environment.apiUrl + 'sesion/login', formData, {withCredentials: true})
       .subscribe(
         (res: any) => {
           this.isAuthenticated = true;
@@ -39,7 +39,7 @@ export class LoginStatusService {
 
 
   validarSesion(callback: any = null) {
-    this.httpClient.get(environment.apiUrl + 'session/validateSession', {withCredentials: true})
+    this.httpClient.get(environment.apiUrl + 'sesion/session/validateSession', {withCredentials: true})
       .subscribe((res: any) => {
         this.isAuthenticated = true;
         this.isAdmin = res.resultados.isAdmin;
@@ -55,12 +55,12 @@ export class LoginStatusService {
   }
 
   validarAdmin() {
-    return this.httpClient.get(environment.apiUrl + 'session/validateAdmin', {withCredentials: true}).toPromise();
+    return this.httpClient.get(environment.apiUrl + 'sesion/session/validateAdmin', {withCredentials: true}).toPromise();
   }
 
 // Método para cerrar sesión
   logout(): void {
-    this.httpClient.get(environment.apiUrl + 'logout', {withCredentials: true}).subscribe(
+    this.httpClient.get(environment.apiUrl + 'sesion/logout', {withCredentials: true}).subscribe(
       (res: any) => {
         this.isAuthenticated = false;
         this.isAdmin = false;
@@ -75,7 +75,7 @@ export class LoginStatusService {
 
   getPerfil(): Observable<any> {
     // Realiza una solicitud GET al servidor Express para obtener el perfil del usuario.
-    return this.httpClient.get(environment.apiUrl + 'account/profile');
+    return this.httpClient.get(environment.apiUrl + 'sesion/account/profile');
   }
 
 }
