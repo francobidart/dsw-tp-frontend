@@ -53,7 +53,7 @@ export class CheckoutResumeComponent implements OnInit {
     if (!this.validarDatos()) {
       this.cartService.enviarPedido(this.SucursalSeleccionada, this.MedioDePagoSeleccionado).subscribe((res: any) => {
         let idPedido = res.resultados.id;
-        this.toastService.showSuccess('¡Registramos tu pedido! N°: ' + idPedido);
+        this.toastService.showSuccess('¡Registramos tu pedido! | Orden N°: ' + idPedido);
         this.cartService.clearCart(() => {
           this.router.navigate(['/']);
         });
