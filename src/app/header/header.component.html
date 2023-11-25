@@ -1,4 +1,4 @@
-<div class="header" style="background-color:#333 ;">
+<div class="header" >
   <div class="container-1300">
     <nav class="navbar navbar-expand-lg" data-bs-theme="dark">
       <div class="container-fluid">
@@ -48,8 +48,8 @@
                 <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown3" role="button">
                   Carrito ({{this.cartService.items.length}})
                 </a>
-                <div ngbDropdownMenu aria-labelledby="navbarDropdown3"
-                     style="margin-top: 15px; padding: 20px; width: 400px"
+                <div class="drpdown" ngbDropdownMenu aria-labelledby="navbarDropdown3"
+                     
                      class="drop-right">
                   <p>
                     Mi carrito
@@ -69,7 +69,7 @@
                     <div style="text-align: right">Total: ${{this.cartService.total}}</div>
                     <br>
                     <span class="d-block dropdown-item bg-success"
-                          style="cursor:pointer; border-radius: 5px; text-align: center" routerLink="/checkout">Finalizar compra</span>
+                           routerLink="/checkout">Finalizar compra</span>
                     <span (click)="FlushCart()" class="btn btn-link btn-sm d-block">Vaciar carrito</span>
                   </div>
                   <div class="alert alert-secondary" role="alert" *ngIf="this.cartService.items.length == 0">
