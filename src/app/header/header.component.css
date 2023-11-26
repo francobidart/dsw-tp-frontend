@@ -3,6 +3,24 @@
   font-weight: bold;
 }
 
+.header {
+
+  background-color:#333
+
+}
+
+div .drpdown {
+
+ margin-top: 15px; padding: 20px; width: 400px
+
+}
+
+span{
+
+  cursor:pointer; border-radius: 5px; text-align: center
+
+ }
+
 @media (min-width: 700px) {
   .form-control {
     width: 400px;

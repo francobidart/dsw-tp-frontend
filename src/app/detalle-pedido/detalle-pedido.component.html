@@ -3,7 +3,7 @@
 <p>Registrado el: {{ Pedido.createdAt | date: 'dd/MM/yyyy hh:mm' }}</p>
 <div class="row">
   <div class="col-md-8 col-12">
-    <div class="card" *ngFor="let articulo of Pedido.detallePedido" style="width: 100%; margin-bottom: 20px">
+    <div class="card" *ngFor="let articulo of Pedido.detallePedido">
       <div class="card-body">
         <div class="row">
           <div class="col-2">
