@@ -43,7 +43,7 @@
             <label for="nombre-producto" class="mb-2">Imagen (URL):</label>
             <input type="text" id="imagen-producto" formControlName="imagen" [(ngModel)]="Producto.imagen"
                    value="{{Producto.imagen}}" class="form-control">
-            <div style="text-align: center; padding: 20px">
+            <div class="productoimg">
               <img src="{{Producto.imagen}}" *ngIf="Producto.imagen !== ''" style="height: 200px"
                    alt="Imagen no disponible...">
             </div>
