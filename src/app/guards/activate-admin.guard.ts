@@ -14,7 +14,7 @@ export class ActivateAdminGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.loginStatus.validarAdmin().then((res: any) => {
+    return this.loginStatus.validarAdmin().then((res) => {
       return true;
     }).catch((error) => {
       this.loginStatus.logout();

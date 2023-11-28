@@ -6,6 +6,7 @@ import {CartService} from '../services/cart.service';
 import {ProductoService} from "../services/producto.service";
 import {ToastService} from "../services/toast/toast-service";
 import {LoginStatusService} from "../login-status.service";
+import {ApiResponse} from "../models/api-response";
 
 @Component({
   selector: 'app-producto',
@@ -23,7 +24,7 @@ export class ProductoComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.productoService.getById(parseInt(params['id'])).subscribe({
-        next: (res: any) => {
+        next: (res: ApiResponse<Product>) => {
           this.Producto = res.resultados[0]
           this.titleService.setTitle(this.Producto.nombre);
         }

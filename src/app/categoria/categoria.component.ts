@@ -5,6 +5,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {ProductoService} from "../services/producto.service";
 import {FormsModule} from '@angular/forms';
 import {Title} from "@angular/platform-browser";
+import {ApiResponse} from "../models/api-response";
+import {TipoProducto} from "../models/tipo-producto";
 
 @Component({
   selector: 'app-categoria',
@@ -13,7 +15,7 @@ import {Title} from "@angular/platform-browser";
 })
 export class CategoriaComponent implements OnInit {
 
-  Products: any = [];
+  Products: Product[] = [];
   Category: string = ''
   CategoryId: number | null = null;
   OrdenSeleccionado: string | null = '';
@@ -37,13 +39,13 @@ export class CategoriaComponent implements OnInit {
     this.CategoryId = id;
     if (this.CategoryId) {
       this.tipoProductoService.getById(this.CategoryId).subscribe({
-        next: (res: any) => {
+        next: (res: ApiResponse<TipoProducto>) => {
           this.Category = (res.total_resultados > 0) ? res.resultados[0].nombre : ''
           this.titleService.setTitle(this.Category)
         }
       });
       this.productoService.getByCategory(this.CategoryId).subscribe({
-        next: (res: any) => this.Products = res.resultados
+        next: (res: ApiResponse<Product>) => this.Products = res.resultados
       });
     }
   }
@@ -52,7 +54,7 @@ export class CategoriaComponent implements OnInit {
     this.OrdenSeleccionado = value;
     if (this.CategoryId) {
       this.productoService.getByCategory(this.CategoryId, this.OrdenSeleccionado).subscribe({
-        next: (res: any) => this.Products = res.resultados
+        next: (res: ApiResponse<Product>) => this.Products = res.resultados
       });
     }
   }
@@ -72,6 +74,4 @@ export class CategoriaComponent implements OnInit {
       "nombre": "Precio (mayor a menor)"
     }
   ]
-
-
 }

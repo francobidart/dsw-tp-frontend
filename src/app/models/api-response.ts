@@ -1,6 +1,6 @@
-export class ApiResponse {
-  status: string = '';
-  mensaje: string = '';
-  total_resultados: number = 0;
-  resultados: [] | object = {};
+export interface ApiResponse<T> {
+  status: string;
+  mensaje: string;
+  total_resultados: number;
+  resultados: T[];
 }

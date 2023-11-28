@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Pedido} from "../../models/pedido";
 import {PedidosService} from "../../services/pedidos.service";
+import {ApiResponse} from "../../models/api-response";
 
 @Component({
   selector: 'app-admin-pedidos',
@@ -20,7 +21,7 @@ export class AdminPedidosComponent implements OnInit {
 
   cargarPedidos() {
     this.pedidosService.getPedidos().subscribe({
-      next: (res: any) => {
+      next: (res: ApiResponse<Pedido>) => {
         this.Pedidos = res.resultados;
       }
     })

@@ -4,6 +4,7 @@ import {ToastService} from "../../services/toast/toast-service";
 import {UserService} from "../../services/user.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {User} from "../../models/user";
+import {ApiResponse} from "../../models/api-response";
 
 @Component({
   selector: 'app-admin-usuarios-editar',
@@ -35,8 +36,8 @@ export class AdminUsuariosEditarComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.getUsuario(this.Id).subscribe({
-      next: (res: any) => {
-        this.Usuario = res.resultados
+      next: (res: ApiResponse<User>) => {
+        this.Usuario = res.resultados[0]
       }
     })
   }
@@ -44,7 +45,7 @@ export class AdminUsuariosEditarComponent implements OnInit {
   actualizarUsuario() {
     if (this.FormUsuario.valid) {
       this.userService.actualizarUsuario(this.Id, this.FormUsuario.value).subscribe({
-        next: (res: any) => {
+        next: (res: ApiResponse<User>) => {
           this.toastService.showSuccess(res.mensaje);
           this.activeModal.close('guardado');
         },

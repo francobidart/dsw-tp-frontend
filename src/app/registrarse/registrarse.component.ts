@@ -4,6 +4,8 @@ import {UserService} from "../services/user.service";
 import {ToastService} from "../services/toast/toast-service";
 import {Router} from "@angular/router";
 import {error} from "@angular/compiler-cli/src/transformers/util";
+import {ApiResponse} from "../models/api-response";
+import {User} from "../models/user";
 
 
 @Component({
@@ -31,7 +33,7 @@ export class RegistrarseComponent {
     if (this.formulario.valid) {
       if (this.formulario.value.password === this.formulario.value.repetirpassword) {
         this.usuarioService.registrarUsuario(this.formulario.value).subscribe({
-          next: (res: any) => {
+          next: (res: ApiResponse<User>) => {
             this.toastService.showSuccess(res.mensaje);
             this.router.navigate(['/login']);
           },

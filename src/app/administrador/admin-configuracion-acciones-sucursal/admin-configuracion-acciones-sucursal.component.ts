@@ -4,6 +4,7 @@ import {Sucursal} from "../../models/sucursal";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ToastService} from "../../services/toast/toast-service";
+import {ApiResponse} from "../../models/api-response";
 
 @Component({
   selector: 'app-admin-configuracion-acciones-sucursal',
@@ -36,8 +37,8 @@ export class AdminConfiguracionAccionesSucursalComponent implements OnInit {
     if (this.Accion === 'editar') {
       this.NombreAccion = 'Editar sucursal';
       this.sucursalService.getSucursal(this.Id).subscribe({
-        next: (res: any) => {
-          this.Sucursal = res.resultados;
+        next: (res: ApiResponse<Sucursal>) => {
+          this.Sucursal = res.resultados[0];
         }
       })
     } else {
@@ -49,7 +50,7 @@ export class AdminConfiguracionAccionesSucursalComponent implements OnInit {
     if (this.FormSucursal.valid) {
       if (this.Accion === 'editar') {
         this.sucursalService.editarSucursal(this.Id, this.FormSucursal.value).subscribe({
-          next: (res: any) => {
+          next: (res: ApiResponse<Sucursal>) => {
             this.toastService.showSuccess(res.mensaje);
             this.activeModal.close('success');
           },
@@ -59,7 +60,7 @@ export class AdminConfiguracionAccionesSucursalComponent implements OnInit {
         });
       } else {
         this.sucursalService.crearSucursal(this.FormSucursal.value).subscribe({
-          next: (res: any) => {
+          next: (res: ApiResponse<Sucursal>) => {
             this.toastService.showSuccess(res.mensaje);
             this.activeModal.close('success');
           },

@@ -8,6 +8,7 @@ import {AdminProductoNuevoComponent} from "../admin-producto-nuevo/admin-product
 import {TipoProducto} from "../../models/tipo-producto";
 import {ActivatedRoute} from "@angular/router";
 import {TipoProductoServiceService} from "../../services/tipo-producto-service.service";
+import {ApiResponse} from "../../models/api-response";
 
 @Component({
   selector: 'app-admin-categoria-detalle',
@@ -26,7 +27,7 @@ export class AdminCategoriaDetalleComponent implements OnInit {
   ngOnInit(): void {
     this.CategoriaId = this.route.snapshot.params['id'];
     this.tipoProductoService.getById(this.CategoriaId).subscribe({
-      next: (res: any) => {
+      next: (res: ApiResponse<TipoProducto>) => {
         this.Categoria = res.resultados[0]
         this.cargarProductos()
       }
@@ -35,45 +36,9 @@ export class AdminCategoriaDetalleComponent implements OnInit {
 
   cargarProductos() {
     this.productosService.getByCategory(this.Categoria.id).subscribe({
-      next: (res: any) => {
+      next: (res: ApiResponse<Product>) => {
         this.Productos = res.resultados;
       }
     })
   }
-
-  habilitarProducto(producto: Product) {
-    return this.productosService.enableProducto(producto.id).subscribe({
-      next: (res: any) => {
-        this.toastService.showSuccess(res.mensaje)
-        this.cargarProductos();
-      },
-      error: (err) => {
-        this.toastService.showError(err);
-      }
-    })
-  }
-
-  deshabilitarProducto(producto: Product) {
-    return this.productosService.disableProducto(producto.id).subscribe({
-      next: (res: any) => {
-        this.toastService.showSuccess(res.mensaje)
-        this.cargarProductos();
-      },
-      error: (err) => {
-        this.toastService.showError(err);
-      }
-    })
-  }
-
-  nuevoProducto() {
-    const refModal = this.modalService.open(AdminProductoNuevoComponent);
-    refModal.closed.subscribe({
-      next: (data: any) => {
-        if (data === 'registrado') {
-          this.cargarProductos();
-        }
-      }
-    })
-  }
-
 }

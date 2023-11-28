@@ -4,6 +4,7 @@ import {StoreService} from "../../services/store.service";
 import {ToastService} from "../../services/toast/toast-service";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {MedioDePago} from "../../models/mediodepago";
+import {ApiResponse} from "../../models/api-response";
 
 @Component({
   selector: 'app-admin-configuracion-acciones-mediodepago',
@@ -31,7 +32,7 @@ export class AdminConfiguracionAccionesMediodepagoComponent implements OnInit {
     if (this.Accion === 'editar') {
       this.NombreAccion = 'Editar medio de pago';
       this.sucursalService.getMedioDePago(this.Id).subscribe({
-        next: (res: any) => {
+        next: (res: ApiResponse<MedioDePago>) => {
           this.MedioDePago = res.resultados[0];
         }
       })
@@ -44,7 +45,7 @@ export class AdminConfiguracionAccionesMediodepagoComponent implements OnInit {
     if (this.FormMedioDePago.valid) {
       if (this.Accion === 'editar') {
         this.sucursalService.editarMedioDePago(this.Id, this.FormMedioDePago.value).subscribe({
-          next: (res: any) => {
+          next: (res: ApiResponse<MedioDePago>) => {
             this.toastService.showSuccess(res.mensaje);
             this.activeModal.close('success');
           },
@@ -54,7 +55,7 @@ export class AdminConfiguracionAccionesMediodepagoComponent implements OnInit {
         });
       } else {
         this.sucursalService.crearMedioDePago(this.FormMedioDePago.value).subscribe({
-          next: (res: any) => {
+          next: (res: ApiResponse<MedioDePago>) => {
             this.toastService.showSuccess(res.mensaje);
             this.activeModal.close('success');
           },

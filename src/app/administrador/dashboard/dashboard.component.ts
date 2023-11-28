@@ -21,6 +21,7 @@ export class DashboardComponent implements OnInit {
 
   getPedidosPendientes() {
     this.pedidosService.getPedidosPendientes().subscribe({
+      // Conservo any porque estos atributos se definen especialmente para el endpoint de estadisticas.
       next: (res: any) => {
         this.PedidosPendientes = res.resultados.cantidadPedidosPendientes;
         this.TotalFacturado = res.resultados.importeVentasMensuales;

@@ -4,6 +4,8 @@ import {Product} from '../models/product'
 import {LoginStatusService} from '../login-status.service'
 import {TipoProductoServiceService} from "../services/tipo-producto-service.service";
 import {SearchComponent} from '../search/search.component';
+import {ApiResponse} from "../models/api-response";
+import {TipoProducto} from "../models/tipo-producto";
 
 @Component({
   selector: 'app-header',
@@ -12,7 +14,7 @@ import {SearchComponent} from '../search/search.component';
 })
 export class HeaderComponent implements OnInit {
 
-  Categorias: any = []
+  Categorias: TipoProducto[] = []
 
   CartItems: Product[] = [];
   Total = 0;
@@ -25,14 +27,14 @@ export class HeaderComponent implements OnInit {
     this.CartItems = this.cartService.items;
     this.Total = this.cartService.total;
     this.tipoProductoService.get().subscribe({
-      next: (res: any) => {
+      next: (res: ApiResponse<TipoProducto>) => {
         this.Categorias = res.resultados
       }
     })
     this.loginstatusservice.validarSesion();
   }
 
-  DeleteItem(item: any) {
+  DeleteItem(item: Product) {
     this.cartService.DeleteItem(item);
   }
 
