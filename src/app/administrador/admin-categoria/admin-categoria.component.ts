@@ -13,6 +13,7 @@ import {
   AdminCategoriaConfirmarEliminacionComponent
 } from "../admin-categoria-confirmar-eliminacion/admin-categoria-confirmar-eliminacion.component";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {ApiResponse} from "../../models/api-response";
 
 @Component({
   selector: 'app-admin-categoria',
@@ -34,7 +35,7 @@ export class AdminCategoriaComponent implements OnInit {
 
   cargarCategorias() {
     this.tipoProductoService.get().subscribe({
-      next: (res: any) => {
+      next: (res: ApiResponse<TipoProducto>) => {
         this.Categorias = res.resultados;
       }
     })
@@ -44,7 +45,7 @@ export class AdminCategoriaComponent implements OnInit {
     const modalRef = this.modalService.open(AdminCategoriaConfirmarEliminacionComponent);
     modalRef.componentInstance.Categoria = categoria;
     modalRef.closed.subscribe({
-      next: (data: any) => {
+      next: (data: string) => {
         if (data === 'eliminada') {
           this.cargarCategorias();
         }
@@ -56,7 +57,7 @@ export class AdminCategoriaComponent implements OnInit {
     const refModal = this.modalService.open(NgbdModalEditarCategoria);
     refModal.componentInstance.id = categoria.id;
     refModal.closed.subscribe({
-      next: (data: any) => {
+      next: (data: string) => {
         if (data === 'registrado') {
           this.cargarCategorias();
         }
@@ -67,7 +68,7 @@ export class AdminCategoriaComponent implements OnInit {
   nuevaCategoria() {
     const refModal = this.modalService.open(AdminCategoriaNuevaComponent);
     refModal.closed.subscribe({
-      next: (data: any) => {
+      next: (data: string) => {
         if (data === 'registrado') {
           this.cargarCategorias();
         }
@@ -124,7 +125,7 @@ export class NgbdModalEditarCategoria {
 
   ngOnInit(): void {
     this.tipoProductoService.getById(this.id).subscribe({
-      next: (res: any) => {
+      next: (res: ApiResponse<TipoProducto>) => {
         this.Categoria = res.resultados[0];
       }
     })
@@ -133,7 +134,7 @@ export class NgbdModalEditarCategoria {
   actualizarCategoria() {
     if (this.FormCategoria.valid) {
       this.tipoProductoService.update(this.id, this.FormCategoria.value).subscribe({
-        next: (res: any) => {
+        next: (res: ApiResponse<any>) => {
           this.activeModal.close('registrado');
           this.toastService.showSuccess(res.mensaje);
         },

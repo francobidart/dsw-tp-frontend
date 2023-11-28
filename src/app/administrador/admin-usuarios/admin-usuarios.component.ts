@@ -15,6 +15,7 @@ import {AdminUsuariosEditarComponent} from "../admin-usuarios-editar/admin-usuar
 import {
   AdminUsuariosCambiarClaveComponent
 } from "../admin-usuarios-cambiar-clave/admin-usuarios-cambiar-clave.component";
+import {ApiResponse} from "../../models/api-response";
 
 @Component({
   selector: 'app-admin-usuarios',
@@ -35,7 +36,7 @@ export class AdminUsuariosComponent implements OnInit {
 
   cargarUsuarios() {
     this.usuariosService.listarUsuarios().subscribe({
-      next: (res: any) => {
+      next: (res: ApiResponse<User>) => {
         this.Usuarios = res.resultados;
       }
     })
@@ -45,7 +46,7 @@ export class AdminUsuariosComponent implements OnInit {
     const refModal = this.modalService.open(AdminUsuariosEditarComponent);
     refModal.componentInstance.Id = usuario.id;
     refModal.closed.subscribe({
-      next: (data: any) => {
+      next: (data: string) => {
         if (data === 'guardado') {
           this.cargarUsuarios();
         }
@@ -55,7 +56,7 @@ export class AdminUsuariosComponent implements OnInit {
 
   deshabilitarUsuario(id: number) {
     this.usuariosService.deshabilitarUsuario(id).subscribe({
-      next: (res: any) => {
+      next: (res: ApiResponse<User>) => {
         this.toastService.showSuccess(res.mensaje);
         this.cargarUsuarios();
       },
@@ -67,7 +68,7 @@ export class AdminUsuariosComponent implements OnInit {
 
   habilitarUsuario(id: number) {
     this.usuariosService.habilitarUsuario(id).subscribe({
-      next: (res: any) => {
+      next: (res: ApiResponse<User>) => {
         this.toastService.showSuccess(res.mensaje);
         this.cargarUsuarios();
       },
@@ -80,7 +81,7 @@ export class AdminUsuariosComponent implements OnInit {
   nuevoUsuario() {
     const refModal = this.modalService.open(AdminUsuariosNuevoComponent);
     refModal.closed.subscribe({
-      next: (data: any) => {
+      next: (data: string) => {
         if (data === 'registrado') {
           this.cargarUsuarios();
         }
@@ -92,7 +93,7 @@ export class AdminUsuariosComponent implements OnInit {
     const refModal = this.modalService.open(AdminUsuariosCambiarClaveComponent);
     refModal.componentInstance.Id = id;
     refModal.closed.subscribe({
-      next: (data: any) => {
+      next: (data: string) => {
         if (data === 'guardado') {
           this.cargarUsuarios();
         }

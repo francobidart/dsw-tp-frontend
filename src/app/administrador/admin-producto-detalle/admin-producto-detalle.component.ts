@@ -7,6 +7,7 @@ import {TipoProducto} from "../../models/tipo-producto";
 import {TipoProductoServiceService} from "../../services/tipo-producto-service.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ToastService} from "../../services/toast/toast-service";
+import {ApiResponse} from "../../models/api-response";
 
 @Component({
   selector: 'app-admin-producto-detalle',
@@ -54,7 +55,7 @@ export class AdminProductoDetalleComponent implements OnInit {
 
   cargarProducto() {
     this.productosService.getById(this.IdProducto).subscribe({
-      next: (res: any) => {
+      next: (res: ApiResponse<Product>) => {
         this.Producto = res.resultados[0];
         let selectCategoria = this.Producto.categoria
         this.NombreProducto = res.resultados[0].nombre;
@@ -65,7 +66,7 @@ export class AdminProductoDetalleComponent implements OnInit {
 
   cargarDatos() {
     this.tipoProductoService.get().subscribe({
-      next: (res: any) => {
+      next: (res: ApiResponse<TipoProducto>) => {
         this.Categorias = res.resultados;
         this.cargarProducto();
       }
@@ -74,7 +75,7 @@ export class AdminProductoDetalleComponent implements OnInit {
 
   guardarProducto() {
     this.productosService.updateProducto(this.IdProducto, this.FormProducto.value).subscribe({
-      next: (res: any) => {
+      next: (res: ApiResponse<Product>) => {
         this.toastService.showSuccess('Producto actualizado correctamente');
         this.FormProducto.disable();
         this.cargarDatos();

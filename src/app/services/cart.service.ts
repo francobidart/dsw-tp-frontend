@@ -3,6 +3,7 @@ import {Product} from '../models/product';
 import {Router} from '@angular/router';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../environments/environment";
+import {ApiResponse} from "../models/api-response";
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,8 @@ export class CartService {
     if (cartSaved && cartSaved.length > 0) {
       this.items = JSON.parse(cartSaved);
       let idArray = this.getItemIds();
-      this.httpClient.post(environment.apiUrl + 'cart/updatePrices', idArray).subscribe({
-        next: (res: any) => {
+      this.httpClient.post<ApiResponse<Product>>(environment.apiUrl + 'cart/updatePrices', idArray).subscribe({
+        next: (res: ApiResponse<Product>) => {
           for (var i = 0; i < res.resultados.length; i++) {
             let product = res.resultados[i];
             for (var j = 0; j < this.items.length; j++) {
@@ -52,8 +53,8 @@ export class CartService {
 
   updateItems() {
     let idArray = this.getItemIds();
-    this.httpClient.post(environment.apiUrl + 'cart/updatePrices', idArray).subscribe({
-      next: (res: any) => {
+    this.httpClient.post<ApiResponse<Product>>(environment.apiUrl + 'cart/updatePrices', idArray).subscribe({
+      next: (res: ApiResponse<Product>) => {
         for (var i = 0; i < res.resultados.length; i++) {
           let product = res.resultados[i];
           for (var j = 0; j < this.items.length; j++) {
@@ -93,7 +94,7 @@ export class CartService {
   }
 
   enviarPedido(sucursalRetiro: string, mediodepago: number) {
-    return this.httpClient.post(environment.apiUrl + 'pedidos/registrar', {
+    return this.httpClient.post<ApiResponse<any>>(environment.apiUrl + 'pedidos/registrar', {
       articulos: this.items,
       sucursal: sucursalRetiro,
       mediodepago: mediodepago

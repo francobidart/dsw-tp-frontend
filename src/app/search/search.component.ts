@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {BuscarService} from '../services/buscar/buscar.service';
 import {Router} from '@angular/router';
+import {Product} from "../models/product";
 
 
 @Component({
@@ -10,7 +11,7 @@ import {Router} from '@angular/router';
 })
 export class SearchComponent {
   query: string = '';
-  resultados: any[] = [];
+  resultados: Product[] = [];
 
   constructor(private buscarService: BuscarService, private router: Router) {
   }

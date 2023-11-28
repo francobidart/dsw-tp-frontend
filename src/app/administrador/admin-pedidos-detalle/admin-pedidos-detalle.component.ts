@@ -3,6 +3,7 @@ import {Pedido} from "../../models/pedido";
 import {PedidosService} from "../../services/pedidos.service";
 import {ActivatedRoute} from "@angular/router";
 import {ToastService} from "../../services/toast/toast-service";
+import {ApiResponse} from "../../models/api-response";
 
 @Component({
   selector: 'app-admin-pedidos-detalle',
@@ -24,15 +25,15 @@ export class AdminPedidosDetalleComponent implements OnInit {
 
   cargarPedido() {
     this.pedidosService.getPedido(this.IdPedido).subscribe({
-      next: (res: any) => {
-        this.Pedido = res.resultados;
+      next: (res: ApiResponse<Pedido>) => {
+        this.Pedido = res.resultados[0];
       }
     })
   }
 
   entregarPedido() {
     this.pedidosService.entregarPedido(this.IdPedido).subscribe({
-      next: (res: any) => {
+      next: (res: ApiResponse<Pedido>) => {
         this.toastService.showSuccess('Pedido entregado correctamente');
         this.cargarPedido();
       },
@@ -44,7 +45,7 @@ export class AdminPedidosDetalleComponent implements OnInit {
 
   cancelarPedido() {
     this.pedidosService.cancelarPedido(this.IdPedido).subscribe({
-      next: (res: any) => {
+      next: (res: ApiResponse<Pedido>) => {
         this.toastService.showSuccess('Pedido cancelado correctamente');
         this.cargarPedido();
       },

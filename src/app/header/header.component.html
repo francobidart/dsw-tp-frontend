@@ -1,4 +1,4 @@
-<div class="header" >
+<div class="header">
   <div class="container-1300">
     <nav class="navbar navbar-expand-lg" data-bs-theme="dark">
       <div class="container-fluid">
@@ -39,7 +39,8 @@
                   class="fa-solid fa-user"></i> Administrador</a>
               </li>
               <li class="nav-item" *ngIf="loginstatusservice.isAuthenticated">
-                <a href="#" class="nav-link active" *ngIf="loginstatusservice.isAdmin" (click)="loginstatusservice.logout()">
+                <a href="#" class="nav-link active" *ngIf="loginstatusservice.isAdmin"
+                   (click)="loginstatusservice.logout()">
                   <i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión
                 </a>
               </li>
@@ -48,9 +49,7 @@
                 <a class="nav-link" tabindex="0" ngbDropdownToggle id="navbarDropdown3" role="button">
                   Carrito ({{this.cartService.items.length}})
                 </a>
-                <div class="drpdown" ngbDropdownMenu aria-labelledby="navbarDropdown3"
-                     
-                     class="drop-right">
+                <div class="drpdown drop-right" ngbDropdownMenu aria-labelledby="navbarDropdown3">
                   <p>
                     Mi carrito
                   </p>
@@ -58,9 +57,12 @@
                     <div style="max-height: 200px" class="overflow-auto">
                       <div *ngFor="let item of this.cartService.items" class="row" style="width: 100%">
                         <div class="col"><img src="{{item.imagen}}" alt=""></div>
-                        <div class="col">{{item.nombre}} <br><br> ${{item.precio}} <span class="btn btn-outline-danger"
-                                                                                         (click)="DeleteItem(item)"><i
-                          class="fa fa-trash"></i></span></div>
+                        <div class="col">{{item.nombre}}
+                          <br><br>
+                          ${{item.precio}}
+                          <span class="btn btn-outline-danger" (click)="DeleteItem(item)">
+                          <i class="fa fa-trash"></i></span>
+                        </div>
                         <br><br>
                         <hr>
                       </div>
@@ -69,7 +71,7 @@
                     <div style="text-align: right">Total: ${{this.cartService.total}}</div>
                     <br>
                     <span class="d-block dropdown-item bg-success"
-                           routerLink="/checkout">Finalizar compra</span>
+                          routerLink="/checkout">Finalizar compra</span>
                     <span (click)="FlushCart()" class="btn btn-link btn-sm d-block">Vaciar carrito</span>
                   </div>
                   <div class="alert alert-secondary" role="alert" *ngIf="this.cartService.items.length == 0">

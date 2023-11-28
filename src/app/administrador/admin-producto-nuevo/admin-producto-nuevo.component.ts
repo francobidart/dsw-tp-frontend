@@ -5,6 +5,8 @@ import {TipoProducto} from "../../models/tipo-producto";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ToastService} from "../../services/toast/toast-service";
 import {ProductoService} from "../../services/producto.service";
+import {ApiResponse} from "../../models/api-response";
+import {Product} from "../../models/product";
 
 @Component({
   selector: 'app-admin-producto-nuevo',
@@ -41,7 +43,7 @@ export class AdminProductoNuevoComponent implements OnInit {
 
   cargarCategorias() {
     this.tipoProductoService.get().subscribe({
-      next: (res: any) => {
+      next: (res: ApiResponse<TipoProducto>) => {
         this.Categorias = res.resultados;
       }
     })
@@ -50,7 +52,7 @@ export class AdminProductoNuevoComponent implements OnInit {
   registrarProducto() {
     if (this.FormProducto.valid) {
       this.productoService.createProducto(this.FormProducto.value).subscribe({
-        next: (res: any) => {
+        next: (res: ApiResponse<Product>) => {
           this.activeModal.close('registrado');
           this.toastService.showSuccess(res.mensaje);
         },

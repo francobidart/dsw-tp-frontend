@@ -3,6 +3,8 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {ToastService} from "../../services/toast/toast-service";
 import {UserService} from "../../services/user.service";
+import {ApiResponse} from "../../models/api-response";
+import {User} from "../../models/user";
 
 @Component({
   selector: 'app-admin-usuarios-nuevo',
@@ -38,7 +40,7 @@ export class AdminUsuariosNuevoComponent {
   registrarUsuario() {
     if (this.FormUsuario.valid) {
       this.userService.registrarUsuarioAdm(this.FormUsuario.value).subscribe({
-        next: (res: any) => {
+        next: (res: ApiResponse<User>) => {
           this.toastService.showSuccess(res.mensaje);
           this.activeModal.close('registrado');
         },

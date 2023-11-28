@@ -9,6 +9,7 @@ import {Sucursal} from "../models/sucursal";
 import {StoreService} from "../services/store.service";
 import {MedioDePago} from "../models/mediodepago";
 import {ToastService} from "../services/toast/toast-service";
+import {ApiResponse} from "../models/api-response";
 
 @Component({
   selector: 'app-checkout-resume',
@@ -36,17 +37,17 @@ export class CheckoutResumeComponent implements OnInit {
         });
       } else {
         this.userService.obtenerInformacionDeCuenta().subscribe({
-          next: (res: any) => {
-            this.Usuario = res.resultados;
+          next: (res: ApiResponse<User>) => {
+            this.Usuario = res.resultados[0];
           }
         })
         this.storeService.getSucursales().subscribe({
-          next: (res: any) => {
+          next: (res: ApiResponse<Sucursal>) => {
             this.Sucursales = res.resultados;
           }
         })
         this.storeService.getMediosDePago().subscribe({
-          next: (res: any) => {
+          next: (res: ApiResponse<MedioDePago>) => {
             this.MediosDePago = res.resultados;
           }
         })

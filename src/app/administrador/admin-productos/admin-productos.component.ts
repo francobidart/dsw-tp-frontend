@@ -5,6 +5,7 @@ import {BuscarService} from "../../services/buscar/buscar.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {ToastService} from "../../services/toast/toast-service";
 import {AdminProductoNuevoComponent} from "../admin-producto-nuevo/admin-producto-nuevo.component";
+import {ApiResponse} from "../../models/api-response";
 
 @Component({
   selector: 'app-admin-productos',
@@ -29,7 +30,7 @@ export class AdminProductosComponent implements OnInit {
       this.cargarProductos();
     } else {
       this.buscarService.buscar(this.Buscador).subscribe({
-        next: (res: any) => {
+        next: (res: ApiResponse<Product>) => {
           this.Productos = res.resultados;
         }
       })
@@ -38,7 +39,7 @@ export class AdminProductosComponent implements OnInit {
 
   cargarProductos() {
     this.productosService.get().subscribe({
-      next: (res: any) => {
+      next: (res: ApiResponse<Product>) => {
         this.Productos = res.resultados;
       }
     })
@@ -46,7 +47,7 @@ export class AdminProductosComponent implements OnInit {
 
   habilitarProducto(producto: Product) {
     return this.productosService.enableProducto(producto.id).subscribe({
-      next: (res: any) => {
+      next: (res: ApiResponse<Product>) => {
         this.toastService.showSuccess(res.mensaje)
         this.cargarProductos();
       },
@@ -58,7 +59,7 @@ export class AdminProductosComponent implements OnInit {
 
   deshabilitarProducto(producto: Product) {
     return this.productosService.disableProducto(producto.id).subscribe({
-      next: (res: any) => {
+      next: (res: ApiResponse<Product>) => {
         this.toastService.showSuccess(res.mensaje)
         this.cargarProductos();
       },
@@ -71,7 +72,7 @@ export class AdminProductosComponent implements OnInit {
   nuevoProducto() {
     const refModal = this.modalService.open(AdminProductoNuevoComponent);
     refModal.closed.subscribe({
-      next: (data: any) => {
+      next: (data: string) => {
         if (data === 'registrado') {
           this.cargarProductos();
         }

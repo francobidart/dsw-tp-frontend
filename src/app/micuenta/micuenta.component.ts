@@ -7,6 +7,7 @@ import {Pedido} from '../models/pedido';
 import {UserService} from "../services/user.service";
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ToastService} from "../services/toast/toast-service";
+import {ApiResponse} from "../models/api-response";
 
 @Component({
   selector: 'app-micuenta',
@@ -25,14 +26,15 @@ export class MicuentaComponent implements OnInit {
   constructor(public loginstatusservice: LoginStatusService, private router: Router, private usuarioService: UserService,
               private toastService: ToastService, public pedidosservice: PedidosService) {
   }
+
   ngOnInit() {
     this.loginstatusservice.getPerfil().subscribe({
-      next: data => {
-        this.perfil = data.resultados;
+      next: (data: ApiResponse<User>) => {
+        this.perfil = data.resultados[0];
       }
     });
     this.pedidosservice.getPedidoClient().subscribe({
-      next: (ped: any) => {
+      next: (ped: ApiResponse<Pedido>) => {
         this.pedidos = ped.resultados;
       }
     })
@@ -46,8 +48,8 @@ export class MicuentaComponent implements OnInit {
 
   cambiaop1() {
     this.loginstatusservice.getPerfil().subscribe({
-      next: data => {
-        this.perfil = data.resultados;
+      next: (data: ApiResponse<User>) => {
+        this.perfil = data.resultados[0];
       }
     });
     this.opcion = 1;
@@ -70,7 +72,7 @@ export class MicuentaComponent implements OnInit {
   editarUsuario() {
     if (this.formulario.valid) {
       this.usuarioService.actualizarCliente(this.formulario.value).subscribe({
-        next: (res: any) => {
+        next: (res: ApiResponse<User>) => {
           this.toastService.showSuccess(res.mensaje);
           this.cambiaop1()
         },

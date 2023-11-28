@@ -1,17 +1,18 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {TipoProducto} from "../../models/tipo-producto";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {TipoProductoServiceService} from "../../services/tipo-producto-service.service";
 import {ToastService} from "../../services/toast/toast-service";
 import {ProductoService} from "../../services/producto.service";
+import {ApiResponse} from "../../models/api-response";
 
 @Component({
   selector: 'app-admin-categoria-nueva',
   templateUrl: './admin-categoria-nueva.component.html',
   styleUrls: ['./admin-categoria-nueva.component.css']
 })
-export class AdminCategoriaNuevaComponent implements OnInit {
+export class AdminCategoriaNuevaComponent {
 
   Categorias: Array<TipoProducto> = [];
 
@@ -24,22 +25,11 @@ export class AdminCategoriaNuevaComponent implements OnInit {
   constructor(public activeModal: NgbActiveModal, private tipoProductoService: TipoProductoServiceService, private toastService: ToastService, private productoService: ProductoService) {
   }
 
-  ngOnInit(): void {
-    this.cargarCategorias()
-  }
-
-  cargarCategorias() {
-    this.tipoProductoService.get().subscribe({
-      next: (res: any) => {
-        this.Categorias = res.resultados;
-      }
-    })
-  }
 
   registrarCategoria() {
     if (this.FormCategoria.valid) {
       this.tipoProductoService.create(this.FormCategoria.value).subscribe({
-        next: (res: any) => {
+        next: (res: ApiResponse<any>) => {
           this.activeModal.close('registrado');
           this.toastService.showSuccess(res.mensaje);
         },

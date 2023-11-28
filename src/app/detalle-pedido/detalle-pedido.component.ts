@@ -4,6 +4,7 @@ import {Pedido} from "../models/pedido";
 import {PedidosService} from "../services/pedidos.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ToastService} from "../services/toast/toast-service";
+import {ApiResponse} from "../models/api-response";
 
 @Component({
   selector: 'app-detalle-pedido',
@@ -25,8 +26,8 @@ export class DetallePedidoComponent implements OnInit {
 
   loadData(id: number) {
     this.pedidosService.getPedido(id).subscribe({
-      next: (res: any) => {
-        this.Pedido = res.resultados;
+      next: (res: ApiResponse<Pedido>) => {
+        this.Pedido = res.resultados[0];
         console.log(this.Pedido.detallePedido);
       },
       error: (error: any) => {

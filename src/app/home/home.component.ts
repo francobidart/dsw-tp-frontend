@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Product} from "../models/product";
 import {ProductoService} from "../services/producto.service";
 import {Title} from "@angular/platform-browser";
+import {ApiResponse} from "../models/api-response";
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,7 @@ import {Title} from "@angular/platform-browser";
 })
 export class HomeComponent implements OnInit {
 
-  Products: any = null;
+  Products: Product[] = [];
 
   constructor(private productoService: ProductoService, private titleService: Title) {
   }
@@ -18,7 +19,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.titleService.setTitle('EL PATRÓN DEL HARD')
     this.productoService.get(4).subscribe({
-      next: (res: any) => this.Products = res.resultados
+      next: (res: ApiResponse<Product>) => this.Products = res.resultados
     });
   }
 

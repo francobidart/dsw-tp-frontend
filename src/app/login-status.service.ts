@@ -17,7 +17,6 @@ export class LoginStatusService {
   constructor(private httpClient: HttpClient) {
   }
 
-  // Método para iniciar sesión
   login(username: string, password: string, callback: any = null) {
     this.errorMessage = null;
     const formData = new FormData();
@@ -25,15 +24,15 @@ export class LoginStatusService {
     formData.append('password', password);
     this.httpClient.post(environment.apiUrl + 'sesion/login', formData, {withCredentials: true})
       .subscribe({
-          next: (res: any) => {
-            this.isAuthenticated = true;
-            this.isAdmin = res.resultados.isAdmin;
-            if (callback) {
-              callback()
-            }
-          },
-          error: (err: any) => this.errorMessage = err.error.mensaje
-        });
+        next: (res: any) => {
+          this.isAuthenticated = true;
+          this.isAdmin = res.resultados.isAdmin;
+          if (callback) {
+            callback()
+          }
+        },
+        error: (err: any) => this.errorMessage = err.error.mensaje
+      });
   }
 
 
@@ -60,7 +59,6 @@ export class LoginStatusService {
     return this.httpClient.get(environment.apiUrl + 'sesion/session/validateAdmin', {withCredentials: true}).toPromise();
   }
 
-// Método para cerrar sesión
   logout(): void {
     this.httpClient.get(environment.apiUrl + 'sesion/logout', {withCredentials: true}).subscribe({
       next: (res: any) => {
@@ -70,13 +68,11 @@ export class LoginStatusService {
     })
   }
 
-// Método para verificar el estado de inicio de sesión
   isLoggedIn(): boolean {
     return this.isAuthenticated;
   }
 
   getPerfil(): Observable<any> {
-    // Realiza una solicitud GET al servidor Express para obtener el perfil del usuario.
     return this.httpClient.get(environment.apiUrl + 'sesion/account/profile');
   }
 
