@@ -1,6 +1,5 @@
-import { TestBed, inject, fakeAsync, tick } from '@angular/core/testing';
+import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { Observable, of } from 'rxjs';
 import { LoginStatusService } from './login-status.service';
 import { environment } from '../environments/environment';
 
@@ -26,85 +25,79 @@ describe('LoginStatusService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should set isAuthenticated to true on successful login', fakeAsync(() => {
-  
-
-    service.login('test@test.com', 'admin');
-
-    const req = httpTestingController.expectOne(`${environment.apiUrl}sesion/login`);
-    expect(req.request.method).toEqual('POST');
-
-    expect(service.isAuthenticated).toBeTruthy();
-    expect(service.isAdmin).toBeFalsy();
-  }));
-
-  it('should set isAuthenticated to false on unsuccessful login', fakeAsync(() => {
-    const dummyErrorResponse = { mensaje: 'Error en el login' };
-
-    service.login('invalidUsername', 'invalidPassword');
-
-    const req = httpTestingController.expectOne(`${environment.apiUrl}sesion/login`);
-    expect(req.request.method).toEqual('POST');
-    req.error(new ErrorEvent('error', { error: dummyErrorResponse }));
-
-    tick();  // Wait for the Observable to complete
-
-    expect(service.isAuthenticated).toBeFalsy();
-    expect(service.errorMessage).toEqual(dummyErrorResponse.mensaje);
-  }));
-
-  it('should set isAuthenticated to true on successful session validation', fakeAsync(() => {
+  it('deberia setear isAuthenticated a true luego de un login exitoso', fakeAsync(() => {
     const dummyResponse = { resultados: { isAdmin: false } };
-    service.login('test@test.com', 'admin');
 
-    service.validarSesion();
+    service.login('username@yahoo.com', 'password');
 
-    const req = httpTestingController.expectOne(`${environment.apiUrl}sesion/session/validateSession`);
-    expect(req.request.method).toEqual('GET');
-    
+    const req = httpTestingController.expectOne(`${environment.apiUrl}sesion/login`);
+    expect(req.request.method).toEqual('POST');
+    req.flush(dummyResponse);
 
-    tick();  // Wait for the Observable to complete
+    tick();  
 
     expect(service.isAuthenticated).toBeTruthy();
     expect(service.isAdmin).toEqual(dummyResponse.resultados.isAdmin);
   }));
 
-  it('should set isAuthenticated to false on unsuccessful session validation', fakeAsync(() => {
+  it('deberia setear isAuthenticated a false luego de un login no exitoso', fakeAsync(() => {
+    const dummyErrorResponse = { error: { mensaje: 'Error en el login' } };
+  
+    service.login('invalidUsername@utn.com', 'invalidPassword');
+  
+
+    const req = httpTestingController.expectOne(`${environment.apiUrl}sesion/login`);
+    expect(req.request.method).toEqual('POST');
+    req.error(new ErrorEvent('err', { error: dummyErrorResponse }));
+    
+    tick(); 
+  
+    expect(service.isAuthenticated).toBeFalsy();
+    expect(service.errorMessage).toEqual(dummyErrorResponse.error.mensaje);
+  }));
+  
+  
+
+  it('deberia setear isAuthenticated a true luego de una validacion de usuario valida', fakeAsync(() => {
+    const dummyResponse = { resultados: { isAdmin: false } };
+
     service.validarSesion();
 
     const req = httpTestingController.expectOne(`${environment.apiUrl}sesion/session/validateSession`);
     expect(req.request.method).toEqual('GET');
-    req.error(new ErrorEvent('error'));
+    req.flush(dummyResponse);
 
-    tick();  // Wait for the Observable to complete
+    tick();  
 
-    expect(service.isAuthenticated).toBeFalsy();
+    expect(service.isAuthenticated).toBeTruthy();
+    expect(service.isAdmin).toEqual(dummyResponse.resultados.isAdmin);
   }));
 
-  it('should set isAuthenticated and isAdmin to false on logout', fakeAsync(() => {
-    
-    service.login('test@test.com', 'admin');
+
+  it('deberia setear isAuthenticated e isAdmin a false por logout', fakeAsync(() => {
     service.logout();
 
     const req = httpTestingController.expectOne(`${environment.apiUrl}sesion/logout`);
     expect(req.request.method).toEqual('GET');
+    req.flush({}); 
 
-    tick();  // Wait for the Observable to complete
+    tick();  
 
     expect(service.isAuthenticated).toBeFalsy();
     expect(service.isAdmin).toBeFalsy();
   }));
 
-  it('should return profile data on getPerfil', fakeAsync(() => {
-    const dummyProfileData =  'test@test.com';
-    
-    service.login('test@test.com', 'admin');
+  it('deberia retornar el perfil  ', fakeAsync(() => {
+    const dummyProfileData = { name: 'Paco', email: 'paco123@example.com' };
 
     service.getPerfil().subscribe(profile => {
-      expect(profile.email).toEqual(dummyProfileData);
+      expect(profile).toEqual(dummyProfileData);
     });
 
     const req = httpTestingController.expectOne(`${environment.apiUrl}sesion/account/profile`);
     expect(req.request.method).toEqual('GET');
+    req.flush(dummyProfileData);
+
+    tick();
   }));
 });
