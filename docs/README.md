@@ -90,6 +90,49 @@ La prueba incluida se correponde a **RegistrarseComponent**
 
 ---
 
+#### Prueba unitaria para la creación del componente header
+Se incluye una prueba unitaria para el componente de header, que incluye la creación, validación del servicio de carrito y sus funciones y show/hide de login.
+Para ejecutar la prueba se deberá ejecutar el comando:
+
+```
+ng test
+```
+
+La prueba incluida se correponde a **HeaderComponent**
+
+#### Imagen de verificación de resultados de la ejecución de la prueba:
+
+![image](./img/ejecucion_unit_header_component.png)
+
+[Enlace a imagen completa](https://github.com/francobidart/dsw-tp-frontend/blob/main/docs/img/ejecucion_unit_header_component.png)
+
+
+---
+
+#### Prueba unitaria del servicio de login status
+Se incluye una prueba unitaria para el servicio de login status, comprende:
+
+* Validar login exitoso, asignando los correspondientes valores al estado de login.
+* Validar login erroneo, validando que se muestren los mensajes correspondientes.
+* Retornar el perfil del usuario.
+
+Para ejecutar la prueba se deberá ejecutar el comando:
+
+```
+ng test
+```
+
+La prueba incluida se correponde a **LoginStatusService**
+
+#### Imagen de verificación de resultados de la ejecución de la prueba:
+
+![image](./img/ejecucion_unit_login_service.png)
+
+[Enlace a imagen completa](https://github.com/francobidart/dsw-tp-frontend/blob/main/docs/img/ejecucion_unit_login_service.png)
+
+
+---
+
 ### Demostración en video del funcionamiento de la plataforma
 
 [![Demostración en video](https://img.youtube.com/vi/XbLrnse9iSo/0.jpg)](https://www.youtube.com/watch?v=XbLrnse9iSo "Demostración en video")

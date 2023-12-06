@@ -1,7 +1,7 @@
-import { TestBed, fakeAsync, tick } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { LoginStatusService } from './login-status.service';
-import { environment } from '../environments/environment';
+import {TestBed, fakeAsync, tick} from '@angular/core/testing';
+import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
+import {LoginStatusService} from './login-status.service';
+import {environment} from '../environments/environment';
 
 describe('LoginStatusService', () => {
   let service: LoginStatusService;
@@ -26,7 +26,7 @@ describe('LoginStatusService', () => {
   });
 
   it('deberia setear isAuthenticated a true luego de un login exitoso', fakeAsync(() => {
-    const dummyResponse = { resultados: { isAdmin: false } };
+    const dummyResponse = {resultados: {isAdmin: false}};
 
     service.login('username@yahoo.com', 'password');
 
@@ -34,32 +34,33 @@ describe('LoginStatusService', () => {
     expect(req.request.method).toEqual('POST');
     req.flush(dummyResponse);
 
-    tick();  
+    tick();
 
     expect(service.isAuthenticated).toBeTruthy();
     expect(service.isAdmin).toEqual(dummyResponse.resultados.isAdmin);
   }));
 
   it('deberia setear isAuthenticated a false luego de un login no exitoso', fakeAsync(() => {
-    const dummyErrorResponse = { error: { mensaje: 'Error en el login' } };
-  
+    const expectedError = {
+      mensaje: 'Error en el login'
+    };
+
     service.login('invalidUsername@utn.com', 'invalidPassword');
-  
+
 
     const req = httpTestingController.expectOne(`${environment.apiUrl}sesion/login`);
     expect(req.request.method).toEqual('POST');
-    req.error(new ErrorEvent('err', { error: dummyErrorResponse }));
-    
-    tick(); 
-  
-    expect(service.isAuthenticated).toBeFalsy();
-    expect(service.errorMessage).toEqual(dummyErrorResponse.error.mensaje);
-  }));
-  
-  
+    req.flush(expectedError, { status: 500, statusText: "Internal Server Error"});
 
-  it('deberia setear isAuthenticated a true luego de una validacion de usuario valida', fakeAsync(() => {
-    const dummyResponse = { resultados: { isAdmin: false } };
+    tick();
+
+    expect(service.isAuthenticated).toBeFalsy();
+    expect(service.errorMessage).toEqual(expectedError.mensaje);
+  }));
+
+
+  it('deberia setear isAuthenticated a true luego de una validacion de usuario exitosa', fakeAsync(() => {
+    const dummyResponse = {resultados: {isAdmin: false}};
 
     service.validarSesion();
 
@@ -67,7 +68,7 @@ describe('LoginStatusService', () => {
     expect(req.request.method).toEqual('GET');
     req.flush(dummyResponse);
 
-    tick();  
+    tick();
 
     expect(service.isAuthenticated).toBeTruthy();
     expect(service.isAdmin).toEqual(dummyResponse.resultados.isAdmin);
@@ -79,16 +80,16 @@ describe('LoginStatusService', () => {
 
     const req = httpTestingController.expectOne(`${environment.apiUrl}sesion/logout`);
     expect(req.request.method).toEqual('GET');
-    req.flush({}); 
+    req.flush({});
 
-    tick();  
+    tick();
 
     expect(service.isAuthenticated).toBeFalsy();
     expect(service.isAdmin).toBeFalsy();
   }));
 
   it('deberia retornar el perfil  ', fakeAsync(() => {
-    const dummyProfileData = { name: 'Paco', email: 'paco123@example.com' };
+    const dummyProfileData = {name: 'Paco', email: 'paco123@example.com'};
 
     service.getPerfil().subscribe(profile => {
       expect(profile).toEqual(dummyProfileData);

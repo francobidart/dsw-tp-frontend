@@ -31,7 +31,11 @@ export class LoginStatusService {
             callback()
           }
         },
-        error: (err: any) => this.errorMessage = err.error.mensaje
+        error: (err: any) => {
+          console.log(err);
+          this.isAuthenticated = false;
+          this.errorMessage = err.error.mensaje
+        }
       });
   }
 

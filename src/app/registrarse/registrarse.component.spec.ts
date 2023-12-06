@@ -1,10 +1,10 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RegistrarseComponent } from './registrarse.component';
-import { UserService } from '../services/user.service';
-import { ToastService } from '../services/toast/toast-service';
-import { Router } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
-import { of, throwError } from 'rxjs';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {RegistrarseComponent} from './registrarse.component';
+import {UserService} from '../services/user.service';
+import {ToastService} from '../services/toast/toast-service';
+import {Router} from '@angular/router';
+import {ReactiveFormsModule} from '@angular/forms';
+import {of, throwError} from 'rxjs';
 
 describe('RegistrarseComponent', () => {
   let component: RegistrarseComponent;
@@ -12,7 +12,6 @@ describe('RegistrarseComponent', () => {
   let userServiceSpy: jasmine.SpyObj<UserService>;
   let toastServiceSpy: jasmine.SpyObj<ToastService>;
   let routerSpy: jasmine.SpyObj<Router>;
-
 
 
   beforeEach(() => {
@@ -23,9 +22,9 @@ describe('RegistrarseComponent', () => {
     TestBed.configureTestingModule({
       declarations: [RegistrarseComponent],
       providers: [
-        { provide: UserService, useValue: userServiceSpy },
-        { provide: ToastService, useValue: toastServiceSpy },
-        { provide: Router, useValue: routerSpy },
+        {provide: UserService, useValue: userServiceSpy},
+        {provide: ToastService, useValue: toastServiceSpy},
+        {provide: Router, useValue: routerSpy},
       ],
       imports: [ReactiveFormsModule],
     }).compileComponents();
@@ -72,7 +71,12 @@ describe('RegistrarseComponent', () => {
   });
 
   it('Deberia mostrar se cargo correctamente y registrarse los datos en el back', () => {
-    userServiceSpy.registrarUsuario.and.returnValue(of({ mensaje: 'Se Registro Correctamente' }));
+    userServiceSpy.registrarUsuario.and.returnValue(of({
+      status: 'OK',
+      total_resultados: 0,
+      resultados: [],
+      mensaje: 'Se Registro Correctamente'
+    }));
 
     component.formulario.setValue({
       nombre: 'Lisandro',
@@ -92,7 +96,7 @@ describe('RegistrarseComponent', () => {
 
   it('Deberia mostrar mensaje de error', () => {
     const errorMessage = 'Fallo Registro';
-    userServiceSpy.registrarUsuario.and.returnValue(throwError({ error: { mensaje: errorMessage } }));
+    userServiceSpy.registrarUsuario.and.returnValue(throwError({error: {mensaje: errorMessage}}));
 
     component.formulario.setValue({
       nombre: 'Gaspar',

@@ -34,6 +34,7 @@ export class RegistrarseComponent {
       if (this.formulario.value.password === this.formulario.value.repetirpassword) {
         this.usuarioService.registrarUsuario(this.formulario.value).subscribe({
           next: (res: ApiResponse<User>) => {
+            this.Completado = 'Se ha registrado correctamente'
             this.toastService.showSuccess(res.mensaje);
             this.router.navigate(['/login']);
           },

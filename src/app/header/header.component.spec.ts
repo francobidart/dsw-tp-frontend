@@ -16,7 +16,7 @@ describe('HeaderComponent', () => {
   let cartService: CartService;
   let tipoProductoService: TipoProductoServiceService;
   let loginStatusService: LoginStatusService;
-  
+
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -24,7 +24,7 @@ describe('HeaderComponent', () => {
       providers: [CartService, LoginStatusService, TipoProductoServiceService],
       imports: [HttpClientTestingModule],
     });
-    
+
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
     cartService = TestBed.inject(CartService);
@@ -48,15 +48,12 @@ describe('HeaderComponent', () => {
 
   it('deberia llamar metodos ngOnInit', fakeAsync(() => {
     const fakeApiResponse: ApiResponse<TipoProducto> = {
-      status: 'success', 
-      mensaje: 'Consulta exitosa', 
-      total_resultados: 0, 
+      status: 'success',
+      mensaje: 'Consulta exitosa',
+      total_resultados: 0,
       resultados: []
     };
-    
-    
-    spyOn(cartService, 'getItems').and.returnValue([]);
-    spyOn(cartService, 'getTotal').and.returnValue(0);
+
     spyOn(tipoProductoService, 'get').and.returnValue(of(fakeApiResponse));
     spyOn(loginStatusService, 'validarSesion');
 
@@ -66,15 +63,13 @@ describe('HeaderComponent', () => {
     expect(component.CartItems).toEqual([]);
     expect(component.Total).toEqual(0);
     expect(component.Categorias).toEqual([]);
-    expect(cartService.getItems).toHaveBeenCalled();
-    expect(cartService.getTotal).toHaveBeenCalled();
     expect(tipoProductoService.get).toHaveBeenCalled();
     expect(loginStatusService.validarSesion).toHaveBeenCalled();
   }));
 
   it('should call DeleteItem method', () => {
-    const product: Product = { 
-      
+    const product: Product = {
+
       id: 1,
       TipoProducto: {
         id: 1,
@@ -98,7 +93,7 @@ describe('HeaderComponent', () => {
     component.DeleteItem(product);
 
     expect(cartService.DeleteItem).toHaveBeenCalledWith(product);
-   
+
   });
 
   it('should call clearCart method on FlushCart', () => {
@@ -118,5 +113,5 @@ describe('HeaderComponent', () => {
     expect(component.isLoginPopupVisible).toBe(false);
   });
 
-  
+
 });

@@ -89,7 +89,8 @@ export class CartService {
 
   DeleteItem(item: any) {
     let index = this.items.indexOf(item);
-    this.items.splice(index, 1)
+    this.items.splice(index, 1);
+    window.localStorage.setItem('cart', JSON.stringify(this.items));
     this.updateTotal();
   }
 

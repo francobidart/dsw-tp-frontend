@@ -28,7 +28,6 @@ export class DetallePedidoComponent implements OnInit {
     this.pedidosService.getPedido(id).subscribe({
       next: (res: ApiResponse<Pedido>) => {
         this.Pedido = res.resultados[0];
-        console.log(this.Pedido.detallePedido);
       },
       error: (error: any) => {
         if (error.error.mensaje) {
